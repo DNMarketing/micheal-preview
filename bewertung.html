@@ -56,14 +56,14 @@
   </section>
 
   <!-- ══ Der Funnel ═══════════════════════════════════════════════
-       Eingebettet vom eigenen Deployment (bewertung.micheal-immobilien.de).
+       Eingebettet vom eigenen Deployment (micheal-bewertung-vorschau.netlify.app).
        Das Snippet setzt an dieser Stelle ein iframe ein, hält dessen Höhe
        nach und reicht UTM-/fbclid-Parameter durch.
 
        Damit das funktioniert, müssen DREI Dinge stimmen:
        1. In der Funnel-Config steht diese Domain unter embed.allowedOrigins
        2. In _headers UND netlify.toml erlaubt die CSP script-src und
-          frame-src für bewertung.micheal-immobilien.de
+          frame-src für micheal-bewertung-vorschau.netlify.app
        3. Die Funnel-Domain ist erreichbar
        Fehlt eines davon, bleibt die Stelle leer — deshalb steht darunter
        ein Rückfallweg, der immer sichtbar ist.
@@ -71,7 +71,7 @@
   <section class="band band--eng" id="funnel">
     <div class="huelle">
       <div class="funnelrahmen">
-        <script src="https://bewertung.micheal-immobilien.de/embed.js" async></script>
+        <script src="https://micheal-bewertung-vorschau.netlify.app/embed.js" async></script>
         <noscript>
           <div class="hinweis hinweis--warn">
             <strong>Das Bewertungsformular braucht JavaScript.</strong>
@@ -84,7 +84,7 @@
 
       <p class="erg__fussnote" style="margin-top:var(--s-5)">
         Das Formular lädt nicht? Dann geht es direkt über
-        <a href="https://bewertung.micheal-immobilien.de">bewertung.micheal-immobilien.de</a>
+        <a href="https://micheal-bewertung-vorschau.netlify.app">micheal-bewertung-vorschau.netlify.app</a>
         oder über <a href="/micheal-preview/kontakt.html">unser Kontaktformular</a>. Ein Lead geht bei uns
         nicht verloren, weil ein Skript hakt.
       </p>
