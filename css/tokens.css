@@ -1,0 +1,177 @@
+/* ══════════════════════════════════════════════════════════════════
+   tokens.css · Das Vokabular des Designs.
+
+   Gestalterische Leitidee: MESSINSTRUMENT.
+   Die Seite soll nicht aussehen wie ein Makler-Prospekt, sondern
+   wie ein Diagnosegerät, das eine Immobilie vermisst. Daraus folgt
+   alles Weitere:
+
+     · Grund fast schwarz, leicht kühl — kein reines #000, das wirkt
+       tot. #08090B hat einen Blaustich und wirkt wie ein Display.
+     · Zahlen IMMER in Mono mit tabellarischen Ziffern. Eine Zahl,
+       die beim Hochzählen die Breite ändert, zerstört den Eindruck
+       von Präzision sofort.
+     · Haarlinien statt Karten. Keine Schlagschatten, keine Radien
+       über 2px. Nichts schwebt.
+     · GENAU EINE Signalfarbe, und die steht ausschließlich für
+       Verlust. Sobald Orange irgendwo dekorativ auftaucht, ist die
+       Wirkung weg.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Schriften ──────────────────────────────────────────────────────
+   Alle drei liegen unter /assets/fonts. Keine externe Anfrage,
+   die CSP bleibt bei font-src 'self'.
+
+   Archivo    – Fließtext und Bedienung. Enge Grotesk, ruhig.
+   Bricolage  – Überschriften. Variabel in Breite und optischer
+                Größe, hat Kanten. Nur groß einsetzen.
+   Plex Mono  – Jede Zahl, jedes Etikett, jede Messangabe.
+   ──────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("/assets/fonts/Archivo-wght.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage";
+  src: url("/assets/fonts/BricolageGrotesque-var.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PlexMono";
+  src: url("/assets/fonts/IBMPlexMono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PlexMono";
+  src: url("/assets/fonts/IBMPlexMono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PlexMono";
+  src: url("/assets/fonts/IBMPlexMono-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+:root {
+  /* ── Grundflächen ────────────────────────────────────────────── */
+  --grund:        #08090B;   /* Seitenhintergrund */
+  --grund-tief:   #050608;   /* tiefer gelegte Zonen, Fußbereich */
+  --flaeche-1:    #0D0F13;   /* leicht erhöht */
+  --flaeche-2:    #12151A;   /* Eingabefelder, Kacheln */
+  --flaeche-3:    #191D24;   /* Kachel im Überfahren */
+
+  /* ── Linien ──────────────────────────────────────────────────── */
+  --linie-fein:   rgba(255, 255, 255, 0.07);   /* Standardtrenner */
+  --linie:        rgba(255, 255, 255, 0.12);   /* Rahmen */
+  --linie-stark:  rgba(255, 255, 255, 0.22);   /* aktiv, ausgewählt */
+
+  /* ── Schrift ─────────────────────────────────────────────────── */
+  --text-hell:    #F4F6F8;   /* Überschriften */
+  --text:         #C9D0D8;   /* Fließtext */
+  --text-leise:   #8A939F;   /* sekundär, Bildunterschriften */
+  --text-still:   #5D6672;   /* Quellenangaben, deaktiviert */
+
+  /* ── Signal · nur für Verlust ────────────────────────────────── */
+  --signal:       #FF7A2F;
+  --signal-hell:  #FFA36B;
+  --signal-tief:  #C4520F;
+  --signal-flach: rgba(255, 122, 47, 0.10);
+  --signal-rand:  rgba(255, 122, 47, 0.32);
+  --signal-schein:rgba(255, 122, 47, 0.16);
+
+  /* ── Gegenpol · nur für gesicherte/geprüfte Angaben ──────────── */
+  --gepruft:      #5EE0A8;
+  --gepruft-flach:rgba(94, 224, 168, 0.10);
+
+  /* ── Warnung · nur für rechtliche Pflichtangaben ─────────────── */
+  --warn:         #FFD166;
+  --warn-flach:   rgba(255, 209, 102, 0.10);
+
+  /* ── Energieklassen-Skala (A+ … H) ───────────────────────────
+     Bewusst NICHT das bunte Ampel-Band aus dem Energieausweis,
+     sondern ein Verlauf von kühlem Grün in die Signalfarbe. So
+     bleibt Orange semantisch bei "Verlust".                       */
+  --ek-0: #4BC28C;  /* A+ */
+  --ek-1: #62C47E;  /* A  */
+  --ek-2: #8CC66B;  /* B  */
+  --ek-3: #B8C25C;  /* C  */
+  --ek-4: #D9B455;  /* D  */
+  --ek-5: #E89B4A;  /* E  */
+  --ek-6: #F0803C;  /* F  */
+  --ek-7: #EE6630;  /* G  */
+  --ek-8: #DC4A26;  /* H  */
+
+  /* ── Schriftfamilien ─────────────────────────────────────────── */
+  --f-text:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Bricolage", "Archivo", "Helvetica Neue", sans-serif;
+  --f-mono:    "PlexMono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ── Größen ──────────────────────────────────────────────────── */
+  --t-zaehler:  clamp(3.4rem, 0.6rem + 12vw, 9.5rem);
+  --t-display:  clamp(2.5rem, 1.0rem + 5.6vw, 5.6rem);
+  --t-h1:       clamp(2.0rem, 1.2rem + 3.0vw, 3.6rem);
+  --t-h2:       clamp(1.55rem, 1.1rem + 1.8vw, 2.5rem);
+  --t-h3:       clamp(1.15rem, 1.0rem + 0.7vw, 1.5rem);
+  --t-gross:    clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);
+  --t-text:     1.0rem;
+  --t-klein:    0.875rem;
+  --t-etikett:  0.6875rem;   /* Mono-Etiketten, immer versal */
+
+  /* ── Abstände · Vierer-Raster ────────────────────────────────── */
+  --s-1:  0.25rem;
+  --s-2:  0.5rem;
+  --s-3:  0.75rem;
+  --s-4:  1rem;
+  --s-5:  1.5rem;
+  --s-6:  2rem;
+  --s-7:  3rem;
+  --s-8:  4rem;
+  --s-9:  6rem;
+  --s-10: 8rem;
+
+  /* ── Maße ────────────────────────────────────────────────────── */
+  --breite-seite:  76rem;   /* Standard-Inhaltsbreite */
+  --breite-text:   38rem;   /* Lesespalte */
+  --breite-eng:    30rem;   /* Formulare, einzelne Frage */
+  --rand:          clamp(1.25rem, 5vw, 3.5rem);
+
+  --radius:        2px;
+  --radius-null:   0;
+
+  /* ── Bewegung ────────────────────────────────────────────────── */
+  --e-raus:   cubic-bezier(0.16, 1, 0.3, 1);      /* Standard-Auftritt */
+  --e-scharf: cubic-bezier(0.4, 0, 0.2, 1);
+  --e-zurueck:cubic-bezier(0.34, 1.56, 0.64, 1);  /* leichtes Überschwingen */
+  --d-kurz:   140ms;
+  --d-mittel: 280ms;
+  --d-lang:   560ms;
+
+  /* ── Texturen ────────────────────────────────────────────────── */
+  /* Feines Raster, das über der ganzen Seite liegt. Nicht als
+     Deko, sondern damit die Fläche wie Millimeterpapier eines
+     Messgeräts wirkt. */
+  --raster-weite: 44px;
+  --raster-farbe: rgba(255, 255, 255, 0.020);
+}
+
+/* Wer Bewegung reduziert haben will, bekommt sie nicht.
+   Zusätzlich schaltet ?statisch in der Adresszeile alles ab —
+   dieselbe Konvention wie in den anderen Projekten. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --d-kurz: 1ms; --d-mittel: 1ms; --d-lang: 1ms; }
+}

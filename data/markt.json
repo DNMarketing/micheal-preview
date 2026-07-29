@@ -1,0 +1,108 @@
+{
+  "_hinweis": "Marktdaten für das Einzugsgebiet. Miet- und Kaufpreise sind die einzigen Zahlen im Tool, die REGIONAL recherchiert werden müssen. Sie sind aktuell PLATZHALTER. Pflege siehe docs/DATENPFLEGE.md.",
+  "schema_version": 1,
+  "markt": {
+    "name": "Heilbronn und Landkreis",
+    "zentrum": "Heilbronn",
+    "bundesland": "Baden-Württemberg"
+  },
+  "stand": "2026-Q3",
+  "naechste_pruefung": "2026-10-01",
+  "geprueft": false,
+  "_geprueft_bedeutung": "Solange false: Tool zeigt sichtbaren Demo-Hinweis. Vor Livegang auf true setzen — erst wenn jede Zeile unten eine echte Quelle trägt.",
+  "quellen_die_zu_pruefen_sind": [
+    "Mietspiegel der Stadt Heilbronn (falls qualifiziert vorhanden) — sonst Mietwertübersicht",
+    "Gutachterausschuss Stadt Heilbronn / Landkreis Heilbronn: Grundstücksmarktbericht, Bodenrichtwerte (BORIS-BW)",
+    "IVD Preisspiegel Baden-Württemberg",
+    "eigene Abschlüsse und Angebotspreise aus dem laufenden Bestand — die belastbarste Quelle, die es gibt"
+  ],
+
+  "_felder": {
+    "miete_eur_qm": "ortsübliche Vergleichsmiete, Nettokalt, mittlerer Wohnwert",
+    "miete_spanne": "[unten, oben] — wird im Tool als Korridor gezeigt",
+    "kaufpreis_eur_qm": "Angebotspreis Wohnfläche, mittlerer Zustand, Referenz-Energieklasse C",
+    "kappungsgrenze": "0.15 in Gemeinden mit angespanntem Wohnungsmarkt (Landesverordnung BW), sonst 0.20 — pro Gemeinde prüfen"
+  },
+
+  "orte": [
+    {
+      "plz": "74072",
+      "ort": "Heilbronn",
+      "stadtteile": ["Innenstadt", "Altstadt", "Bahnhofsvorstadt", "Südstadt"],
+      "miete_eur_qm": 10.80, "miete_spanne": [9.20, 12.60],
+      "kaufpreis_eur_qm": 3450,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+    {
+      "plz": "74074",
+      "ort": "Heilbronn",
+      "stadtteile": ["Oststadt", "Wartberg", "Schweinsberg"],
+      "miete_eur_qm": 10.40, "miete_spanne": [8.90, 12.10],
+      "kaufpreis_eur_qm": 3300,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+    {
+      "plz": "74076",
+      "ort": "Heilbronn",
+      "stadtteile": ["Nordstadt", "Industrieplatz"],
+      "miete_eur_qm": 10.10, "miete_spanne": [8.60, 11.80],
+      "kaufpreis_eur_qm": 3180,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+    {
+      "plz": "74078",
+      "ort": "Heilbronn",
+      "stadtteile": ["Neckargartach", "Frankenbach", "Kirchhausen", "Biberach"],
+      "miete_eur_qm": 9.60, "miete_spanne": [8.20, 11.10],
+      "kaufpreis_eur_qm": 2980,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+    {
+      "plz": "74080",
+      "ort": "Heilbronn",
+      "stadtteile": ["Böckingen", "Klingenberg"],
+      "miete_eur_qm": 9.80, "miete_spanne": [8.30, 11.40],
+      "kaufpreis_eur_qm": 3050,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+    {
+      "plz": "74081",
+      "ort": "Heilbronn",
+      "stadtteile": ["Sontheim", "Horkheim"],
+      "miete_eur_qm": 9.90, "miete_spanne": [8.40, 11.50],
+      "kaufpreis_eur_qm": 3120,
+      "kappungsgrenze": 0.15,
+      "geprueft": false, "quelle": "TODO"
+    },
+
+    { "plz": "74172", "ort": "Neckarsulm",        "stadtteile": ["Kernstadt", "Amorbach", "Obereisesheim", "Dahenfeld"], "miete_eur_qm": 10.60, "miete_spanne": [9.10, 12.30], "kaufpreis_eur_qm": 3380, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74177", "ort": "Bad Friedrichshall","stadtteile": ["Kochendorf", "Jagstfeld", "Duttenberg", "Hagenbach"],  "miete_eur_qm": 9.30,  "miete_spanne": [8.00, 10.80], "kaufpreis_eur_qm": 2900, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74189", "ort": "Weinsberg",         "stadtteile": ["Kernstadt", "Grantschen", "Wimmental"],                "miete_eur_qm": 9.90,  "miete_spanne": [8.50, 11.40], "kaufpreis_eur_qm": 3150, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74211", "ort": "Leingarten",        "stadtteile": ["Großgartach", "Schluchtern"],                          "miete_eur_qm": 9.50,  "miete_spanne": [8.20, 11.00], "kaufpreis_eur_qm": 3020, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74223", "ort": "Flein",             "stadtteile": ["Flein"],                                               "miete_eur_qm": 10.20, "miete_spanne": [8.80, 11.90], "kaufpreis_eur_qm": 3400, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74226", "ort": "Nordheim",          "stadtteile": ["Nordheim", "Nordhausen"],                              "miete_eur_qm": 9.40,  "miete_spanne": [8.10, 10.90], "kaufpreis_eur_qm": 2950, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74235", "ort": "Erlenbach",         "stadtteile": ["Erlenbach", "Binswangen"],                             "miete_eur_qm": 9.70,  "miete_spanne": [8.30, 11.20], "kaufpreis_eur_qm": 3080, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74336", "ort": "Brackenheim",       "stadtteile": ["Kernstadt", "Botenheim", "Hausen", "Meimsheim"],       "miete_eur_qm": 9.20,  "miete_spanne": [7.90, 10.60], "kaufpreis_eur_qm": 2860, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74348", "ort": "Lauffen am Neckar", "stadtteile": ["Stadtteil links", "Stadtteil rechts"],                 "miete_eur_qm": 9.60,  "miete_spanne": [8.20, 11.10], "kaufpreis_eur_qm": 3000, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74360", "ort": "Ilsfeld",           "stadtteile": ["Ilsfeld", "Auenstein", "Schozach"],                    "miete_eur_qm": 9.50,  "miete_spanne": [8.10, 11.00], "kaufpreis_eur_qm": 2980, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74388", "ort": "Talheim",           "stadtteile": ["Talheim"],                                             "miete_eur_qm": 9.60,  "miete_spanne": [8.20, 11.10], "kaufpreis_eur_qm": 3050, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74199", "ort": "Untergruppenbach",  "stadtteile": ["Untergruppenbach", "Obergruppenbach", "Donnbronn"],    "miete_eur_qm": 9.40,  "miete_spanne": [8.00, 10.90], "kaufpreis_eur_qm": 2960, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74182", "ort": "Obersulm",          "stadtteile": ["Affaltrach", "Willsbach", "Eschenau", "Sülzbach"],     "miete_eur_qm": 9.30,  "miete_spanne": [8.00, 10.80], "kaufpreis_eur_qm": 2920, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74206", "ort": "Bad Wimpfen",       "stadtteile": ["Altstadt", "Wimpfen im Tal", "Hohenstadt"],            "miete_eur_qm": 9.40,  "miete_spanne": [8.00, 10.90], "kaufpreis_eur_qm": 2900, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74906", "ort": "Bad Rappenau",      "stadtteile": ["Kernstadt", "Bonfeld", "Grombach", "Obergimpern"],     "miete_eur_qm": 9.00,  "miete_spanne": [7.70, 10.40], "kaufpreis_eur_qm": 2750, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74193", "ort": "Schwaigern",        "stadtteile": ["Kernstadt", "Massenbach", "Stetten", "Niederhofen"],   "miete_eur_qm": 9.10,  "miete_spanne": [7.80, 10.50], "kaufpreis_eur_qm": 2800, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "74196", "ort": "Neuenstadt am Kocher", "stadtteile": ["Kernstadt", "Kochertürn", "Stein am Kocher"],       "miete_eur_qm": 8.90,  "miete_spanne": [7.60, 10.30], "kaufpreis_eur_qm": 2720, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" },
+    { "plz": "75031", "ort": "Eppingen",          "stadtteile": ["Kernstadt", "Elsenz", "Mühlbach", "Richen"],           "miete_eur_qm": 9.20,  "miete_spanne": [7.90, 10.60], "kaufpreis_eur_qm": 2840, "kappungsgrenze": 0.20, "geprueft": false, "quelle": "TODO" }
+  ],
+
+  "ausserhalb": {
+    "_hinweis": "Wird gezeigt, wenn eine PLZ nicht in der Liste steht. Kein Fantasiewert — das Tool sagt ehrlich, dass es dort nicht rechnet, und bietet die persönliche Einschätzung an.",
+    "ueberschrift": "Diese Postleitzahl liegt außerhalb unseres Marktgebiets",
+    "text": "Wir rechnen nur mit Zahlen, die wir selbst kennen. Für Heilbronn und den Landkreis haben wir belastbare Vergleichswerte, außerhalb nicht. Schicken Sie uns Ihre Eckdaten — wir sagen Ihnen ehrlich, ob wir Ihnen helfen können."
+  }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Micheal Immobilien · Messbalken. Dunkler Grund wie die Seite,
+       drei fallende Balken in der Signalfarbe. Bei 16px noch lesbar,
+       weil nur drei Formen und ein Farbton. -->
+  <rect width="32" height="32" fill="#08090B"/>
+  <rect x="5"  y="8"  width="4" height="16" fill="#FF7A2F"/>
+  <rect x="13" y="13" width="4" height="11" fill="#FF7A2F" opacity=".62"/>
+  <rect x="21" y="18" width="4" height="6"  fill="#FF7A2F" opacity=".34"/>
+  <rect x="4"  y="26" width="24" height="1" fill="#FF7A2F" opacity=".5"/>
+</svg>

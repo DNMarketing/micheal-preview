@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Micheal Immobilien · Was Ihre Immobilie kostet, während Sie nichts tun</title>
+<meta name="description" content="Potenzial-Analyse für Immobilien in Heilbronn und Umgebung. Sechs Fragen, 90 Sekunden, keine Adresse nötig — am Ende eine Zahl mit Rechenweg und Quelle.">
+<link rel="canonical" href="https://micheal-immobilien.de/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Was Ihre Immobilie kostet, während Sie nichts tun">
+<meta property="og:description" content="Sechs Fragen, 90 Sekunden, keine Adresse. Am Ende eine Zahl, die Sie nachrechnen können.">
+<meta property="og:url" content="https://micheal-immobilien.de/">
+<meta name="theme-color" content="#08090B">
+
+<link rel="icon" href="/micheal-preview/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/micheal-preview/assets/fonts/Archivo-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/micheal-preview/assets/fonts/IBMPlexMono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/micheal-preview/css/tokens.css">
+<link rel="stylesheet" href="/micheal-preview/css/base.css">
+<link rel="stylesheet" href="/micheal-preview/css/tool.css">
+</head>
+<body>
+
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<div class="demo-hinweis" data-demo hidden></div>
+
+<header class="kopf">
+  <div class="huelle kopf__reihe">
+    <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+    <button class="navi-schalter" aria-expanded="false" aria-controls="navi" aria-label="Menü"><span></span></button>
+    <nav class="navi" id="navi" data-offen="nein">
+      <a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a>
+      <a href="/micheal-preview/bewertung.html">Bewertung</a>
+      <a href="/micheal-preview/inserats-check.html">Inserats-Check</a>
+      <a href="/micheal-preview/anlass/energie.html">Anlässe</a>
+      <a class="knopf" href="/micheal-preview/kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inhalt">
+
+  <!-- ══ HERO · Das Werkzeug IST die Startseite ═══════════════════ -->
+  <section class="hero">
+    <div class="huelle huelle--weit">
+      <div class="hero__raster">
+
+        <div class="hero__text">
+          <p class="etikett etikett--signal">Potenzial-Analyse · 6 Fragen · rund 90 Sekunden</p>
+          <h1 class="display">Was Ihre Immobilie&nbsp;kostet, während Sie nichts&nbsp;tun.</h1>
+          <p class="gross lese">
+            Energiekosten, Mietlücke, Instandhaltungsstau — jedes Jahr geht Geld verloren, das niemand
+            beziffert. Wir tun es. Ohne Adresse, ohne Anruf, ohne Registrierung.
+            Am Ende steht eine Zahl, die Sie nachrechnen können: mit Rechenweg und Quelle unter jedem Wert.
+          </p>
+
+          <form class="plzstart" data-plz-start>
+            <label class="feld">
+              <span class="feld__label">Wo steht Ihre Immobilie?</span>
+              <span class="plzstart__reihe">
+                <input class="feld__eingabe zahl" type="text" inputmode="numeric" maxlength="5"
+                       autocomplete="postal-code" placeholder="74072" aria-label="Postleitzahl">
+                <button class="knopf knopf--signal knopf--gross" type="submit">
+                  Analyse starten <span class="pfeil">→</span>
+                </button>
+              </span>
+            </label>
+            <p class="plzstart__unter">
+              Wir fragen zuerst nur die Postleitzahl. Ihre Adresse brauchen wir erst,
+              wenn Sie den vollständigen Bericht wollen — vorher nicht, also fragen wir auch nicht danach.
+            </p>
+          </form>
+        </div>
+
+        <!-- Beispielrechnung: läuft live, ist als Beispiel beschriftet -->
+        <aside class="zaehler rahmen rahmen--signal hero__zaehler" data-beispiel>
+          <p class="etikett etikett--signal">Beispielrechnung</p>
+          <p class="zaehler__satz">Diese Immobilie verliert</p>
+          <div class="zaehler__buehne">
+            <div class="zaehler__zahl zahl">0 €</div>
+          </div>
+          <p class="zaehler__einheit">pro Jahr</p>
+          <div class="messleiste messleiste--signal" aria-hidden="true"></div>
+          <div class="ticker">
+            <span class="ticker__label">seit Sie diese Seite geöffnet haben</span>
+            <span class="ticker__wert zahl">0,0000 €</span>
+          </div>
+          <p class="hero__zaehler-zeile zahl" data-beispiel-zeile></p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Warum die Zahl hält ══════════════════════════════════════ -->
+  <section class="band band--linie">
+    <div class="huelle">
+      <p class="etikett auf">Der Unterschied</p>
+      <h2 class="auf" style="max-width:26ch">Rechner gibt es viele. Der Unterschied ist, ob die Zahl im Termin standhält.</h2>
+      <div class="kacheln kacheln--3" style="margin-top:var(--s-6)">
+        <div class="kachel auf" style="--verzug:0ms">
+          <span class="kachel__nr zahl">01</span>
+          <h3>Jeder Wert nennt seine Quelle</h3>
+          <p>Energiekennwerte nach GEG Anlage 10, CO₂-Verteilung nach CO2KostAufG § 6, Mieten nach
+             örtlichem Mietspiegel. Unter jeder Zahl steht, woher sie stammt und von wann.</p>
+        </div>
+        <div class="kachel auf" style="--verzug:90ms">
+          <span class="kachel__nr zahl">02</span>
+          <h3>Nur, was rechtlich durchsetzbar ist</h3>
+          <p>Eine Mietlücke ist erst dann Geld, wenn sie sich auch erheben lässt. Wir deckeln
+             auf die Kappungsgrenze nach BGB § 558 — statt eine Zahl zu zeigen, die vor Gericht zerfällt.</p>
+        </div>
+        <div class="kachel auf" style="--verzug:180ms">
+          <span class="kachel__nr zahl">03</span>
+          <h3>Wo wir nicht rechnen können, rechnen wir nicht</h3>
+          <p>Außerhalb unseres Marktgebiets und bei Grundstücken sagen wir das — statt einen
+             Schätzwert zu erfinden. Die Daten werden quartalsweise nachgeführt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Die zwei Werkzeuge ═══════════════════════════════════════ -->
+  <section class="band band--tief">
+    <div class="huelle">
+      <p class="etikett auf">Werkzeuge</p>
+      <h2 class="auf" style="max-width:26ch">Drei Wege hinein. Alle drei kosten nichts und verpflichten zu nichts.</h2>
+      <div class="werkzeuge" style="margin-top:var(--s-6)">
+
+        <a class="werkzeug rahmen auf" href="/micheal-preview/potenzial-analyse.html">
+          <span class="werkzeug__nr zahl">01</span>
+          <h3>Potenzial-Analyse</h3>
+          <p>Sechs Fragen zu Lage, Baujahr, Heizung und Nutzung. Ergebnis: Ihr laufender Verlust
+             pro Jahr, aufgeteilt auf Energie, Miete und Instandhaltung — plus der Betrag, den ein
+             Käufer heute beim Preis abziehen würde.</p>
+          <ul class="liste">
+            <li>Keine Adresse, keine Registrierung</li>
+            <li>Energieklasse wird geschätzt, wenn kein Ausweis vorliegt</li>
+            <li>Vollständiger Bericht als PDF, mit Rechenweg</li>
+          </ul>
+          <span class="knopf knopf--signal">Starten <span class="pfeil">→</span></span>
+        </a>
+
+        <a class="werkzeug rahmen auf" href="/micheal-preview/inserats-check.html" style="--verzug:120ms">
+          <span class="werkzeug__nr zahl">02</span>
+          <h3>KI-Inserats-Check</h3>
+          <p>Sie verkaufen selbst? Laden Sie drei bis fünf Fotos und Ihren Anzeigentext hoch.
+             Wir prüfen Bildwirkung, Textwirkung, Preisplausibilität — und ob Ihre Anzeige die
+             gesetzlichen Pflichtangaben enthält.</p>
+          <ul class="liste">
+            <li>Pflichtangaben nach GEG § 87 — sofort, ohne Wartezeit</li>
+            <li>Bußgeldrahmen bei Verstoß: bis 10.000 €</li>
+            <li>Vermarktungs-Score plus die drei größten Hebel</li>
+          </ul>
+          <span class="knopf">Inserat prüfen <span class="pfeil">→</span></span>
+        </a>
+
+        <a class="werkzeug rahmen auf" href="/micheal-preview/bewertung.html" style="--verzug:240ms">
+          <span class="werkzeug__nr zahl">03</span>
+          <h3>Immobilienbewertung</h3>
+          <p>Die klassische Frage, und die einzige, die wir bewusst nicht von einem Rechner
+             beantworten lassen. Sechs Fragen in einer Minute — danach schaut sich ein Mensch
+             Ihr Objekt an und meldet sich innerhalb von 24 Stunden.</p>
+          <ul class="liste">
+            <li>Keine ausgewürfelte Rechnerzahl</li>
+            <li>Einschätzung von jemandem, der die Straße kennt</li>
+            <li>Belastbar genug für Bank, Erbengemeinschaft, Steuerberater</li>
+          </ul>
+          <span class="knopf">Bewerten lassen <span class="pfeil">→</span></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Käufer-Zähler ════════════════════════════════════════════ -->
+  <section class="band band--eng">
+    <div class="huelle">
+      <div class="kaeufer" data-kaeufer hidden></div>
+    </div>
+  </section>
+
+  <!-- ══ Anlässe ══════════════════════════════════════════════════ -->
+  <section class="band">
+    <div class="huelle">
+      <p class="etikett auf">Anlässe</p>
+      <h2 class="auf" style="max-width:24ch">Niemand verkauft eine Immobilie ohne Grund.</h2>
+      <p class="gross lese leise auf">Sagen Sie uns, welcher es ist — dann sparen wir uns beide das allgemeine Gerede.</p>
+      <div class="kacheln kacheln--4" style="margin-top:var(--s-6)">
+        <a class="kachel auf" href="/micheal-preview/anlass/energie.html">
+          <span class="kachel__nr zahl">A</span><h3>Sanierungsdruck</h3>
+          <p>Heizung alt, Klasse schlecht, Fristen rücken näher. Sanieren oder verkaufen?</p>
+        </a>
+        <a class="kachel auf" href="/micheal-preview/anlass/erben.html" style="--verzug:80ms">
+          <span class="kachel__nr zahl">B</span><h3>Geerbt</h3>
+          <p>Erbengemeinschaft, Fristen, Steuer. Meist ist Zeit der teuerste Faktor.</p>
+        </a>
+        <a class="kachel auf" href="/micheal-preview/anlass/privatverkauf.html" style="--verzug:160ms">
+          <span class="kachel__nr zahl">C</span><h3>Privatverkauf stockt</h3>
+          <p>Inseriert, Anfragen da, aber niemand kauft. Woran es meistens liegt.</p>
+        </a>
+        <a class="kachel auf" href="/micheal-preview/anlass/kapitalanlage.html" style="--verzug:240ms">
+          <span class="kachel__nr zahl">D</span><h3>Kapitalanlage</h3>
+          <p>Vermietet, aber die Rendite trägt nicht mehr. Halten oder abstoßen?</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Haltung ══════════════════════════════════════════════════ -->
+  <section class="band band--tief band--linie">
+    <div class="huelle">
+      <div class="paar">
+        <div class="auf">
+          <p class="etikett">Haltung</p>
+          <h2>Wir sagen Ihnen auch, wenn Verkaufen gerade falsch wäre.</h2>
+        </div>
+        <div class="auf" style="--verzug:120ms">
+          <p class="gross">Ein Makler, der immer zum Verkauf rät, ist keine Beratung, sondern ein
+             Vertrieb. Es gibt Fälle, in denen Halten, Sanieren oder Vermieten die bessere Rechnung ist —
+             und die zeigt Ihnen die Analyse genauso.</p>
+          <p>Wenn am Ende ein Verkauf steht, machen wir ihn. Wenn nicht, haben Sie trotzdem eine
+             Zahl, mit der Sie arbeiten können.</p>
+          <a class="knopf" href="/micheal-preview/ueber.html">Wer dahintersteht <span class="pfeil">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fuss">
+  <div class="huelle">
+    <div class="fuss__raster">
+      <div>
+        <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+        <p class="still" style="margin-top:var(--s-4);max-width:24rem">
+          Immobilienvermittlung in Heilbronn und im Landkreis. Wohnimmobilien, Kapitalanlagen,
+          Nachlassimmobilien.</p>
+      </div>
+      <div>
+        <h4>Werkzeuge</h4>
+        <ul>
+          <li><a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a></li>
+        <li><a href="/micheal-preview/bewertung.html">Immobilienbewertung</a></li>
+          <li><a href="/micheal-preview/inserats-check.html">Inserats-Check</a></li>
+          <li><a href="/micheal-preview/ratgeber/">Ratgeber</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Anlässe</h4>
+        <ul>
+          <li><a href="/micheal-preview/anlass/energie.html">Sanierungsdruck</a></li>
+          <li><a href="/micheal-preview/anlass/erben.html">Geerbt</a></li>
+          <li><a href="/micheal-preview/anlass/privatverkauf.html">Privatverkauf</a></li>
+          <li><a href="/micheal-preview/anlass/kapitalanlage.html">Kapitalanlage</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kanzlei &amp; Kontakt</h4>
+        <ul>
+          <li><a href="/micheal-preview/ueber.html">Über uns</a></li>
+          <li><a href="/micheal-preview/referenzen.html">Referenzen</a></li>
+          <li><a href="/micheal-preview/kontakt.html">Kontakt</a></li>
+          <li><a href="/micheal-preview/rechtliches/impressum.html">Impressum</a></li>
+          <li><a href="/micheal-preview/rechtliches/datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss__unten">
+      <span>© <span data-jahr>2026</span> Micheal Immobilien</span>
+      <span>Datenstand der Analyse: 2026-Q3</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="#" data-ort="Heilbronn" hidden rel="noopener" target="_blank">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.4.7-2.1 1-2.4.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l.9 2.1c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.1.2.6 1.1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.3Z"/></svg>
+  <span class="wa__text">Kurz per WhatsApp<span class="wa__unter">3 Fotos + Adresse → Einschätzung in 24 h</span></span>
+</a>
+
+<script src="/micheal-preview/js/config.js"></script>
+<script src="/micheal-preview/js/main.js"></script>
+<script src="/micheal-preview/js/analyse/engine.js"></script>
+<script src="/micheal-preview/js/home.js"></script>
+</body>
+</html>

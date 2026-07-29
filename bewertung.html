@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Immobilienbewertung Heilbronn · Micheal Immobilien</title>
+<meta name="description" content="Kostenlose Immobilienbewertung für Heilbronn und den Landkreis. Sechs Fragen in 60 Sekunden, danach eine persönliche Einschätzung innerhalb von 24 Stunden — kein automatischer Rechner.">
+<link rel="canonical" href="https://micheal-immobilien.de/bewertung.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Was ist Ihre Immobilie wert? Persönliche Einschätzung in 24 Stunden">
+<meta property="og:description" content="Sechs Fragen, 60 Sekunden. Keine Rechnerzahl, sondern eine Einschätzung von jemandem, der den Markt in Heilbronn kennt.">
+<meta property="og:url" content="https://micheal-immobilien.de/bewertung.html">
+<meta name="theme-color" content="#08090B">
+
+<link rel="icon" href="/micheal-preview/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/micheal-preview/assets/fonts/Archivo-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/micheal-preview/css/tokens.css">
+<link rel="stylesheet" href="/micheal-preview/css/base.css">
+<link rel="stylesheet" href="/micheal-preview/css/tool.css">
+</head>
+<body>
+
+<a class="sprung" href="#funnel">Direkt zur Bewertung</a>
+<div class="demo-hinweis" data-demo hidden></div>
+
+<header class="kopf">
+  <div class="huelle kopf__reihe">
+    <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+    <button class="navi-schalter" aria-expanded="false" aria-controls="navi" aria-label="Menü"><span></span></button>
+    <nav class="navi" id="navi" data-offen="nein">
+      <a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a>
+      <a href="/micheal-preview/bewertung.html" aria-current="page">Bewertung</a>
+      <a href="/micheal-preview/inserats-check.html">Inserats-Check</a>
+      <a href="/micheal-preview/anlass/energie.html">Anlässe</a>
+      <a class="knopf" href="/micheal-preview/kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="anlass-kopf">
+    <div class="huelle">
+      <p class="etikett etikett--signal">Bewertung · 6 Fragen · rund 60 Sekunden</p>
+      <h1 class="display" style="max-width:17ch">Was ist Ihre Immobilie wert?</h1>
+      <p class="gross lese">
+        Sie bekommen hier keine Zahl, die ein Algorithmus ausgewürfelt hat. Sie bekommen eine
+        Einschätzung von jemandem, der die Straße kennt, in der Ihr Haus steht — innerhalb von
+        24 Stunden, kostenlos und unverbindlich.
+      </p>
+      <div class="marke marke--gepruft" style="margin-top:var(--s-5)">
+        <span class="punkt"></span>Bewusst kein Online-Rechner
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Der Funnel ═══════════════════════════════════════════════
+       Eingebettet vom eigenen Deployment (bewertung.micheal-immobilien.de).
+       Das Snippet setzt an dieser Stelle ein iframe ein, hält dessen Höhe
+       nach und reicht UTM-/fbclid-Parameter durch.
+
+       Damit das funktioniert, müssen DREI Dinge stimmen:
+       1. In der Funnel-Config steht diese Domain unter embed.allowedOrigins
+       2. In _headers UND netlify.toml erlaubt die CSP script-src und
+          frame-src für bewertung.micheal-immobilien.de
+       3. Die Funnel-Domain ist erreichbar
+       Fehlt eines davon, bleibt die Stelle leer — deshalb steht darunter
+       ein Rückfallweg, der immer sichtbar ist.
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="band band--eng" id="funnel">
+    <div class="huelle">
+      <div class="funnelrahmen">
+        <script src="https://bewertung.micheal-immobilien.de/embed.js" async></script>
+        <noscript>
+          <div class="hinweis hinweis--warn">
+            <strong>Das Bewertungsformular braucht JavaScript.</strong>
+            <p>Rufen Sie uns einfach an, oder schreiben Sie uns — für eine Einschätzung
+               brauchen wir ohnehin ein Gespräch.</p>
+            <a class="knopf knopf--signal" href="/micheal-preview/kontakt.html">Bewertung anfragen <span class="pfeil">→</span></a>
+          </div>
+        </noscript>
+      </div>
+
+      <p class="erg__fussnote" style="margin-top:var(--s-5)">
+        Das Formular lädt nicht? Dann geht es direkt über
+        <a href="https://bewertung.micheal-immobilien.de">bewertung.micheal-immobilien.de</a>
+        oder über <a href="/micheal-preview/kontakt.html">unser Kontaktformular</a>. Ein Lead geht bei uns
+        nicht verloren, weil ein Skript hakt.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ Abgrenzung zur Potenzial-Analyse ════════════════════════ -->
+  <section class="band band--tief band--linie">
+    <div class="huelle">
+      <p class="etikett auf">Zwei Werkzeuge, zwei Fragen</p>
+      <h2 class="auf" style="max-width:26ch">Was Ihre Immobilie wert ist, und was sie Sie kostet, sind zwei verschiedene Zahlen.</h2>
+      <div class="paar" style="margin-top:var(--s-6)">
+        <div class="hinweis auf">
+          <strong>Diese Seite: der Wert.</strong>
+          <p>Sechs Fragen zu Objekt, Lage und Anlass. Danach schaut sich ein Mensch Ihr Objekt
+             an und meldet sich mit einer Einschätzung. Der richtige Weg, wenn ein Verkauf im
+             Raum steht oder Sie eine belastbare Zahl für Bank, Erbengemeinschaft oder
+             Steuerberater brauchen.</p>
+        </div>
+        <div class="hinweis auf" style="--verzug:120ms">
+          <strong>Die Potenzial-Analyse: die laufenden Kosten.</strong>
+          <p>Rechnet Ihnen sofort im Browser aus, was Energie, Mietlücke und Instandhaltung
+             Sie <em>pro Jahr</em> kosten — mit Rechenweg und Quelle unter jeder Zahl. Der
+             richtige Weg, wenn Sie noch gar nicht wissen, ob verkaufen überhaupt das Thema ist.</p>
+          <a class="knopf" href="/micheal-preview/potenzial-analyse.html">Zur Potenzial-Analyse <span class="pfeil">→</span></a>
+        </div>
+      </div>
+      <p class="still" style="margin-top:var(--s-5);max-width:52ch">
+        Beides ist kostenlos, und beides geht ohne dass Sie uns beauftragen. Wenn Sie unsicher
+        sind, welches passt: Fangen Sie mit der Potenzial-Analyse an — sie beantwortet die
+        Frage, die vor dem Wert kommt.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="huelle">
+      <div class="kaeufer" data-kaeufer hidden></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fuss">
+  <div class="huelle">
+    <div class="fuss__unten">
+      <span>© <span data-jahr>2026</span> Micheal Immobilien</span>
+      <span><a href="/micheal-preview/rechtliches/impressum.html">Impressum</a> · <a href="/micheal-preview/rechtliches/datenschutz.html">Datenschutz</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="#" data-ort="Heilbronn" hidden rel="noopener" target="_blank">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.4.7-2.1 1-2.4.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l.9 2.1c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.1.2.6 1.1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.3Z"/></svg>
+  <span class="wa__text">Kurz per WhatsApp<span class="wa__unter">3 Fotos + Adresse → Einschätzung in 24 h</span></span>
+</a>
+
+<script src="/micheal-preview/js/config.js"></script>
+<script src="/micheal-preview/js/main.js"></script>
+</body>
+</html>

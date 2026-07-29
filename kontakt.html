@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt · Micheal Immobilien</title>
+<meta name="description" content="Direkt anrufen, schreiben oder per WhatsApp drei Fotos schicken. Ersteinschätzung innerhalb von 24 Stunden.">
+<link rel="canonical" href="https://micheal-immobilien.de/kontakt.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Kontakt">
+<meta property="og:description" content="Direkt anrufen, schreiben oder per WhatsApp drei Fotos schicken. Ersteinschätzung innerhalb von 24 Stunden.">
+<meta property="og:url" content="https://micheal-immobilien.de/kontakt.html">
+<meta name="theme-color" content="#08090B">
+<link rel="icon" href="/micheal-preview/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/micheal-preview/assets/fonts/Archivo-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/micheal-preview/css/tokens.css">
+<link rel="stylesheet" href="/micheal-preview/css/base.css">
+<link rel="stylesheet" href="/micheal-preview/css/tool.css">
+</head>
+<body>
+
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<div class="demo-hinweis" data-demo hidden></div>
+
+<header class="kopf">
+  <div class="huelle kopf__reihe">
+    <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+    <button class="navi-schalter" aria-expanded="false" aria-controls="navi" aria-label="Menü"><span></span></button>
+    <nav class="navi" id="navi" data-offen="nein">
+      <a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a>
+      <a href="/micheal-preview/bewertung.html">Bewertung</a>
+      <a href="/micheal-preview/inserats-check.html">Inserats-Check</a>
+      <a href="/micheal-preview/anlass/energie.html">Anlässe</a>
+      <a class="knopf" href="/micheal-preview/kontakt.html" aria-current="page">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inhalt">
+
+  <section class="anlass-kopf">
+    <div class="huelle">
+      <p class="etikett etikett--signal">Kontakt</p>
+      <h1 class="display" style="max-width:18ch">Drei Wege. Suchen Sie sich einen aus.</h1>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="huelle">
+      <div class="kacheln kacheln--3">
+        <div class="kachel"><span class="kachel__nr zahl">01</span><h3>Anrufen</h3><p>Der schnellste Weg. Wenn niemand rangeht, rufen wir am selben Tag zurück.</p><p class="zahl" style="font-size:1.15rem;color:var(--text-hell)">TODO Telefonnummer</p></div>
+        <div class="kachel"><span class="kachel__nr zahl">02</span><h3>WhatsApp</h3><p>Drei Fotos und die Adresse genügen für eine erste Einordnung. Antwort in der Regel innerhalb von 24 Stunden.</p><p class="still">Der Knopf unten rechts erscheint, sobald in js/config.js eine Nummer hinterlegt ist.</p></div>
+        <div class="kachel"><span class="kachel__nr zahl">03</span><h3>Schreiben</h3><p>Formular unten oder direkt per E-Mail. Wenn Sie das Ergebnis der Potenzial-Analyse dabeihaben, geht es schneller.</p><p class="zahl" style="font-size:1.05rem;color:var(--text-hell)">TODO E-Mail</p></div>
+      </div>
+
+      <div class="gate rahmen" style="margin-top:var(--s-7)">
+        <p class="etikett">Nachricht</p>
+        <h3 class="gate__titel">Was steht an?</h3>
+        <form class="gform" id="kontaktform" novalidate>
+          <div class="gform__reihe">
+            <label class="feld"><span class="feld__label">Name</span><input class="feld__eingabe" name="name" type="text" autocomplete="name" required></label>
+            <label class="feld"><span class="feld__label">E-Mail</span><input class="feld__eingabe" name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <div class="gform__reihe">
+            <label class="feld"><span class="feld__label">Telefon <span class="still">(freiwillig)</span></span><input class="feld__eingabe zahl" name="telefon" type="tel" autocomplete="tel"></label>
+            <label class="feld"><span class="feld__label">Anlass</span>
+              <select class="feld__eingabe" name="anlass">
+                <option value="">bitte wählen</option>
+                <option value="energie">Sanieren oder verkaufen</option>
+                <option value="erben">Geerbte Immobilie</option>
+                <option value="privatverkauf">Privatverkauf stockt</option>
+                <option value="kapitalanlage">Kapitalanlage</option>
+                <option value="grundstueck">Grundstück</option>
+                <option value="sonstiges">Etwas anderes</option>
+              </select></label>
+          </div>
+          <label class="feld"><span class="feld__label">Worum geht es?</span><textarea class="feld__eingabe" name="nachricht" rows="6" required></textarea></label>
+          <div class="honig" aria-hidden="true"><label>Webseite<input name="webseite" type="text" tabindex="-1" autocomplete="off"></label></div>
+          <label class="haken"><input type="checkbox" name="einwilligung" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. <a href="/micheal-preview/rechtliches/datenschutz.html">Datenschutzerklärung</a></span></label>
+          <button class="knopf knopf--signal knopf--gross knopf--voll" type="submit">Nachricht senden <span class="pfeil">→</span></button>
+          <p class="gform__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="huelle">
+    <div class="fuss__raster">
+      <div>
+        <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+        <p class="still" style="margin-top:var(--s-4);max-width:24rem">Immobilienvermittlung in Heilbronn und im Landkreis. Wohnimmobilien, Kapitalanlagen, Nachlassimmobilien.</p>
+      </div>
+      <div><h4>Werkzeuge</h4><ul>
+        <li><a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a></li>
+        <li><a href="/micheal-preview/bewertung.html">Immobilienbewertung</a></li>
+        <li><a href="/micheal-preview/inserats-check.html">Inserats-Check</a></li>
+        <li><a href="/micheal-preview/ratgeber/">Ratgeber</a></li></ul></div>
+      <div><h4>Anlässe</h4><ul>
+        <li><a href="/micheal-preview/anlass/energie.html">Sanierungsdruck</a></li>
+        <li><a href="/micheal-preview/anlass/erben.html">Geerbt</a></li>
+        <li><a href="/micheal-preview/anlass/privatverkauf.html">Privatverkauf</a></li>
+        <li><a href="/micheal-preview/anlass/kapitalanlage.html">Kapitalanlage</a></li></ul></div>
+      <div><h4>Kanzlei &amp; Kontakt</h4><ul>
+        <li><a href="/micheal-preview/ueber.html">Über uns</a></li>
+        <li><a href="/micheal-preview/referenzen.html">Referenzen</a></li>
+        <li><a href="/micheal-preview/kontakt.html">Kontakt</a></li>
+        <li><a href="/micheal-preview/rechtliches/impressum.html">Impressum</a></li>
+        <li><a href="/micheal-preview/rechtliches/datenschutz.html">Datenschutz</a></li></ul></div>
+    </div>
+    <div class="fuss__unten">
+      <span>© <span data-jahr>2026</span> Micheal Immobilien</span>
+      <span>Datenstand der Analyse: 2026-Q3</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="#" data-ort="Heilbronn" hidden rel="noopener" target="_blank">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.4.7-2.1 1-2.4.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l.9 2.1c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.1.2.6 1.1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.3Z"/></svg>
+  <span class="wa__text">Kurz per WhatsApp<span class="wa__unter">3 Fotos + Adresse → Einschätzung in 24 h</span></span>
+</a>
+
+<script src="/micheal-preview/js/config.js"></script>
+<script src="/micheal-preview/js/main.js"></script>
+<script src="/micheal-preview/js/kontakt.js"></script>
+</body>
+</html>

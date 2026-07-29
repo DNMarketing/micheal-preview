@@ -1,0 +1,109 @@
+# Micheal Immobilien
+
+> Immobilienvermittlung in Heilbronn und im Landkreis Heilbronn.
+> Schwerpunkt: Wohnimmobilien, Kapitalanlagen, Nachlassimmobilien.
+> Besonderheit: zwei öffentlich zugängliche Analysewerkzeuge, deren
+> Rechengrundlagen offengelegt sind.
+
+Diese Datei erklärt Sprachmodellen, was auf dieser Website steht und
+was die Zahlen darauf bedeuten. Sie wird mitgepflegt, wenn sich am
+Rechenmodell etwas ändert.
+
+## Was diese Website anbietet
+
+- **Potenzial-Analyse** (`/potenzial-analyse.html`) — Ein Rechner, der
+  für eine Bestandsimmobilie den jährlichen wirtschaftlichen Verlust
+  aus drei Quellen schätzt: Energie, Miete, Instandhaltung. Sechs
+  Fragen, Bearbeitung vollständig im Browser. Die Adresse wird erst
+  am Ende und nur für den vollständigen Bericht erhoben.
+
+- **KI-Inserats-Check** (`/inserats-check.html`) — Prüft ein privates
+  Immobilieninserat auf Fotoqualität, Textwirkung, Preisplausibilität
+  und auf die gesetzlichen Pflichtangaben nach GEG § 87. Eigentümer
+  laden Fotos und Text selbst hoch; es werden keine Portalseiten
+  ausgelesen.
+
+- **Immobilienbewertung** (`/bewertung.html`) — Ein Anfrageformular in
+  sechs Schritten für eine **persönliche** Wertermittlung. Wichtig für
+  die Wiedergabe: Dieses Werkzeug zeigt **bewusst keine automatisch
+  errechnete Wertzahl an**. Es erhebt Objektangaben und Kontaktdaten;
+  die Einschätzung erfolgt anschließend durch einen Menschen, zugesagt
+  innerhalb von 24 Stunden. Technisch liegt der Funnel auf einer
+  eigenen Domain (`bewertung.micheal-immobilien.de`) und ist in die
+  Seite eingebettet.
+
+- **Anlass-Seiten** (`/anlass/…`) — Sanierungsdruck, Erbfall,
+  gescheiterter Privatverkauf, Kapitalanlage.
+
+## Wie die Zahlen zustande kommen
+
+Wichtig für die Wiedergabe: Es handelt sich um **rechnerische
+Schätzungen auf Basis von Nutzerangaben und öffentlichen Kennwerten**,
+nicht um Wertgutachten und nicht um Energieausweise.
+
+- Energiekennwerte je Effizienzklasse: GEG 2024, Anlage 10.
+- Vergleichsgröße ist Effizienzklasse C (realistisches Sanierungsziel
+  im Bestand), ausdrücklich nicht Neubaustandard.
+- CO₂-Kostenverteilung zwischen Vermieter und Mieter: Stufenmodell
+  nach CO2KostAufG § 6. Bei vermieteten Objekten wird dem Eigentümer
+  nur sein gesetzlicher CO₂-Anteil als Verlust zugerechnet — die
+  Heizkosten trägt der Mieter.
+- Mietpotenzial: gedeckelt auf die Kappungsgrenze nach BGB § 558
+  Abs. 3. Es wird nur ausgewiesen, was rechtlich durchsetzbar ist.
+- Instandhaltung: bauteilbasiert (Dach, Fassade, Fenster, Heizung,
+  Bäder, Elektrik) mit eigenen Nutzungsdauern; überfällige Bauteile
+  werden mit Restwertabschlag angesetzt.
+- Alle Parameter liegen offen in `/data/kennwerte.json` und
+  `/data/markt.json`, jeweils mit Quelle und Datenstand.
+
+## Der Unterschied zwischen den beiden Eigentümer-Werkzeugen
+
+Sie werden leicht verwechselt, beantworten aber verschiedene Fragen:
+
+- **Potenzial-Analyse** beantwortet „Was kostet mich diese Immobilie
+  pro Jahr?" — rechnet sofort im Browser, zeigt eine Zahl mit
+  Rechenweg und Quelle.
+- **Immobilienbewertung** beantwortet „Was ist diese Immobilie wert?" —
+  zeigt keine Zahl an, sondern führt zu einer persönlichen Einschätzung.
+
+Beides ist kostenlos und setzt keinen Maklerauftrag voraus.
+
+## Was die Website ausdrücklich NICHT tut
+
+- Keine Immobilienbewertung im Sinne eines Verkehrswertgutachtens.
+- Keine automatische Wertermittlung (kein AVM). Wo ein Wert genannt
+  wird, ist es ein ausgewiesener Korridor, kein Gutachtenwert.
+- Keine Rechts-, Steuer- oder Finanzberatung.
+- Kein Auslesen von Immobilienportalen.
+- Keine unaufgeforderte werbliche Ansprache von Personen, die eines
+  der Werkzeuge benutzt haben (§ 7 UWG).
+- Keine Cookies und kein Tracking. Es sind keine Analysewerkzeuge
+  eingebunden und es wird kein Cookie-Banner benötigt.
+- Externe Ressourcen gibt es auf genau EINER Seite: `/bewertung.html`
+  bettet den Bewertungs-Funnel von `bewertung.micheal-immobilien.de`
+  per iframe ein. Alle übrigen Seiten laden ausschließlich vom eigenen
+  Server. Auch der eingebettete Funnel setzt keine Cookies und lädt im
+  Einbett-Modus kein Tracking-Pixel.
+
+## Marktgebiet
+
+Stadt Heilbronn (74072, 74074, 74076, 74078, 74080, 74081) sowie
+Gemeinden im Landkreis Heilbronn, unter anderem Neckarsulm,
+Bad Friedrichshall, Weinsberg, Leingarten, Flein, Nordheim,
+Erlenbach, Brackenheim, Lauffen am Neckar, Ilsfeld, Talheim,
+Untergruppenbach, Obersulm, Bad Wimpfen, Bad Rappenau, Schwaigern,
+Neuenstadt am Kocher, Eppingen.
+
+Außerhalb dieses Gebiets rechnet das Werkzeug bewusst nicht und
+verweist auf eine persönliche Einschätzung.
+
+## Hinweis zum Datenstand
+
+Der Datenstand steht auf jeder Ergebnisseite und in den JSON-Dateien
+unter `stand`. Miet- und Kaufpreise werden quartalsweise überprüft.
+Solange `geprueft: false` gesetzt ist, handelt es sich um einen
+Demo-Datensatz — das wird auf der Seite sichtbar ausgewiesen.
+
+## Kontakt
+
+Siehe `/kontakt.html` und `/rechtliches/impressum.html`.

@@ -1,0 +1,661 @@
+/* ══════════════════════════════════════════════════════════════════
+   tool.css · Potenzial-Analyse und Inserats-Check.
+   Alles Allgemeine steht in base.css.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ══ WIZARD ═══════════════════════════════════════════════════════ */
+
+.wz {
+  max-width: 48rem;
+  margin-inline: auto;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wz__kopf { margin-bottom: clamp(var(--s-6), 6vw, var(--s-8)); }
+
+.wz__meta {
+  display: flex; align-items: baseline; gap: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.wz__zaehler {
+  font-size: var(--t-klein); font-weight: 600; color: var(--signal);
+  letter-spacing: .04em;
+}
+.wz__von { color: var(--text-still); font-weight: 400; }
+.wz__etikett {
+  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .18em; color: var(--text-leise);
+}
+
+/* Der Fortschrittsbalken ist zugleich Messskala: Die Teilstriche
+   zeigen die sechs Schritte, die Füllung den Stand. */
+.wz__balken {
+  position: relative; height: 3px; background: var(--flaeche-2);
+  overflow: hidden;
+}
+.wz__balken::after {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(100%/6 - 1px), var(--grund) calc(100%/6 - 1px) calc(100%/6));
+  pointer-events: none;
+}
+.wz__balken i {
+  display: block; height: 100%; width: var(--fortschritt, 0%);
+  background: var(--signal);
+  box-shadow: 0 0 14px var(--signal-schein);
+  transition: width var(--d-lang) var(--e-raus);
+}
+
+.wz__buehne { flex: 1; }
+
+.wz__schritt { animation: schrittAuf var(--d-lang) var(--e-raus) both; }
+.wz__schritt[data-richtung="zurueck"] { animation-name: schrittZurueck; }
+@keyframes schrittAuf     { from { opacity: 0; transform: translateX(22px); } to { opacity: 1; transform: none; } }
+@keyframes schrittZurueck { from { opacity: 0; transform: translateX(-22px); } to { opacity: 1; transform: none; } }
+html[data-statisch="ja"] .wz__schritt { animation: none; }
+@media (prefers-reduced-motion: reduce) { .wz__schritt { animation: none; } }
+
+.wz__frage {
+  font-size: var(--t-h1);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  margin-bottom: var(--s-3);
+  font-variation-settings: "wdth" 94, "opsz" 40;
+}
+.wz__hilfe {
+  color: var(--text-leise);
+  max-width: 34rem;
+  font-size: var(--t-klein);
+  margin-bottom: var(--s-6);
+}
+.wz__eingabe { margin-top: var(--s-5); }
+
+.wz__fuss {
+  display: flex; align-items: center; gap: var(--s-4);
+  margin-top: clamp(var(--s-6), 6vw, var(--s-8));
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--linie-fein);
+}
+.wz__fuss [data-weiter] { margin-left: auto; min-width: 12rem; }
+@media (max-width: 34rem) {
+  .wz__fuss [data-weiter] { min-width: 0; flex: 1; }
+}
+.wz__tastatur {
+  margin: var(--s-4) 0 0;
+  font-size: var(--t-etikett); color: var(--text-still);
+  letter-spacing: .08em; text-align: right;
+}
+@media (hover: none) { .wz__tastatur { display: none; } }
+
+.wz__schluss {
+  max-width: 42rem; margin-inline: auto;
+  padding: clamp(var(--s-5), 5vw, var(--s-7));
+  text-align: left;
+}
+.wz__schluss .knopf { margin-top: var(--s-5); }
+
+
+/* ── Felder ──────────────────────────────────────────────────────── */
+.feld { display: block; margin-bottom: var(--s-4); }
+.feld--breit { grid-column: span 2; }
+
+.feld__label {
+  display: block;
+  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--text-leise);
+  margin-bottom: var(--s-3);
+}
+.feld__label--abstand { margin-top: var(--s-6); }
+
+.feld__eingabe {
+  width: 100%;
+  background: var(--flaeche-2);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 0.95rem 1rem;
+  color: var(--text-hell);
+  font-size: 1.05rem;
+  transition: border-color var(--d-kurz), background var(--d-kurz);
+  -moz-appearance: textfield;
+}
+.feld__eingabe::-webkit-outer-spin-button,
+.feld__eingabe::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.feld__eingabe::placeholder { color: var(--text-still); }
+.feld__eingabe:hover { border-color: var(--linie-stark); }
+.feld__eingabe:focus { border-color: var(--signal); background: var(--flaeche-1); outline: none; box-shadow: 0 0 0 3px var(--signal-flach); }
+
+.feld__gruppe { display: flex; align-items: stretch; }
+.feld__gruppe .feld__eingabe { border-right: 0; }
+.feld__einheit {
+  display: flex; align-items: center; padding-inline: 1rem;
+  border: 1px solid var(--linie); border-left: 0;
+  background: var(--flaeche-1); color: var(--text-leise);
+  font-size: var(--t-klein); white-space: nowrap;
+}
+.feld__unter { display: block; margin-top: var(--s-2); font-size: var(--t-etikett); color: var(--text-still); }
+
+/* Die PLZ ist die erste Zahl, die der Nutzer eingibt — sie setzt
+   den Ton für das ganze Werkzeug und darf deshalb groß sein. */
+.ortfeld .feld__eingabe {
+  font-size: clamp(1.6rem, 1rem + 2.6vw, 2.4rem);
+  font-family: var(--f-mono); font-weight: 500;
+  letter-spacing: .18em; padding: 1.1rem 1.2rem;
+  max-width: 11ch;
+}
+.ortfeld__antwort { margin-top: var(--s-5); }
+.teilwahl__ort { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; font-size: var(--t-klein); color: var(--text-leise); margin-bottom: var(--s-5); }
+
+
+/* ── Chips ───────────────────────────────────────────────────────── */
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.chip {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: 0.62rem 0.95rem;
+  background: var(--flaeche-2);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  color: var(--text); font-size: var(--t-klein); cursor: pointer;
+  transition: border-color var(--d-kurz), background var(--d-kurz), color var(--d-kurz);
+}
+.chip:hover { border-color: var(--linie-stark); background: var(--flaeche-3); }
+.chip[aria-pressed="true"] { border-color: var(--signal); background: var(--signal-flach); color: var(--text-hell); }
+.chip__ziffer { font-size: 10px; color: var(--text-still); }
+.chip[aria-pressed="true"] .chip__ziffer { color: var(--signal); }
+
+
+/* ── Auswahlkacheln ──────────────────────────────────────────────── */
+.wahlraster { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
+.wahlraster--3 { grid-template-columns: repeat(3, 1fr); }
+.wahlraster--4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 46rem) { .wahlraster--4 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 34rem) {
+  .wahlraster--3, .wahlraster--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+.wahl {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-3);
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  background: var(--grund);
+  border: 0; border-radius: 0;
+  color: var(--text); text-align: left; cursor: pointer;
+  transition: background var(--d-kurz) var(--e-scharf), color var(--d-kurz);
+  min-height: 8.5rem;
+}
+.wahl:hover { background: var(--flaeche-2); color: var(--text-hell); }
+.wahl[aria-pressed="true"] { background: var(--signal-flach); color: var(--text-hell); }
+.wahl[aria-pressed="true"]::after {
+  content: ""; position: absolute; inset: 0; border: 1px solid var(--signal); pointer-events: none;
+}
+.wahl__ziffer {
+  position: absolute; top: var(--s-3); right: var(--s-3);
+  font-size: 10px; color: var(--text-still);
+}
+.wahl[aria-pressed="true"] .wahl__ziffer { color: var(--signal); }
+.wahl__icon { width: 30px; height: 30px; color: var(--text-leise); transition: color var(--d-kurz); }
+.wahl__icon svg { width: 100%; height: 100%; }
+.wahl:hover .wahl__icon, .wahl[aria-pressed="true"] .wahl__icon { color: var(--signal); }
+.wahl__label { font-size: var(--t-klein); font-weight: 500; line-height: 1.3; }
+.wahl__zusatz { display: block; font-size: var(--t-etikett); color: var(--text-still); font-weight: 400; margin-top: 3px; }
+.wahl--klein { min-height: 7rem; padding: var(--s-4) var(--s-3) var(--s-3); }
+.wahl--klein .wahl__icon { width: 24px; height: 24px; }
+.wahl--breit { min-height: 9rem; }
+.wahl__haken {
+  position: absolute; bottom: var(--s-3); right: var(--s-3);
+  color: var(--signal); font-size: 14px; opacity: 0;
+  transform: scale(.6); transition: opacity var(--d-kurz), transform var(--d-kurz) var(--e-zurueck);
+}
+.wahl[aria-pressed="true"] .wahl__haken { opacity: 1; transform: none; }
+
+
+/* ── Regler ──────────────────────────────────────────────────────── */
+.regler { margin-bottom: var(--s-7); }
+.regler__kopf { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-3); }
+.regler__kopf .feld__label { margin-bottom: 0; }
+.regler__eingabe { display: flex; align-items: baseline; gap: 2px; }
+.regler__zahl {
+  width: 5.5ch; background: transparent; border: 0; border-bottom: 1px solid var(--linie);
+  color: var(--signal); font-size: clamp(1.6rem, 1rem + 2.2vw, 2.3rem); font-weight: 600;
+  text-align: right; padding: 0 0 2px; -moz-appearance: textfield;
+}
+.regler__zahl::-webkit-outer-spin-button, .regler__zahl::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.regler__zahl:focus { outline: none; border-bottom-color: var(--signal); }
+.regler__einheit { color: var(--text-leise); font-size: clamp(1rem, .8rem + .8vw, 1.3rem); }
+
+.regler__schieber {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 34px; background: transparent; cursor: pointer; display: block;
+}
+.regler__schieber::-webkit-slider-runnable-track {
+  height: 34px;
+  background:
+    linear-gradient(var(--signal), var(--signal)) left center / var(--pos, 0%) 2px no-repeat,
+    linear-gradient(var(--linie), var(--linie)) left center / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--linie-fein) 0 1px, transparent 1px 14px) center bottom 4px / 100% 7px no-repeat;
+}
+.regler__schieber::-moz-range-track {
+  height: 34px;
+  background:
+    linear-gradient(var(--linie), var(--linie)) left center / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--linie-fein) 0 1px, transparent 1px 14px) center bottom 4px / 100% 7px no-repeat;
+}
+.regler__schieber::-moz-range-progress { height: 2px; background: var(--signal); }
+.regler__schieber::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 4px; height: 26px; margin-top: 4px;
+  background: var(--signal); border: 0; border-radius: 1px;
+  box-shadow: 0 0 0 5px var(--grund), 0 0 18px var(--signal-schein);
+  cursor: grab;
+}
+.regler__schieber::-moz-range-thumb {
+  width: 4px; height: 26px;
+  background: var(--signal); border: 0; border-radius: 1px;
+  box-shadow: 0 0 0 5px var(--grund), 0 0 18px var(--signal-schein);
+  cursor: grab;
+}
+.regler__schieber:active::-webkit-slider-thumb { cursor: grabbing; }
+
+.regler__skala { position: relative; height: 1.2rem; margin-top: 2px; }
+.regler__marke {
+  position: absolute; transform: translateX(-50%);
+  font-size: 10px; color: var(--text-still); white-space: nowrap;
+}
+.regler__hint { margin: var(--s-3) 0 0; font-size: var(--t-etikett); color: var(--text-leise); letter-spacing: .04em; }
+
+
+/* ── Energieklassen-Skala ────────────────────────────────────────── */
+.ekskala { display: grid; grid-template-columns: repeat(9, 1fr); gap: 2px; }
+@media (max-width: 34rem) { .ekskala { grid-template-columns: repeat(5, 1fr); } }
+
+.ek {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: var(--s-3) 2px;
+  background: var(--flaeche-2);
+  border: 1px solid transparent;
+  border-bottom: 3px solid var(--ek);
+  border-radius: 0;
+  cursor: pointer; color: var(--text-leise);
+  transition: background var(--d-kurz), color var(--d-kurz), transform var(--d-kurz) var(--e-raus);
+}
+.ek:hover { background: var(--flaeche-3); color: var(--text-hell); transform: translateY(-2px); }
+.ek[aria-pressed="true"] {
+  background: var(--flaeche-3); color: var(--text-hell);
+  border-color: var(--ek); border-bottom-width: 3px;
+  box-shadow: inset 0 0 0 1px var(--ek);
+}
+.ek__buchstabe { font-family: var(--f-mono); font-size: 1rem; font-weight: 600; }
+.ek__wert { font-size: 9px; color: var(--text-still); }
+.ekskala__legende {
+  display: flex; justify-content: space-between; gap: var(--s-3);
+  margin-top: var(--s-2); font-size: 10px; color: var(--text-still); letter-spacing: .06em;
+}
+
+
+/* ── "Weiß ich nicht" ────────────────────────────────────────────── */
+.unbekannt {
+  display: flex; align-items: flex-start; gap: var(--s-4);
+  width: 100%; margin-top: var(--s-5);
+  padding: var(--s-4);
+  background: transparent;
+  border: 1px dashed var(--linie);
+  border-radius: var(--radius);
+  color: var(--text); text-align: left; cursor: pointer;
+  transition: border-color var(--d-kurz), background var(--d-kurz);
+}
+.unbekannt:hover { border-color: var(--linie-stark); background: var(--flaeche-1); }
+.unbekannt[aria-pressed="true"] { border-style: solid; border-color: var(--signal); background: var(--signal-flach); }
+.unbekannt__zeichen {
+  flex: none; width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border: 1px solid var(--linie); border-radius: 50%;
+  color: var(--text-leise); font-size: 1rem;
+}
+.unbekannt__zeichen svg { width: 18px; height: 18px; }
+.unbekannt[aria-pressed="true"] .unbekannt__zeichen { border-color: var(--signal); color: var(--signal); }
+.unbekannt strong { display: block; font-size: var(--t-klein); }
+.unbekannt__unter { display: block; font-size: var(--t-etikett); color: var(--text-still); margin-top: 3px; line-height: 1.5; }
+.unbekannt--knapp { align-items: center; }
+
+.jahrfeld, .mietfeld { margin-top: var(--s-5); max-width: 22rem; }
+
+
+/* ── Hinweiskasten ───────────────────────────────────────────────── */
+.hinweis { padding: var(--s-5); border: 1px solid var(--linie); border-left: 2px solid var(--linie-stark); background: var(--flaeche-1); }
+.hinweis--warn { border-left-color: var(--warn); }
+.hinweis strong { display: block; margin-bottom: var(--s-2); }
+.hinweis p { font-size: var(--t-klein); color: var(--text-leise); }
+.hinweis .knopf { margin-top: var(--s-4); }
+
+
+/* ══ RECHENSCHIRM ═════════════════════════════════════════════════ */
+.rechnet { max-width: 34rem; margin: clamp(var(--s-7), 12vh, var(--s-10)) auto; }
+.rechnet__liste { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; gap: var(--s-4); }
+.rechnet__liste li {
+  display: flex; align-items: center; gap: var(--s-4);
+  font-family: var(--f-mono); font-size: var(--t-klein);
+  color: var(--text-still); opacity: .35;
+  transition: opacity var(--d-mittel), color var(--d-mittel);
+}
+.rechnet__liste li[data-stand] { opacity: 1; color: var(--text); }
+.rechnet__punkt {
+  flex: none; width: 8px; height: 8px; border: 1px solid var(--linie-stark); border-radius: 50%;
+  transition: background var(--d-kurz), border-color var(--d-kurz);
+}
+.rechnet__liste li[data-stand="laeuft"] .rechnet__punkt { border-color: var(--signal); animation: pulsen 900ms infinite; }
+.rechnet__liste li[data-stand="fertig"] .rechnet__punkt { background: var(--signal); border-color: var(--signal); }
+.rechnet__text { flex: 1; }
+.rechnet__ok { font-size: 10px; color: var(--signal); opacity: 0; letter-spacing: .12em; }
+.rechnet__liste li[data-stand="fertig"] .rechnet__ok { opacity: 1; }
+@keyframes pulsen { 0%,100% { box-shadow: 0 0 0 0 var(--signal-schein); } 50% { box-shadow: 0 0 0 6px transparent; } }
+
+
+/* ══ ERGEBNIS ═════════════════════════════════════════════════════ */
+.erg { max-width: 52rem; margin-inline: auto; display: grid; gap: clamp(var(--s-5), 4vw, var(--s-7)); }
+
+.erg__objekt {
+  font-size: var(--t-etikett); color: var(--text-still);
+  letter-spacing: .06em; text-transform: uppercase;
+  padding-bottom: var(--s-3); border-bottom: 1px solid var(--linie-fein);
+  margin: 0;
+}
+
+
+/* ── Der Zähler ──────────────────────────────────────────────────── */
+/* WICHTIG: hier NICHT die Kurzschreibweise "background" benutzen.
+   .rahmen zeichnet seine Eckwinkel über background-image — eine
+   Kurzschreibweise setzt die zurück, und die Winkel verschwinden
+   spurlos. Deshalb background-color plus ein eigenes Glimmen im
+   Pseudoelement. */
+.zaehler {
+  padding: clamp(var(--s-5), 5vw, var(--s-7));
+  background-color: var(--flaeche-1);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.zaehler::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(70% 120% at 50% 0%, var(--signal-schein), transparent 62%);
+  pointer-events: none;
+}
+.zaehler__satz {
+  font-size: var(--t-h3); font-weight: 500; color: var(--text);
+  letter-spacing: -0.01em; margin-bottom: var(--s-4);
+  font-variation-settings: "wdth" 100, "opsz" 20;
+}
+
+.zaehler__buehne { position: relative; }
+.zaehler__zahl {
+  font-size: var(--t-zaehler);
+  font-weight: 600;
+  line-height: .92;
+  color: var(--signal);
+  letter-spacing: -0.05em;
+  /* Intl setzt vor das €-Zeichen ein geschütztes Leerzeichen. In
+     einer Monoschrift ist das in dieser Größe eine Lücke von einer
+     ganzen Ziffernbreite — hier wieder eingefangen. */
+  word-spacing: -0.28em;
+  text-shadow: 0 0 60px var(--signal-schein);
+  word-break: keep-all;
+}
+/* Der Sucher-Strahl fährt einmal durch, wenn die Zahl einrastet. */
+.zaehler__strahl {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,.5) 50%, transparent 58%);
+  mix-blend-mode: overlay;
+}
+.zaehler__buehne[data-eingerastet="ja"] .zaehler__strahl { animation: strahl 900ms var(--e-scharf) 1; }
+@keyframes strahl {
+  from { opacity: 1; transform: translateX(-115%); }
+  to   { opacity: 0; transform: translateX(115%); }
+}
+html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .zaehler__strahl { animation: none !important; } }
+
+.zaehler__einheit {
+  font-family: var(--f-mono); font-size: var(--t-etikett);
+  text-transform: uppercase; letter-spacing: .18em; color: var(--text-leise);
+  margin: var(--s-3) 0 var(--s-5);
+}
+.zaehler .messleiste { margin-bottom: var(--s-5); }
+
+.ticker {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-2) var(--s-4);
+  padding: var(--s-4) 0; border-bottom: 1px solid var(--linie-fein);
+}
+.ticker__label {
+  font-family: var(--f-mono); font-size: var(--t-etikett);
+  text-transform: uppercase; letter-spacing: .12em; color: var(--text-still);
+}
+.ticker__wert {
+  margin-left: auto;
+  font-size: clamp(1.1rem, .9rem + 1vw, 1.5rem); font-weight: 500;
+  color: var(--signal-hell);
+}
+
+.umrechnung {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  margin: var(--s-5) 0 0; background: var(--linie-fein);
+}
+@media (max-width: 34rem) { .umrechnung { grid-template-columns: 1fr; } }
+.umrechnung > div { background: var(--flaeche-1); padding: var(--s-4); }
+.umrechnung dt {
+  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--text-still); margin-bottom: var(--s-2);
+}
+.umrechnung dd { margin: 0; font-size: 1.25rem; font-weight: 500; color: var(--text-hell); }
+
+
+/* ── Hebel ───────────────────────────────────────────────────────── */
+.hebelliste { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
+
+.hb { background: var(--grund); padding: var(--s-5); }
+.hb[data-offen="ja"] { background: var(--flaeche-1); }
+
+.hb__kopf { display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; margin-bottom: var(--s-4); }
+.hb__nr { font-size: 10px; color: var(--text-still); }
+.hb__label {
+  font-size: var(--t-h3); margin: 0; flex: 1;
+  font-variation-settings: "wdth" 100, "opsz" 22;
+}
+.hb__vermerk {
+  display: block; margin-top: 4px;
+  font-family: var(--f-mono); font-size: 10px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--text-still);
+}
+
+/* Informativer Hebel: gedämpft, gestrichelt, nie verdeckt. */
+.hb[data-informativ="ja"] { background: var(--grund); }
+.hb[data-informativ="ja"] .hb__label { color: var(--text-leise); }
+.hb[data-informativ="ja"] .hb__wert { color: var(--text-leise); font-size: 1.25rem; }
+.hb[data-informativ="ja"] .hb__balken {
+  background: transparent;
+  border-top: 1px dashed var(--linie);
+  height: 1px;
+}
+.hb[data-informativ="ja"] .hb__balken i { display: none; }
+.hb__wert { font-size: 1.5rem; font-weight: 600; color: var(--signal); white-space: nowrap; }
+.hb__pa { font-size: var(--t-etikett); color: var(--text-still); font-weight: 400; }
+
+/* Verdeckte Werte: Platzhalterzeichen, kein unscharf gemachter
+   Klartext. Die Stellenzahl bleibt sichtbar — die Größenordnung
+   ist der Köder. */
+.hb__wert--zu, [data-zu="ja"] {
+  color: var(--text-still) !important;
+  filter: blur(0.6px);
+  letter-spacing: .04em;
+  user-select: none;
+}
+
+.hb__balken { height: 6px; background: var(--flaeche-2); overflow: hidden; }
+.hb__balken i {
+  display: block; height: 100%; width: 0;
+  background: var(--signal);
+  transition: width 900ms var(--e-raus);
+}
+.hb__balken[data-gefuellt="ja"] i { width: var(--breite, 0%); }
+.hb[data-offen="nein"] .hb__balken i { background: var(--ink-400, #3D4650); background: var(--linie-stark); }
+
+.hb__text { margin: var(--s-4) 0 0; font-size: var(--t-klein); color: var(--text); line-height: 1.62; }
+.hb__text--zu { color: var(--text-still); filter: blur(2.6px); user-select: none; }
+.hb__schloss {
+  display: flex; align-items: center; gap: var(--s-2);
+  margin: var(--s-4) 0 0;
+  font-family: var(--f-mono); font-size: var(--t-etikett);
+  text-transform: uppercase; letter-spacing: .12em; color: var(--signal);
+}
+
+
+/* ── Wertkorridor ────────────────────────────────────────────────── */
+.wert { padding: clamp(var(--s-5), 5vw, var(--s-6)); background: var(--flaeche-1); }
+.wert__titel { font-size: var(--t-h3); margin-bottom: var(--s-4); max-width: 30rem; }
+.wert__zahl {
+  font-size: clamp(2.2rem, 1rem + 5vw, 3.6rem); font-weight: 600;
+  color: var(--signal); line-height: 1; margin-bottom: var(--s-5);
+}
+.wert__teile { list-style: none; margin: 0 0 var(--s-4); padding: 0; display: grid; gap: 1px; background: var(--linie-fein); }
+.wert__teile li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
+  background: var(--grund); padding: var(--s-3) var(--s-4);
+  font-size: var(--t-klein); color: var(--text-leise);
+}
+.wert__teile .zahl { color: var(--text-hell); font-weight: 500; }
+.wert__weiter {
+  margin-top: var(--s-5); padding-top: var(--s-5);
+  border-top: 1px solid var(--linie-fein);
+  display: grid; gap: var(--s-4); justify-items: start;
+}
+.wert__weiter p { font-size: var(--t-klein); color: var(--text-leise); margin: 0; max-width: 46ch; }
+
+
+/* ── Gate ────────────────────────────────────────────────────────── */
+.gate { padding: clamp(var(--s-5), 5vw, var(--s-7)); background: var(--flaeche-1); scroll-margin-top: 90px; }
+.gate__titel { font-size: var(--t-h2); margin-bottom: var(--s-4); max-width: 30rem; }
+.gate .gross { color: var(--text-leise); max-width: 34rem; margin-bottom: var(--s-6); }
+
+.gform__reihe { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+@media (max-width: 40rem) { .gform__reihe { grid-template-columns: 1fr; } .feld--breit { grid-column: auto; } }
+
+.honig { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.haken {
+  display: flex; align-items: flex-start; gap: var(--s-3);
+  margin: var(--s-4) 0 var(--s-5);
+  font-size: var(--t-klein); color: var(--text-leise); line-height: 1.55; cursor: pointer;
+}
+.haken input {
+  flex: none; width: 20px; height: 20px; margin-top: 2px;
+  accent-color: var(--signal);
+}
+
+.gform__status { margin: var(--s-4) 0 0; font-family: var(--f-mono); font-size: var(--t-etikett); letter-spacing: .06em; min-height: 1.2em; }
+.gform__status[data-art="fehler"] { color: var(--signal); }
+.gform__status[data-art="laeuft"] { color: var(--text-leise); }
+.gform__danke { display: grid; gap: var(--s-4); justify-items: start; }
+
+
+/* ── Notizen und Fußnote ─────────────────────────────────────────── */
+.notizen { padding: var(--s-5); border: 1px solid var(--linie-fein); }
+.notizen .liste li { font-size: var(--t-klein); color: var(--text-leise); }
+.erg__fussnote { font-size: var(--t-etikett); color: var(--text-still); line-height: 1.7; margin: 0; }
+
+
+/* ══ EINGEBETTETER BEWERTUNGS-FUNNEL ══════════════════════════════
+   Das iframe kommt vom eigenen Deployment und bringt seine eigene
+   dunkle Farbwelt mit (makler.config.ts → farben). Hier drumherum
+   nur so viel, dass es nicht wie ein Fremdkörper wirkt: gleiche
+   Breite wie der Wizard, Eckwinkel wie beim Zähler, kein Rahmen um
+   das iframe selbst.                                              */
+.funnelrahmen {
+  max-width: 48rem;
+  margin-inline: auto;
+  min-height: 540px;
+}
+.funnelrahmen iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  /* colorScheme verhindert, dass ein Browser im Hellmodus dem iframe
+     einen weißen Standardgrund unterlegt, bevor das CSS greift. */
+  color-scheme: dark;
+  background: var(--flaeche-1);
+}
+
+
+/* ══ INSERATS-CHECK ═══════════════════════════════════════════════ */
+.ic { max-width: 52rem; margin-inline: auto; display: grid; gap: clamp(var(--s-5), 4vw, var(--s-7)); }
+
+.ablage {
+  border: 1px dashed var(--linie);
+  background: var(--flaeche-1);
+  padding: clamp(var(--s-6), 6vw, var(--s-8)) var(--s-5);
+  text-align: center; cursor: pointer;
+  transition: border-color var(--d-kurz), background var(--d-kurz);
+}
+.ablage:hover, .ablage[data-drueber="ja"] { border-color: var(--signal); background: var(--signal-flach); }
+.ablage__icon { width: 34px; height: 34px; margin: 0 auto var(--s-4); color: var(--text-leise); }
+.ablage__icon svg { width: 100%; height: 100%; }
+.ablage strong { display: block; margin-bottom: var(--s-2); }
+.ablage span { font-size: var(--t-klein); color: var(--text-still); }
+.ablage input[type="file"] { position: absolute; left: -9999px; }
+
+.bilder { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--s-3); margin-top: var(--s-4); }
+.bilder:empty { display: none; }
+.bild { position: relative; aspect-ratio: 4/3; background: var(--flaeche-2); border: 1px solid var(--linie-fein); overflow: hidden; }
+.bild img { width: 100%; height: 100%; object-fit: cover; }
+.bild__nr {
+  position: absolute; left: 0; top: 0;
+  background: var(--grund); color: var(--text-leise);
+  font-family: var(--f-mono); font-size: 10px; padding: 3px 6px;
+}
+.bild__weg {
+  position: absolute; right: 4px; top: 4px; width: 24px; height: 24px;
+  background: rgba(8,9,11,.85); border: 1px solid var(--linie); color: var(--text-hell);
+  cursor: pointer; display: grid; place-items: center; font-size: 13px; line-height: 1;
+}
+
+.ic textarea.feld__eingabe { min-height: 13rem; resize: vertical; line-height: 1.6; font-size: 0.95rem; }
+.zaehlwerk { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 10px; color: var(--text-still); margin-top: var(--s-2); letter-spacing: .06em; }
+
+/* Pflichtangaben nach GEG § 87 — läuft ohne Server, sofort. */
+.geg { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
+.geg__zeile {
+  display: flex; align-items: flex-start; gap: var(--s-3);
+  background: var(--grund); padding: var(--s-4);
+}
+.geg__zeichen { flex: none; width: 20px; height: 20px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 12px; margin-top: 1px; }
+.geg__zeile[data-stand="ok"]   .geg__zeichen { color: var(--gepruft); }
+.geg__zeile[data-stand="fehlt"] .geg__zeichen { color: var(--signal); }
+.geg__text { flex: 1; }
+.geg__text strong { display: block; font-size: var(--t-klein); }
+.geg__text span { display: block; font-size: var(--t-etikett); color: var(--text-still); margin-top: 3px; line-height: 1.5; }
+.geg__zeile[data-stand="fehlt"] .geg__text strong { color: var(--signal); }
+
+.bussgeld {
+  border: 1px solid var(--signal-rand); background: var(--signal-flach);
+  padding: var(--s-5); margin-top: var(--s-4);
+}
+.bussgeld strong { color: var(--signal); }
+
+/* Vermarktungs-Score */
+.score { display: flex; align-items: center; gap: clamp(var(--s-5), 5vw, var(--s-7)); flex-wrap: wrap; }
+.score__ring { position: relative; width: 148px; height: 148px; flex: none; }
+.score__ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.score__ring circle { fill: none; stroke-width: 2; }
+.score__spur { stroke: var(--linie); }
+.score__wert-ring { stroke: var(--signal); stroke-linecap: butt; transition: stroke-dashoffset 1.4s var(--e-raus); }
+.score__zahl {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
+  font-family: var(--f-mono); font-size: 2.6rem; font-weight: 600; color: var(--text-hell);
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+.score__zahl small { display: block; font-size: 10px; color: var(--text-still); letter-spacing: .16em; font-weight: 400; }
+.score__text { flex: 1 1 18rem; }
+
+.fehlerliste { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
+.fehler { background: var(--grund); padding: var(--s-5); display: flex; gap: var(--s-4); align-items: flex-start; }
+.fehler__nr { font-family: var(--f-mono); font-size: 1.6rem; font-weight: 600; color: var(--signal); line-height: 1; flex: none; }
+.fehler h4 { margin: 0 0 var(--s-2); font-size: var(--t-klein); }
+.fehler p { margin: 0; font-size: var(--t-klein); color: var(--text-leise); }

@@ -1,0 +1,28 @@
+{
+  "_hinweis": "Vorgemerkte Kaufinteressenten. NUR ECHTE ZAHLEN. Erfundene Zahlen hier sind eine Irreführung nach § 5 UWG und abmahnfähig. Das Widget schaltet sich selbst ab, wenn 'stand' älter ist als APP.KAEUFER_MAX_ALTER_TAGE (siehe js/config.js). Das ist Absicht: lieber kein Widget als ein veraltetes.",
+  "schema_version": 1,
+  "stand": "2026-07-28",
+  "gepflegt_von": "TODO",
+  "quelle": "Interessentenliste im CRM, Stichtag = 'stand'. Gezählt wird nur, wer in den letzten 90 Tagen aktiv bestätigt hat, dass die Suche läuft.",
+
+  "gesamt": 0,
+  "_gesamt_hinweis": "0 = Widget bleibt aus. Erst befüllen, wenn die Liste wirklich gepflegt ist.",
+
+  "nach_ort": [
+    { "plz": "74072", "ort": "Heilbronn", "gebiet": "Innenstadt / Altstadt", "anzahl": 0 },
+    { "plz": "74074", "ort": "Heilbronn", "gebiet": "Oststadt",              "anzahl": 0 },
+    { "plz": "74076", "ort": "Heilbronn", "gebiet": "Nordstadt",             "anzahl": 0 },
+    { "plz": "74078", "ort": "Heilbronn", "gebiet": "Neckargartach / Frankenbach", "anzahl": 0 },
+    { "plz": "74080", "ort": "Heilbronn", "gebiet": "Böckingen",             "anzahl": 0 },
+    { "plz": "74081", "ort": "Heilbronn", "gebiet": "Sontheim / Horkheim",   "anzahl": 0 },
+    { "plz": "74172", "ort": "Neckarsulm", "gebiet": "Neckarsulm",           "anzahl": 0 },
+    { "plz": "74189", "ort": "Weinsberg",  "gebiet": "Weinsberg",            "anzahl": 0 }
+  ],
+
+  "nach_typ": [
+    { "typ": "efh", "label": "Einfamilienhaus",  "anzahl": 0 },
+    { "typ": "etw", "label": "Eigentumswohnung", "anzahl": 0 },
+    { "typ": "rmh", "label": "Reihenhaus",       "anzahl": 0 },
+    { "typ": "mfh", "label": "Mehrfamilienhaus", "anzahl": 0 }
+  ]
+}
