@@ -72,6 +72,12 @@
                 <option value="privatverkauf">Privatverkauf stockt</option>
                 <option value="kapitalanlage">Kapitalanlage</option>
                 <option value="grundstueck">Grundstück</option>
+                <!-- inserat und analyse werden von den Werkzeugen per
+                     ?anlass=… vorbelegt (js/kontakt.js). Fehlt der Wert hier,
+                     greift die Vorbelegung stillschweigend ins Leere und der
+                     Lead kommt ohne Herkunft an. -->
+                <option value="inserat">Mein Inserat prüfen lassen</option>
+                <option value="analyse">Einschätzung zu meiner Immobilie</option>
                 <option value="sonstiges">Etwas anderes</option>
               </select></label>
           </div>

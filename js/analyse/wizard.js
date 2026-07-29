@@ -159,7 +159,7 @@
             '<strong>' + esc(info.ueberschrift_teilrechnung || info.ueberschrift) + '</strong>' +
             '<p>' + esc(info.text_teilrechnung || info.text) + '</p>' +
             '<p class="still">Lieber gleich persönlich? ' +
-              '<a href="/micheal-preview/kontakt.html">Eckdaten schicken</a> — dann sehen wir uns Ihr Objekt direkt an.</p>' +
+              '<a href="/micheal-preview/kontakt.html?anlass=analyse">Eckdaten schicken</a> — dann sehen wir uns Ihr Objekt direkt an.</p>' +
           '</div>'
         ));
         fussAktualisieren();
@@ -542,7 +542,7 @@
         '<p class="gross">Der Wert eines Grundstücks hängt am Bodenrichtwert, am Bebauungsplan und an der ' +
         'Erschließung — nicht an Energiekennwerten. Eine Zahl, die wir hier erfinden würden, wäre wertlos.</p>' +
         '<p>Schicken Sie uns die Flurstücksnummer, dann bekommen Sie eine belastbare Einschätzung von Hand.</p>' +
-        '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html">Einschätzung anfragen <span class="pfeil">→</span></a>' +
+        '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=grundstueck">Einschätzung anfragen <span class="pfeil">→</span></a>' +
       '</div>';
   }
 
@@ -590,9 +590,19 @@
     var ziel = ev.target;
     var inFeld = ziel && /^(INPUT|TEXTAREA|SELECT)$/.test(ziel.tagName);
 
+    /* Für die Rücktaste zählt nur, ob im Ziel überhaupt Text steht.
+       In der PLZ-Eingabe muss sie Zeichen löschen — sonst lässt sich eine
+       vertippte Postleitzahl nicht korrigieren. An einem Schieberegler,
+       Ankreuzfeld oder Knopf tut sie dagegen gar nichts, und dort hat sie
+       vorher den Schritt-Zurück verschluckt: Nach dem Zeichnen bekommt auf
+       Schritt 3 ein input[type=range] den Fokus, und damit war die im
+       Fußtext versprochene Tastaturbedienung („⌫ zurück“) tot. */
+    var inTextfeld = inFeld &&
+      !/^(range|checkbox|radio|button|submit|reset)$/.test(ziel.type || "");
+
     if (ev.key === "Enter" && !inFeld) { ev.preventDefault(); weiter(); return; }
     if (ev.key === "Enter" && inFeld && ziel.type !== "textarea") { ev.preventDefault(); weiter(); return; }
-    if (ev.key === "Backspace" && !inFeld) { ev.preventDefault(); zurueck(); return; }
+    if (ev.key === "Backspace" && !inTextfeld) { ev.preventDefault(); zurueck(); return; }
     if (ev.key === "Escape") { zurueck(); return; }
 
     if (!inFeld && /^[1-9]$/.test(ev.key)) {

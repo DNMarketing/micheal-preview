@@ -233,7 +233,7 @@
           '<h2>Die Analyse ist nicht durchgelaufen.</h2>' +
           '<p class="gross">Das liegt nicht an Ihrem Inserat. Bitte in ein paar Minuten noch einmal — ' +
           'oder schicken Sie uns den Link, dann sehen wir persönlich drauf.</p>' +
-          '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html">Persönlich prüfen lassen <span class="pfeil">→</span></a></div>';
+          '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=inserat">Persönlich prüfen lassen <span class="pfeil">→</span></a></div>';
       });
   }
 

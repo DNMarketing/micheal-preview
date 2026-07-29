@@ -535,7 +535,7 @@
         '<p class="etikett">Ehrliche Antwort</p>' +
         '<h2>' + esc(info.ueberschrift || "Hier rechnen wir nicht.") + '</h2>' +
         '<p class="gross">' + esc(info.text || "") + '</p>' +
-        '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html">Persönliche Einschätzung anfragen <span class="pfeil">→</span></a>' +
+        '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=analyse">Persönliche Einschätzung anfragen <span class="pfeil">→</span></a>' +
       '</div>';
   }
 
