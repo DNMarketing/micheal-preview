@@ -147,13 +147,19 @@
 
       var ort = global.Engine.ortFuerPlz(plz);
       if (!ort) {
+        /* Früher endete der Durchlauf hier. Er läuft jetzt weiter:
+           Energie und Instandhaltung gelten bundesweit, nur Mietlücke und
+           Wertabschlag brauchen regionale Vergleichswerte. Deshalb kein
+           Warnkasten mehr, sondern eine Ansage, was kommt und was nicht —
+           und die Ortsauswahl entfällt, es gibt ja keine Teilorte. */
         S.plz = plz; S.stadtteil = "";
         var info = global.Engine.daten().markt.ausserhalb;
         antwort.appendChild(el(
-          '<div class="hinweis hinweis--warn">' +
-            '<strong>' + esc(info.ueberschrift) + '</strong>' +
-            '<p>' + esc(info.text) + '</p>' +
-            '<a class="knopf" href="/micheal-preview/kontakt.html">Persönliche Einschätzung anfragen <span class="pfeil">→</span></a>' +
+          '<div class="hinweis">' +
+            '<strong>' + esc(info.ueberschrift_teilrechnung || info.ueberschrift) + '</strong>' +
+            '<p>' + esc(info.text_teilrechnung || info.text) + '</p>' +
+            '<p class="still">Lieber gleich persönlich? ' +
+              '<a href="/micheal-preview/kontakt.html">Eckdaten schicken</a> — dann sehen wir uns Ihr Objekt direkt an.</p>' +
           '</div>'
         ));
         fussAktualisieren();
@@ -480,7 +486,11 @@
   function gueltig() {
     var s = F.schritte[idx];
     switch (s.id) {
-      case "ort":       return !!(S.plz && S.plz.length === 5 && global.Engine.ortFuerPlz(S.plz) && S.stadtteil);
+      /* Innerhalb des Marktgebiets muss ein Teilort gewählt sein — er
+         verfeinert die Vergleichsmiete. Außerhalb gibt es keine Teilorte
+         zur Auswahl, dort genügt die fünfstellige PLZ. */
+      case "ort":       return !!(S.plz && S.plz.length === 5) &&
+                               (global.Engine.ortFuerPlz(S.plz) ? !!S.stadtteil : true);
       case "objekttyp": return !!S.objekttyp;
       case "gebaeude":  return !!(S.baujahr && S.wohnflaeche);
       case "energie":   return !!(S.heizung && S.energieklasse);

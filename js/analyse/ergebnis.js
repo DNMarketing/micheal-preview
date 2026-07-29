@@ -124,7 +124,8 @@
   /* ── Kopfzeile: die Eingaben in einer Mono-Zeile ─────────────── */
   function objektzeile(e) {
     var teile = [
-      e.eingabe.plz + " " + (e.eingabe.stadtteil || e.ort.ort),
+      // e.ort ist null, sobald die PLZ nicht im Marktgebiet liegt.
+      (e.eingabe.plz + " " + (e.eingabe.stadtteil || (e.ort && e.ort.ort) || "")).trim(),
       (e.objekttyp && e.objekttyp.label) || "",
       fmt.zahl(e.eingabe.wohnflaeche) + " m²",
       "Bj. " + e.eingabe.baujahr,
@@ -233,10 +234,18 @@
           '<h3 class="wert__titel">So viel Verhandlungsmasse geben Sie einem Käufer heute in die Hand</h3>' +
           '<div class="wert__zahl zahl" data-zu="ja">' + maske(wa.verhandlungsmasse_eur) + '</div>' +
           '<ul class="wert__teile">' +
+            /* Der energetische Abschlag ist ein Prozentsatz auf den
+               Objektwert und braucht einen Kaufpreis je m². Außerhalb des
+               Marktgebiets gibt es den nicht — dann steht hier ehrlich
+               „offen“ statt einer Zahl, und die Verhandlungsmasse oben
+               enthält nur den Instandhaltungsstau. */
             '<li><span>Energetischer Abschlag (Klasse ' + esc(E.energieklasse.klasse) + ')</span>' +
-              '<span class="zahl" data-zu="ja">' + maske(wa.energie_abschlag_eur) + '</span></li>' +
+              (wa.energie_abschlag_eur === null
+                ? '<span class="still">ohne Kaufpreise vor Ort nicht bezifferbar</span>'
+                : '<span class="zahl" data-teil="energie" data-zu="ja">' + maske(wa.energie_abschlag_eur) + '</span>') +
+            '</li>' +
             '<li><span>Aufgelaufener Instandhaltungsstau</span>' +
-              '<span class="zahl" data-zu="ja">' + maske(wa.instandhaltungsstau_eur) + '</span></li>' +
+              '<span class="zahl" data-teil="stau" data-zu="ja">' + maske(wa.instandhaltungsstau_eur) + '</span></li>' +
           '</ul>' +
           '<p class="quelle">' + esc(wa.quelle) + '</p>' +
 
@@ -480,9 +489,16 @@
 
     var wz = q(".wert__zahl", wurzel);
     if (wz) { wz.textContent = fmt.euro(wa.verhandlungsmasse_eur); wz.dataset.zu = "nein"; }
-    var teile = qa(".wert__teile .zahl", wurzel);
-    if (teile[0]) { teile[0].textContent = fmt.euro(wa.energie_abschlag_eur); teile[0].dataset.zu = "nein"; }
-    if (teile[1]) { teile[1].textContent = fmt.euro(wa.instandhaltungsstau_eur); teile[1].dataset.zu = "nein"; }
+    /* Benannt statt über die Position: Außerhalb des Marktgebiets rendert
+       die Energiezeile gar kein .zahl-Element, dann rutscht der Index um
+       eins und der Instandhaltungswert bekäme den Energiebetrag. */
+    var tEnergie = q('.wert__teile [data-teil="energie"]', wurzel);
+    if (tEnergie && wa.energie_abschlag_eur !== null) {
+      tEnergie.textContent = fmt.euro(wa.energie_abschlag_eur);
+      tEnergie.dataset.zu = "nein";
+    }
+    var tStau = q('.wert__teile [data-teil="stau"]', wurzel);
+    if (tStau) { tStau.textContent = fmt.euro(wa.instandhaltungsstau_eur); tStau.dataset.zu = "nein"; }
   }
 
   /* ── Sonderfälle ──────────────────────────────────────────────── */

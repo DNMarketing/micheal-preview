@@ -228,6 +228,39 @@
   /* ── Hebel 2 · Miete ──────────────────────────────────────────── */
   function hebelMiete(e, ort) {
     var m = KW.miete;
+
+    /* Ohne hinterlegten Ort gibt es keine ortsübliche Vergleichsmiete.
+       Geschätzt wird sie NICHT: Eine erfundene Vergleichsmiete ist genau
+       die Sorte Zahl, die im Kundengespräch auffliegt und nach § 5 UWG
+       angreifbar ist. Der Hebel bleibt sichtbar, sagt selbst warum er
+       offen bleibt, und zählt nicht in die Summe.
+
+       Energie und Instandhaltung sind davon nicht betroffen — die kommen
+       aus kennwerte.json und gelten bundesweit. Bei Eigennutzung zählt
+       die Miete ohnehin nicht mit; dort ist das Ergebnis auch außerhalb
+       des Marktgebiets vollständig. */
+    if (!ort) {
+      var betrifftSumme = (e.nutzung === "vermietet" || e.nutzung === "leer");
+      return {
+        id: "miete",
+        label: betrifftSumme ? "Miete" : "Mietpotenzial",
+        betrag_jahr: 0,
+        in_summe: false,
+        ohne_marktdaten: true,
+        erklaerung:
+          "Für " + (e.plz || "diese Postleitzahl") + " liegen uns keine ortsüblichen " +
+          "Vergleichsmieten vor. Wir lassen diesen Punkt deshalb offen, statt ihn zu schätzen — " +
+          "eine erfundene Vergleichsmiete wäre schlechter als keine. " +
+          (betrifftSumme
+            ? "Bei vermieteten und leerstehenden Objekten ist das erfahrungsgemäß der Posten, " +
+              "der noch etwas draufsetzt. Ihre Summe unten ist also eher zu niedrig als zu hoch."
+            : "Weil Sie selbst nutzen, entstünde hier ohnehin kein laufender Verlust — " +
+              "an Ihrer Summe unten ändert sich dadurch nichts."),
+        quelle: "Keine Vergleichsmieten für " + (e.plz || "diese PLZ") + " hinterlegt · Stand " + MK.stand,
+        detail: { ort_unbekannt: true, plz: e.plz || null, betrifft_summe: betrifftSumme }
+      };
+    }
+
     var ortsueblichMonat = ort.miete_eur_qm * e.wohnflaeche;
 
     if (e.nutzung === "vermietet") {
@@ -408,6 +441,34 @@
 
   /* ── Wertabschlag ─────────────────────────────────────────────── */
   function wertabschlag(e, ek, ort, stauEur, stauKorridor) {
+    var cfgA = KW.wertabschlag_energie;
+    var prozentA = typeof cfgA.je_klasse[ek.klasse] === "number" ? cfgA.je_klasse[ek.klasse] : 0;
+
+    /* Der energiebedingte Abschlag ist ein Prozentsatz auf den Objektwert
+       und braucht deshalb einen Kaufpreis je m². Der Instandhaltungsstau
+       dagegen steht bereits in Euro und gilt überall. Ohne Ort fällt
+       also nur der Energieteil weg, nicht die ganze Verhandlungsmasse —
+       die bleibt bestehen, ist aber als unvollständig gekennzeichnet. */
+    if (!ort) {
+      var stauK = stauKorridor || [grob(stauEur), grob(stauEur)];
+      return {
+        ort_unbekannt: true,
+        unvollstaendig: true,
+        referenzwert_eur: null,
+        preis_eur_qm: null,
+        prozent: prozentA,
+        energie_abschlag_eur: null,
+        korridor_eur: null,
+        instandhaltungsstau_eur: grob(stauEur),
+        instandhaltungsstau_korridor_eur: stauK,
+        verhandlungsmasse_eur: grob(stauEur),
+        verhandlungsmasse_korridor_eur: stauK,
+        richtung: prozentA < 0 ? "abschlag" : (prozentA > 0 ? "aufschlag" : "neutral"),
+        quelle: cfgA._quelle + " · Kein Kaufpreis für " + (e.plz || "diese PLZ") +
+                " hinterlegt, deshalb ohne Energieanteil · Stand " + MK.stand
+      };
+    }
+
     var typ = objekttypInfo(e.objekttyp) || { kaufpreis_faktor: 1 };
     var preisQm = ort.kaufpreis_eur_qm * (typ.kaufpreis_faktor || 1);
     var referenzwert = preisQm * e.wohnflaeche;    // Wert bei Klasse C
@@ -449,10 +510,17 @@
     e.wohnflaeche = Math.max(15, Number(e.wohnflaeche) || 0);
     e.baujahr = Math.min(JETZT, Math.max(1800, Number(e.baujahr) || 1975));
 
+    /* Kein Eintrag für die PLZ ist KEIN Abbruchgrund mehr.
+       Früher endete der Durchlauf hier — das warf mehr weg als nötig:
+       Energie und Instandhaltung stammen aus kennwerte.json (GEG Anlage 10,
+       Energiepreise, CO₂-Preis, Nutzungsdauern) und gelten bundesweit.
+       Ortsgebunden sind allein die Mietlücke und der energiebedingte
+       Wertabschlag. Bei Eigennutzung zählt die Miete ohnehin nicht in die
+       Summe — dort ist das Ergebnis auch außerhalb des Marktgebiets
+       vollständig, und ein Abbruch verschenkte es.
+       ort bleibt jetzt null; die betroffenen Teile sagen selbst, dass sie
+       offen bleiben. Geschätzt wird nichts. */
     var ort = ortFuerPlz(e.plz);
-    if (!ort) {
-      return { ok: false, grund: "ausserhalb", info: MK.ausserhalb, plz: e.plz };
-    }
 
     var typ = objekttypInfo(e.objekttyp);
     if (typ && typ._abbruch) {
@@ -504,6 +572,14 @@
        Kleingedrucktes, sondern Teil des Produkts: Sie zeigen, dass
        hier jemand rechnet und nicht rät. */
     var hinweise = [];
+    if (!ort) {
+      hinweise.push({
+        art: "ausserhalb",
+        text: (MK.ausserhalb && MK.ausserhalb.text_teilrechnung) ||
+              "Für diese Postleitzahl haben wir keine Vergleichswerte. Energie und " +
+              "Instandhaltung rechnen wir trotzdem — die Kennwerte dafür gelten bundesweit."
+      });
+    }
     if (ek.geschaetzt) {
       hinweise.push({
         art: "schaetzung",
@@ -532,6 +608,9 @@
       ok: true,
       eingabe: e,
       ort: ort,
+      /* true = außerhalb des hinterlegten Marktgebiets. Die Summe steht
+         trotzdem; Mietlücke und energiebedingter Wertabschlag fehlen. */
+      ausserhalb: !ort,
       objekttyp: typ,
       energieklasse: ek,
       hebel: hebel,
