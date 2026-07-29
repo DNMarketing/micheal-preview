@@ -166,8 +166,15 @@
   /* ── Absenden ─────────────────────────────────────────────────── */
   function senden() {
     sendeKnopf.disabled = true;
-    ladeschirm();
 
+    /* Reihenfolge ist hier nicht beliebig: ladeschirm() ersetzt
+       wurzel.innerHTML und raeumt damit das ganze Formular aus dem DOM.
+       Die Nutzlast muss deshalb VORHER gelesen werden — sonst liefert
+       q('[name="preis"]', wurzel) null und das Absenden bricht mit einem
+       TypeError ab, noch bevor irgendetwas verschickt wird.
+       (textfeld faellt nicht auf, weil es als Referenz gehalten wird und
+       auch losgeloest vom Dokument noch .value liefert — die vier Felder
+       aus Schritt 3 werden dagegen frisch gesucht.) */
     var nutzlast = {
       quelle: "inserats-check",
       version: 1,
@@ -194,6 +201,9 @@
          es noch einmal zu ermitteln. */
       vorbefund: global.GEG.pruefe(textfeld.value)
     };
+
+    /* Erst jetzt, wo alles ausgelesen ist, darf der Inhalt weg. */
+    ladeschirm();
 
     if (global.APP.MODUS === "DEMO" || !global.APP.N8N_BASIS) {
       console.info("[DEMO] Nichts verschickt. Diese Nutzlast ginge an n8n:");

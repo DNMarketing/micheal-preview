@@ -63,9 +63,24 @@
       titel: "Baujahr des Gebäudes",
       norm: "GEG § 87 Abs. 1 Nr. 4 (Wohngebäude)",
       erklaerung: "Das im Energieausweis genannte Baujahr, als Jahreszahl.",
+      /* Eine Jahreszahl allein beweist nichts. In einem Inserat stehen
+         Jahreszahlen für Sanierungen, Einzug, Preise und Bezugstermine.
+         Früher stand hier als Rückfall ein blosses \b(19|20)\d\d\b — damit
+         galt "Heizung 2019 erneuert" als Baujahrangabe, und das Werkzeug
+         meldete Vollständigkeit, obwohl eine bußgeldbewehrte Pflichtangabe
+         fehlte. Eine falsche Entwarnung ist hier der teuerste Fehler, den
+         diese Datei machen kann.
+
+         Deshalb nur mit Bezugswort und engem Abstand — aber in BEIDEN
+         Wortstellungen, weil "Baujahr 1968" und "1968 erbaut" gleich
+         häufig sind. Die 25 Zeichen fangen Einschübe wie
+         "Baujahr laut Energieausweis 1968" ab.
+
+         \bbj muss die Wortgrenze haben: ohne sie steckt "bj" in "Objekt",
+         und "Objekt von 2019" würde wieder als Baujahr durchgehen. */
       pruefe: function (t) {
-        return /(baujahr|erbaut|bj\.?|errichtet)\D{0,12}(1[6-9]\d{2}|20[0-4]\d)/i.test(t) ||
-               /\b(1[89]\d{2}|20[0-4]\d)\b/.test(t);
+        return /(baujahr|bauj\.|\bbj\.?|erbaut|errichtet)[^\d]{0,25}(1[6-9]\d{2}|20[0-4]\d)/i.test(t) ||
+               /(1[6-9]\d{2}|20[0-4]\d)[^\d]{0,25}(erbaut|errichtet|fertiggestellt)/i.test(t);
       }
     },
     {

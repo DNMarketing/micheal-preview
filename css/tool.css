@@ -588,6 +588,12 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 .ic { max-width: 52rem; margin-inline: auto; display: grid; gap: clamp(var(--s-5), 4vw, var(--s-7)); }
 
 .ablage {
+  /* display MUSS gesetzt sein: <label> ist von Haus aus inline, und auf
+     inline-Elementen greifen weder Höhe noch die senkrechten Innenabstände.
+     base.css gibt svg zusätzlich display:block — ein Block-Element in einem
+     inline-Label zerreißt den Textfluss, die Fläche fällt zum Streifen
+     zusammen und das Icon bricht darunter aus. Gleiche Stelle wie .feld. */
+  display: block;
   border: 1px dashed var(--linie);
   background: var(--flaeche-1);
   padding: clamp(var(--s-6), 6vw, var(--s-8)) var(--s-5);
@@ -595,7 +601,10 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
   transition: border-color var(--d-kurz), background var(--d-kurz);
 }
 .ablage:hover, .ablage[data-drueber="ja"] { border-color: var(--signal); background: var(--signal-flach); }
-.ablage__icon { width: 34px; height: 34px; margin: 0 auto var(--s-4); color: var(--text-leise); }
+/* Ebenfalls display:block — sonst laufen width/height und das zentrierende
+   margin:0 auto auf einem inline-<span> ins Leere und das SVG darin nimmt
+   sich 100 % des Abschnitts statt der 34 px. */
+.ablage__icon { display: block; width: 34px; height: 34px; margin: 0 auto var(--s-4); color: var(--text-leise); }
 .ablage__icon svg { width: 100%; height: 100%; }
 .ablage strong { display: block; margin-bottom: var(--s-2); }
 .ablage span { font-size: var(--t-klein); color: var(--text-still); }
