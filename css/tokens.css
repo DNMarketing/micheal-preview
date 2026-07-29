@@ -30,7 +30,7 @@
 
 @font-face {
   font-family: "Archivo";
-  src: url("/assets/fonts/Archivo-wght.woff2") format("woff2-variations");
+  src: url("/micheal-preview/assets/fonts/Archivo-wght.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -38,7 +38,7 @@
 
 @font-face {
   font-family: "Bricolage";
-  src: url("/assets/fonts/BricolageGrotesque-var.woff2") format("woff2-variations");
+  src: url("/micheal-preview/assets/fonts/BricolageGrotesque-var.woff2") format("woff2-variations");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -46,21 +46,21 @@
 
 @font-face {
   font-family: "PlexMono";
-  src: url("/assets/fonts/IBMPlexMono-400.woff2") format("woff2");
+  src: url("/micheal-preview/assets/fonts/IBMPlexMono-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "PlexMono";
-  src: url("/assets/fonts/IBMPlexMono-500.woff2") format("woff2");
+  src: url("/micheal-preview/assets/fonts/IBMPlexMono-500.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "PlexMono";
-  src: url("/assets/fonts/IBMPlexMono-600.woff2") format("woff2");
+  src: url("/micheal-preview/assets/fonts/IBMPlexMono-600.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
