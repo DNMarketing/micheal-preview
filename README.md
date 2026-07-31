@@ -193,16 +193,19 @@ selbst macht das nie. Belege: `docs/STILANALYSE-M2.md`, § 2.
 
 **Sein Porträt** steht als `assets/bilder/michael-spitzer.jpg` auf der
 Startseite (Abschnitt „Der Makler") und auf `ueber.html`, gerahmt von
-der Klasse `.portraet`: weiche Ecken, Haarlinie, quadratisch
-zugeschnitten.
+der Klasse `.portraet`: ein Profilkreis mit Haarlinie und sehr weichem
+Schatten.
 
-Die Datei kam als 524 × 524 px großes Profilbild mit lila Kreisrand,
-und dieser Rand stand als Keil in den Ecken der Seite. Er ist
-herausgerechnet: außerhalb des Kreises setzt jetzt der weichgezeichnete
-Bildhintergrund fort, innerhalb ist das Foto unangetastet. Das
-unbearbeitete Original liegt als
-`assets/bilder/michael-spitzer-original.jpg` daneben, falls die
-Rechnung je wiederholt werden muss.
+Die Datei kam als 524 × 524 px großes Profilbild, dessen lila
+Kreisrand als Keil in den Ecken stand. Alles außerhalb des Kreises ist
+jetzt weiß, die Kante entsteht im Browser über `border-radius: 50%`
+und ist deshalb auf jedem Bildschirm scharf. Sauberes Foto liegt bis
+Radius 266 px vor, beschnitten wird bei 262 px; das Lila beginnt erst
+bei 271 px und kann folglich nicht durchscheinen. Ein Zwischenstand,
+der die Ecken mit weichgezeichnetem Hintergrund auffüllte, ist wieder
+verworfen: Der Kreis ist die Vorlage, alles andere sieht dort matschig
+aus. Das unbearbeitete Original liegt als
+`assets/bilder/michael-spitzer-original.jpg` daneben.
 
 **Ein richtiges Porträtfoto sollte trotzdem kommen**, in höherer
 Auflösung und mit ruhigem Hintergrund: 524 px sind für die Größe, in

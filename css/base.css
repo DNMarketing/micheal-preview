@@ -733,10 +733,15 @@ html[data-statisch="ja"] .messfeld__marke .punkt { animation: none; }
 @media (max-width: 60rem) { .makler { grid-template-columns: 1fr; } }
 
 /* ── Das Porträt ───────────────────────────────────────────────────
-   Ein Foto, gerahmt wie ein Foto: weiche Ecken, eine Haarlinie, der
-   gleiche sehr weiche Schatten wie am Messfeld. Vorher stand hier
-   ein Kreis mit blauem Balken darunter, der aussah, als sei das Bild
-   in die Seite gefallen.
+   Ein Profilkreis, mehr nicht: Die Vorlage ist ein rundes Profilbild,
+   und jeder Versuch, daraus ein Rechteck zu machen, endet an den
+   Ecken. Der Zwischenstand mit weichgezeichnet fortgesetztem
+   Hintergrund sah dort matschig aus. Jetzt wird der Kreis genommen,
+   wie er ist, und die Kante ist hart.
+
+   Der Beschnitt liegt bei Radius 262 (halbe Bildbreite), das Bild
+   trägt sauberes Foto bis 266. Die Kante entsteht also im Browser
+   und ist auf jedem Bildschirm scharf.
 
    aspect-ratio und object-fit stehen hier, damit ein späterer
    Austausch der Datei das Layout nicht verschiebt: Was nicht quadra-
@@ -749,10 +754,8 @@ html[data-statisch="ja"] .messfeld__marke .punkt { animation: none; }
   aspect-ratio: 1;
   object-fit: cover;
   object-position: 50% 22%;
-  border-radius: 10px;
-  border: 1px solid var(--linie-fein);
-  background: var(--flaeche-1);
-  box-shadow: var(--schatten);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--linie-fein), var(--schatten);
 }
 .makler__bild { min-width: 0; }
 .makler__name { margin-bottom: var(--s-2); }
