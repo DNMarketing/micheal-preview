@@ -9,19 +9,19 @@
   "stand": "2026-Q3",
   "naechste_pruefung": "2026-10-01",
   "geprueft": false,
-  "_geprueft_bedeutung": "Solange false: Tool zeigt sichtbaren Demo-Hinweis. Vor Livegang auf true setzen — erst wenn jede Zeile unten eine echte Quelle trägt.",
+  "_geprueft_bedeutung": "Solange false: Tool zeigt sichtbaren Demo-Hinweis. Vor Livegang auf true setzen, erst wenn jede Zeile unten eine echte Quelle trägt.",
   "quellen_die_zu_pruefen_sind": [
-    "Mietspiegel der Stadt Heilbronn (falls qualifiziert vorhanden) — sonst Mietwertübersicht",
+    "Mietspiegel der Stadt Heilbronn (falls qualifiziert vorhanden), sonst Mietwertübersicht",
     "Gutachterausschuss Stadt Heilbronn / Landkreis Heilbronn: Grundstücksmarktbericht, Bodenrichtwerte (BORIS-BW)",
     "IVD Preisspiegel Baden-Württemberg",
-    "eigene Abschlüsse und Angebotspreise aus dem laufenden Bestand — die belastbarste Quelle, die es gibt"
+    "eigene Abschlüsse und Angebotspreise aus dem laufenden Bestand, die belastbarste Quelle, die es gibt"
   ],
 
   "_felder": {
     "miete_eur_qm": "ortsübliche Vergleichsmiete, Nettokalt, mittlerer Wohnwert",
-    "miete_spanne": "[unten, oben] — wird im Tool als Korridor gezeigt",
+    "miete_spanne": "[unten, oben], wird im Tool als Korridor gezeigt",
     "kaufpreis_eur_qm": "Angebotspreis Wohnfläche, mittlerer Zustand, Referenz-Energieklasse C",
-    "kappungsgrenze": "0.15 in Gemeinden mit angespanntem Wohnungsmarkt (Landesverordnung BW), sonst 0.20 — pro Gemeinde prüfen"
+    "kappungsgrenze": "0.15 in Gemeinden mit angespanntem Wohnungsmarkt (Landesverordnung BW), sonst 0.20, pro Gemeinde prüfen"
   },
 
   "orte": [
@@ -130,20 +130,20 @@
   ],
 
   "_erweiterung_2026_07": {
-    "was": "28 Gemeinden aus dem Landkreis Heilbronn ergänzt, weil das Marktgebiet Lücken hatte — 74912 Kirchardt fiel im Test auf, obwohl es im Landkreis liegt. Damit 52 Orte statt 24.",
+    "was": "28 Gemeinden aus dem Landkreis Heilbronn ergänzt, weil das Marktgebiet Lücken hatte. 74912 Kirchardt fiel im Test auf, obwohl es im Landkreis liegt. Damit 52 Orte statt 24.",
     "achtung_plz": "Die PLZ-zu-Gemeinde-Zuordnung der neuen Zeilen ist NICHT geprüft (Flag plz_zu_pruefen). Sie muss gegen das amtliche Gemeindeverzeichnis bzw. das PLZ-Verzeichnis der Deutschen Post abgeglichen werden. Eine falsche PLZ ist schlimmer als eine fehlende: Sie behauptet Marktkenntnis für einen Ort, der gar nicht dazugehört.",
     "achtung_teilorte": "stadtteile steht überall auf ['Kernort'] (Flag teilorte_zu_ergaenzen). Die echten Teilorte gehören nachgetragen, sonst wirkt die Ortsauswahl im Wizard dünn.",
     "achtung_werte": "Miet- und Kaufpreise sind wie im Rest der Datei Platzhalter, geprueft:false, quelle:TODO. Ablauf: docs/DATENPFLEGE.md.",
-    "zu_klaeren": "Ob Micheals Einzugsgebiet wirklich den ganzen Landkreis umfasst, entscheidet er — nicht die Datei."
+    "zu_klaeren": "Ob sein Einzugsgebiet wirklich den ganzen Landkreis umfasst, entscheidet er, nicht die Datei."
   },
 
   "ausserhalb": {
-    "_hinweis": "Wird gezeigt, wenn eine PLZ nicht in der Liste steht. Das Tool bricht dort NICHT mehr ab: Energie und Instandhaltung stammen aus kennwerte.json und gelten bundesweit, nur Mietlücke und energiebedingter Wertabschlag brauchen regionale Vergleichswerte. Geschätzt wird nichts — die fehlenden Teile bleiben sichtbar offen.",
+    "_hinweis": "Wird gezeigt, wenn eine PLZ nicht in der Liste steht. Das Tool bricht dort NICHT mehr ab: Energie und Instandhaltung stammen aus kennwerte.json und gelten bundesweit, nur Mietlücke und energiebedingter Wertabschlag brauchen regionale Vergleichswerte. Geschätzt wird nichts, die fehlenden Teile bleiben sichtbar offen.",
     "ueberschrift": "Diese Postleitzahl liegt außerhalb unseres Marktgebiets",
-    "text": "Wir rechnen nur mit Zahlen, die wir selbst kennen. Für Heilbronn und den Landkreis haben wir belastbare Vergleichswerte, außerhalb nicht. Schicken Sie uns Ihre Eckdaten — wir sagen Ihnen ehrlich, ob wir Ihnen helfen können.",
+    "text": "Wir rechnen nur mit Zahlen, die wir selbst kennen. Für Heilbronn und den Landkreis haben wir belastbare Vergleichswerte, außerhalb nicht. Schicken Sie uns Ihre Eckdaten. Wir sagen Ihnen ehrlich, ob wir Ihnen helfen können.",
 
-    "ueberschrift_teilrechnung": "Außerhalb unseres Marktgebiets — wir rechnen trotzdem",
-    "text_teilrechnung": "Energiekosten, CO₂-Last und Instandhaltungsrückstand hängen nicht vom Ort ab: Sie folgen aus Baujahr, Fläche, Heizung und Energieklasse. Diese Teile rechnen wir Ihnen überall in Deutschland. Was wir außerhalb von Heilbronn und dem Landkreis nicht können, ist die Mietlücke und der Wertabschlag — dafür bräuchten wir ortsübliche Vergleichsmieten und Kaufpreise, und die erfinden wir nicht.",
+    "ueberschrift_teilrechnung": "Außerhalb unseres Marktgebiets: Wir rechnen trotzdem",
+    "text_teilrechnung": "Energiekosten, CO₂-Last und Instandhaltungsrückstand hängen nicht vom Ort ab: Sie folgen aus Baujahr, Fläche, Heizung und Energieklasse. Diese Teile rechnen wir Ihnen überall in Deutschland. Was wir außerhalb von Heilbronn und dem Landkreis nicht können, ist die Mietlücke und der Wertabschlag. Dafür bräuchten wir ortsübliche Vergleichsmieten und Kaufpreise, und die erfinden wir nicht.",
     "text_teilrechnung_selbstnutzer": "Weil Sie selbst nutzen, fehlt Ihnen dadurch nichts an der Summe: Die Mietlücke zählt bei Eigennutzung ohnehin nicht mit.",
     "text_teilrechnung_vermietet": "Bei vermieteten und leerstehenden Objekten fehlt dadurch ein Posten, der die Summe eher noch erhöht hätte. Ihr Ergebnis ist also eher zu niedrig als zu hoch."
   }

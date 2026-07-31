@@ -49,10 +49,10 @@
       id: "energietraeger",
       titel: "Wesentlicher Energieträger der Heizung",
       norm: "GEG § 87 Abs. 1 Nr. 3",
-      erklaerung: "Gas, Öl, Fernwärme, Wärmepumpe, Pellets — so, wie es im Ausweis steht.",
+      erklaerung: "Gas, Öl, Fernwärme, Wärmepumpe, Pellets, so, wie es im Ausweis steht.",
       /* Achtung bei Änderungen: Zusammensetzungen wie "Gasheizung"
          oder "Ölzentralheizung" müssen mitgefunden werden. Eine
-         Wortgrenze hinten (\bgas\b) findet genau die nicht — und
+         Wortgrenze hinten (\bgas\b) findet genau die nicht, und
          meldet dann fälschlich eine fehlende Pflichtangabe. */
       pruefe: function (t) {
         return /(erdgas|fl[üu]ssiggas|\bgas(heizung|therme|brennwert|etagenheizung)?\b|heiz[öo]l|[öo]l(heizung|zentralheizung|brennwert)?\b|fernw[äa]rme|nahw[äa]rme|w[äa]rmepumpe|\bwp\b|pellet|scheitholz|holzheizung|holzvergaser|nachtspeicher|nachtstrom|solarthermie|blockheizkraftwerk|\bbhkw\b)/i.test(t);
@@ -65,13 +65,13 @@
       erklaerung: "Das im Energieausweis genannte Baujahr, als Jahreszahl.",
       /* Eine Jahreszahl allein beweist nichts. In einem Inserat stehen
          Jahreszahlen für Sanierungen, Einzug, Preise und Bezugstermine.
-         Früher stand hier als Rückfall ein blosses \b(19|20)\d\d\b — damit
+         Früher stand hier als Rückfall ein blosses \b(19|20)\d\d\b, damit
          galt "Heizung 2019 erneuert" als Baujahrangabe, und das Werkzeug
          meldete Vollständigkeit, obwohl eine bußgeldbewehrte Pflichtangabe
          fehlte. Eine falsche Entwarnung ist hier der teuerste Fehler, den
          diese Datei machen kann.
 
-         Deshalb nur mit Bezugswort und engem Abstand — aber in BEIDEN
+         Deshalb nur mit Bezugswort und engem Abstand, aber in BEIDEN
          Wortstellungen, weil "Baujahr 1968" und "1968 erbaut" gleich
          häufig sind. Die 25 Zeichen fangen Einschübe wie
          "Baujahr laut Energieausweis 1968" ab.
@@ -87,7 +87,7 @@
       id: "effizienzklasse",
       titel: "Energieeffizienzklasse",
       norm: "GEG § 87 Abs. 1 Nr. 5 (Wohngebäude)",
-      erklaerung: "A+ bis H. Fehlt in der Praxis am häufigsten — und ist am leichtesten nachzutragen.",
+      erklaerung: "A+ bis H. Fehlt in der Praxis am häufigsten und ist am leichtesten nachzutragen.",
       pruefe: function (t) {
         return /(energie)?(effizienz)?klasse\s*:?\s*(A\+|A\b|B\b|C\b|D\b|E\b|F\b|G\b|H\b)/i.test(t);
       }
@@ -96,7 +96,7 @@
 
   /* ── Weiche Signale ───────────────────────────────────────────
      Keine Rechtsfrage, aber messbar ohne KI. Was hier auffällt,
-     muss die KI nicht mehr suchen — das spart Bedrock-Aufrufe und
+     muss die KI nicht mehr suchen, das spart Bedrock-Aufrufe und
      macht das Ergebnis reproduzierbar.                            */
   var SIGNALE = [
     {
@@ -105,7 +105,7 @@
       pruefe: function (t) {
         var w = t.trim().split(/\s+/).filter(Boolean).length;
         if (w < 80)  return { stand: "schwach", text: "Nur " + w + " Wörter. Unter 80 Wörtern liest ein Interessent nichts heraus, was ihn zum Anruf bringt." };
-        if (w > 600) return { stand: "schwach", text: w + " Wörter. Über 600 Wörter wird nicht mehr gelesen, sondern überflogen — die guten Argumente gehen unter." };
+        if (w > 600) return { stand: "schwach", text: w + " Wörter. Über 600 Wörter wird nicht mehr gelesen, sondern überflogen. Die guten Argumente gehen unter." };
         return { stand: "ok", text: w + " Wörter. Gute Länge." };
       }
     },
@@ -150,7 +150,7 @@
         var tel = /(\+49|0)\s?[1-9][\d\s\/-]{6,}/.test(t);
         var mail = /[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(t);
         return (tel || mail)
-          ? { stand: "schwach", text: "Im Text stehen direkte Kontaktdaten. Das bringt vor allem Anrufe von Maklern und Datensammlern — und ist auf den meisten Portalen ohnehin unzulässig." }
+          ? { stand: "schwach", text: "Im Text stehen direkte Kontaktdaten. Das bringt vor allem Anrufe von Maklern und Datensammlern und ist auf den meisten Portalen ohnehin unzulässig." }
           : { stand: "ok", text: "Keine offenen Kontaktdaten im Text." };
       }
     },
@@ -160,7 +160,7 @@
       pruefe: function (t) {
         var treffer = (t.match(/(schule|kindergarten|kita|einkauf|supermarkt|anbindung|bahnhof|autobahn|bus|[äa]rzte|innenstadt|ruhige lage|sackgasse|s[üu]dausrichtung|garten)/gi) || []).length;
         if (treffer >= 4) return { stand: "ok", text: "Die Lage ist mit " + treffer + " konkreten Bezügen beschrieben." };
-        if (treffer >= 2) return { stand: "mittel", text: "Die Lage wird gestreift. Konkrete Wege — Schule, Einkauf, Anbindung — verkaufen mehr als Adjektive." };
+        if (treffer >= 2) return { stand: "mittel", text: "Die Lage wird gestreift. Konkrete Wege wie Schule, Einkauf und Anbindung verkaufen mehr als Adjektive." };
         return { stand: "schwach", text: "Zur Lage steht praktisch nichts. Bei Immobilien ist das die Hälfte des Kaufarguments." };
       }
     }
@@ -194,11 +194,11 @@
       bussgeldrisiko: fehlend.length > 0,
       bussgeld_hinweis:
         "Fehlende Pflichtangaben in einer Immobilienanzeige sind eine Ordnungswidrigkeit nach " +
-        "GEG § 108. Der Rahmen reicht bis 10.000 €. Die Pflicht trifft denjenigen, der inseriert — " +
+        "GEG § 108. Der Rahmen reicht bis 10.000 €. Die Pflicht trifft denjenigen, der inseriert, " +
         "auch private Verkäufer, sobald sie ein kommerzielles Portal oder eine Zeitung nutzen und " +
         "ein Energieausweis vorliegt.",
       hinweis_kein_ausweis:
-        "Liegt für das Gebäude noch gar kein Energieausweis vor, greifen die Pflichtangaben nicht — " +
+        "Liegt für das Gebäude noch gar kein Energieausweis vor, greifen die Pflichtangaben nicht. " +
         "dann fehlt allerdings der Ausweis selbst, und der muss spätestens bei der Besichtigung " +
         "unaufgefordert vorgelegt werden."
     };

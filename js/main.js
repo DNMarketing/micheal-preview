@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════
    main.js · Läuft auf jeder Seite.
    Navigation, Auftritte beim Scrollen, WhatsApp-Knopf,
-   Käufer-Zähler, Demo-Hinweis.
+   Käufer-Zähler, Jahreszahl.
    ══════════════════════════════════════════════════════════════════ */
 
 (function (global) {
@@ -62,17 +62,6 @@
     ziele.forEach(function (z) { beobachter.observe(z); });
   }
 
-  /* ── Demo-Hinweis ─────────────────────────────────────────────── */
-  function demohinweis() {
-    var leiste = q("[data-demo]");
-    if (!leiste) return;
-    if (global.APP && global.APP.MODUS === "DEMO") {
-      leiste.hidden = false;
-      leiste.textContent =
-        "Demo-Betrieb · Miet-, Kauf- und Energiepreise sind Platzhalter · es werden keine Daten verschickt";
-    }
-  }
-
   /* ── WhatsApp ─────────────────────────────────────────────────── */
   function whatsapp() {
     var knopf = q(".wa");
@@ -94,6 +83,14 @@
     var kasten = q("[data-kaeufer]");
     if (!kasten || !global.APP) return;
 
+    /* Bleibt der Zähler aus, verschwindet auch sein Abschnitt.
+       Sonst steht mitten auf der Startseite ein leeres Band mit
+       voller Höhe, und das sieht aus wie ein Ladefehler. */
+    function abschnittWeg() {
+      var abschnitt = kasten.closest("section");
+      if (abschnitt) abschnitt.remove(); else kasten.remove();
+    }
+
     fetch(global.APP.DATEN.KAEUFER, { cache: "no-cache" })
       .then(function (r) { return r.json(); })
       .then(function (d) {
@@ -103,6 +100,7 @@
         if (!isFinite(alterTage) || alterTage > maxAlter) {
           console.warn("[Käufer-Zähler] Ausgeblendet: kaeufer.json ist " +
             Math.round(alterTage) + " Tage alt (erlaubt: " + maxAlter + "). Siehe docs/DATENPFLEGE.md.");
+          abschnittWeg();
           return;
         }
 
@@ -112,6 +110,7 @@
         var anzahl = gebiet ? gebiet.anzahl : d.gesamt;
         if (!anzahl || anzahl <= 0) {
           console.warn("[Käufer-Zähler] Ausgeblendet: Anzahl ist 0. Erst befüllen, dann zeigen.");
+          abschnittWeg();
           return;
         }
 
@@ -126,7 +125,10 @@
           '<span class="kaeufer__stand">Stand ' + stand + '</span>';
         kasten.hidden = false;
       })
-      .catch(function (e) { console.warn("[Käufer-Zähler] Daten nicht ladbar:", e); });
+      .catch(function (e) {
+        console.warn("[Käufer-Zähler] Daten nicht ladbar:", e);
+        abschnittWeg();
+      });
   }
 
   /* ── Jahreszahl im Impressum/Fuß ──────────────────────────────── */
@@ -136,7 +138,7 @@
 
   /* ── Start ────────────────────────────────────────────────────── */
   function los() {
-    navi(); auftritte(); demohinweis(); whatsapp(); kaeuferzaehler(); jahr();
+    navi(); auftritte(); whatsapp(); kaeuferzaehler(); jahr();
   }
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", los);
   else los();

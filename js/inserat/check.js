@@ -7,7 +7,7 @@
    Deshalb kein URL-Feld, sondern Upload:
    Ein Scraper auf ImmoScout wäre technisch fragil (das Markup
    ändert sich, Bot-Erkennung greift) und AGB-seitig heikel. Der
-   Eigentümer lädt selbst hoch — damit ist die Rechtsfrage weg und
+   Eigentümer lädt selbst hoch, damit ist die Rechtsfrage weg und
    die Datenqualität besser, weil wir die Originalfotos bekommen
    statt heruntergerechneter Portal-Vorschauen.
 
@@ -116,7 +116,7 @@
       return '<div class="geg__zeile" data-stand="' + (p.erfuellt ? "ok" : "fehlt") + '">' +
         '<span class="geg__zeichen">' + (p.erfuellt ? "✓" : "✕") + '</span>' +
         '<span class="geg__text"><strong>' + esc(p.titel) + '</strong>' +
-        '<span>' + esc(p.norm) + " — " + esc(p.erklaerung) + '</span></span>' +
+        '<span>' + esc(p.norm) + ": " + esc(p.erklaerung) + '</span></span>' +
       '</div>';
     }).join("");
 
@@ -130,7 +130,7 @@
 
     gegKasten.innerHTML =
       '<p class="etikett' + (r.bussgeldrisiko ? ' etikett--signal' : '') + '">' +
-        'Pflichtangaben nach GEG § 87 — sofort geprüft, ohne KI</p>' +
+        'Pflichtangaben nach GEG § 87, sofort geprüft, ohne KI</p>' +
       '<div class="geg">' + zeilen + '</div>' +
       (r.bussgeldrisiko
         ? '<div class="bussgeld"><strong>' + r.fehlend.length + ' von 5 Pflichtangaben fehlen.</strong>' +
@@ -138,9 +138,9 @@
           '<p class="still" style="margin-top:.5rem">' + esc(r.hinweis_kein_ausweis) + '</p></div>'
         : '<div class="bussgeld" style="border-color:rgba(94,224,168,.3);background:var(--gepruft-flach)">' +
           '<strong style="color:var(--gepruft)">Alle fünf Pflichtangaben sind vorhanden.</strong>' +
-          '<p class="still" style="margin-top:.5rem">Das ist selten — die meisten privaten Inserate ' +
+          '<p class="still" style="margin-top:.5rem">Das ist selten. Die meisten privaten Inserate ' +
           'haben mindestens eine Lücke.</p></div>') +
-      '<p class="etikett" style="margin-top:2rem">Textsignale — ebenfalls ohne KI messbar</p>' +
+      '<p class="etikett" style="margin-top:2rem">Textsignale, ebenfalls ohne KI messbar</p>' +
       '<div class="geg">' + signale + '</div>';
   }
 
@@ -169,11 +169,11 @@
 
     /* Reihenfolge ist hier nicht beliebig: ladeschirm() ersetzt
        wurzel.innerHTML und raeumt damit das ganze Formular aus dem DOM.
-       Die Nutzlast muss deshalb VORHER gelesen werden — sonst liefert
+       Die Nutzlast muss deshalb VORHER gelesen werden, sonst liefert
        q('[name="preis"]', wurzel) null und das Absenden bricht mit einem
        TypeError ab, noch bevor irgendetwas verschickt wird.
        (textfeld faellt nicht auf, weil es als Referenz gehalten wird und
-       auch losgeloest vom Dokument noch .value liefert — die vier Felder
+       auch losgeloest vom Dokument noch .value liefert, die vier Felder
        aus Schritt 3 werden dagegen frisch gesucht.) */
     var nutzlast = {
       quelle: "inserats-check",
@@ -231,7 +231,7 @@
         wurzel.innerHTML =
           '<div class="wz__schluss rahmen"><p class="etikett">Fehler</p>' +
           '<h2>Die Analyse ist nicht durchgelaufen.</h2>' +
-          '<p class="gross">Das liegt nicht an Ihrem Inserat. Bitte in ein paar Minuten noch einmal — ' +
+          '<p class="gross">Das liegt nicht an Ihrem Inserat. Bitte in ein paar Minuten noch einmal, ' +
           'oder schicken Sie uns den Link, dann sehen wir persönlich drauf.</p>' +
           '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=inserat">Persönlich prüfen lassen <span class="pfeil">→</span></a></div>';
       });
@@ -292,7 +292,7 @@
               (d.pflicht_fehlend.length > 1 ? 'n fehlen' : ' fehlt') + ': ' +
               esc(d.pflicht_fehlend.join(", ")) + '</strong>' +
               '<p class="still" style="margin-top:.5rem">Bußgeldrahmen nach GEG § 108: bis 10.000 €. ' +
-              'Das ist der Punkt, den Sie heute noch selbst beheben können — dafür brauchen Sie uns nicht.</p>' +
+              'Das ist der Punkt, den Sie heute noch selbst beheben können. Dafür brauchen Sie uns nicht.</p>' +
             '</section>'
           : '') +
 
@@ -311,7 +311,7 @@
         '<section class="gate rahmen">' +
           '<p class="etikett">Der Rest</p>' +
           '<h3 class="gate__titel">Wir haben ' + (d.fehler.length) + ' Punkte gefunden. Drei davon sehen Sie oben.</h3>' +
-          '<p class="gross">Die übrigen gehen wir in einem Gespräch durch — mit den konkreten Formulierungen ' +
+          '<p class="gross">Die übrigen gehen wir in einem Gespräch durch, mit den konkreten Formulierungen ' +
           'und der Foto-Reihenfolge, die wir stattdessen nehmen würden. Zwanzig Minuten, kostenlos, ' +
           'ohne dass Sie uns beauftragen müssen.</p>' +
           '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=inserat">' +
@@ -359,24 +359,24 @@
       fehler.push({
         titel: "Zu wenige Fotos",
         text: "Sie haben " + n.fotos.length + " Fotos hochgeladen. Inserate mit acht bis zwölf Bildern " +
-              "bekommen deutlich mehr qualifizierte Anfragen — vor allem, wenn Grundriss und Außenansicht dabei sind."
+              "bekommen deutlich mehr qualifizierte Anfragen, vor allem, wenn Grundriss und Außenansicht dabei sind."
       });
     }
     fehler.push({
       titel: "Reihenfolge der Fotos",
       text: "Das erste Bild entscheidet, ob überhaupt geklickt wird. In der Vorschau steht bei Ihnen " +
-            "Foto 1 — im Termin schauen wir, welches Ihrer Bilder dort hingehört."
+            "Foto 1. Im Termin schauen wir, welches Ihrer Bilder dort hingehört."
     });
 
     return {
       score: punkte,
       urteil: punkte >= 75 ? "Solide, aber Sie verschenken Reichweite."
-            : punkte >= 50 ? "Ausbaufähig — hier liegt echtes Geld."
+            : punkte >= 50 ? "Ausbaufähig. Hier liegt echtes Geld."
             : "Das Inserat arbeitet gegen Sie.",
       zusammenfassung:
-        "DEMO-BETRIEB: Dieser Wert stammt aus den Prüfungen, die im Browser laufen — die Fotos " +
-        "wurden noch nicht durch die KI gesehen. Im Echtbetrieb bewertet Bedrock zusätzlich Bildqualität, " +
-        "Reihenfolge, Textwirkung und Preisplausibilität.",
+        "Dieser Wert stammt aus den Prüfungen, die direkt im Browser laufen: Pflichtangaben, " +
+        "Textsignale, Bildanzahl. Die Fotos selbst sind dabei noch nicht ausgewertet. Sobald die " +
+        "Bildanalyse dazukommt, fließen Bildqualität, Reihenfolge und Preisplausibilität mit ein.",
       pflicht_fehlend: v.fehlend.map(function (p) { return p.titel; }),
       fehler: fehler
     };
@@ -392,7 +392,7 @@
           '<p class="etikett">Schritt 1</p>' +
           '<h2>Fotos aus Ihrem Inserat</h2>' +
           '<p class="leise" style="max-width:34rem">' +
-            'Laden Sie die Bilder hoch, die tatsächlich im Inserat stehen — in genau der Reihenfolge. ' +
+            'Laden Sie die Bilder hoch, die tatsächlich im Inserat stehen, in genau der Reihenfolge. ' +
             'Wir prüfen bewusst keine Portal-Links: Das wäre technisch wacklig und gegenüber den ' +
             'Portalen heikel. Ihre Originale sind ohnehin aussagekräftiger.</p>' +
           '<label class="ablage" data-ablage>' +
@@ -409,7 +409,7 @@
         '<section>' +
           '<p class="etikett">Schritt 2</p>' +
           '<h2>Der Inseratstext</h2>' +
-          '<p class="leise" style="max-width:34rem">Kompletten Text hineinkopieren — Überschrift, ' +
+          '<p class="leise" style="max-width:34rem">Kompletten Text hineinkopieren: Überschrift, ' +
             'Beschreibung, Ausstattung. Die Pflichtangaben-Prüfung läuft mit, während Sie einfügen.</p>' +
           '<label class="feld">' +
             '<span class="sr">Inseratstext</span>' +
@@ -422,7 +422,7 @@
         '<section data-geg></section>' +
 
         '<section>' +
-          '<p class="etikett">Schritt 3 <span class="still">— freiwillig, macht die Preisprüfung genauer</span></p>' +
+          '<p class="etikett">Schritt 3 <span class="still">freiwillig, macht die Preisprüfung genauer</span></p>' +
           '<div class="gform__reihe">' +
             '<label class="feld"><span class="feld__label">Geforderter Preis</span>' +
               '<input class="feld__eingabe zahl" name="preis" type="number" min="0" step="1000" placeholder="459000"></label>' +

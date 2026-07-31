@@ -1,31 +1,41 @@
 /* ══════════════════════════════════════════════════════════════════
    tokens.css · Das Vokabular des Designs.
 
-   Gestalterische Leitidee: MESSINSTRUMENT.
-   Die Seite soll nicht aussehen wie ein Makler-Prospekt, sondern
-   wie ein Diagnosegerät, das eine Immobilie vermisst. Daraus folgt
-   alles Weitere:
+   Gestalterische Leitidee: RUHIG, HELL, HOCHWERTIG.
 
-     · Grund fast schwarz, leicht kühl — kein reines #000, das wirkt
-       tot. #08090B hat einen Blaustich und wirkt wie ein Display.
-     · Zahlen IMMER in Mono mit tabellarischen Ziffern. Eine Zahl,
-       die beim Hochzählen die Breite ändert, zerstört den Eindruck
-       von Präzision sofort.
-     · Haarlinien statt Karten. Keine Schlagschatten, keine Radien
-       über 2px. Nichts schwebt.
-     · GENAU EINE Signalfarbe, und die steht ausschließlich für
-       Verlust. Sobald Orange irgendwo dekorativ auftaucht, ist die
-       Wirkung weg.
+   Die Seite soll aussehen wie die Drucksache eines Maklers, der
+   seit dreißig Jahren im Geschäft ist: weiße Fläche, viel Luft,
+   Haarlinien, eine einzige Farbe. Ausdrücklich NICHT wie ein
+   Software- oder Gaming-Auftritt. Daraus folgt alles Weitere:
+
+     · Weiß trägt, Blau führt, Schwarz schreibt. Mehr Farben hat
+       die Seite nicht.
+     · Die eine Farbe ist das Blau aus seinem Logo, #03428F,
+       unverändert. Kein zweites Blau, kein Verlauf, kein Leuchten.
+     · Flächen entstehen durch Abstand und Haarlinien, nicht durch
+       Kästen, Schatten oder Raster.
+     · Zahlen laufen in tabellarischen Ziffern, damit beim
+       Hochzählen nichts springt. Aber in derselben Schrift wie der
+       Text: eine Monoschrift lässt jede Seite nach Terminal
+       aussehen, und genau das soll sie nicht.
+
+   Die vier Logofarben stehen unten. Rot kommt darin vor, aber
+   ausschließlich im Logo selbst, nie als Designfarbe.
    ══════════════════════════════════════════════════════════════════ */
 
 /* ── Schriften ──────────────────────────────────────────────────────
-   Alle drei liegen unter /assets/fonts. Keine externe Anfrage,
-   die CSP bleibt bei font-src 'self'.
+   Beide liegen unter /assets/fonts. Keine externe Anfrage, die CSP
+   bleibt bei font-src 'self'.
 
-   Archivo    – Fließtext und Bedienung. Enge Grotesk, ruhig.
-   Bricolage  – Überschriften. Variabel in Breite und optischer
-                Größe, hat Kanten. Nur groß einsetzen.
-   Plex Mono  – Jede Zahl, jedes Etikett, jede Messangabe.
+   Archivo    – trägt die ganze Seite: Text, Bedienung, Zahlen.
+                Variabel 100–900, eine Datei. Ruhige Grotesk mit
+                geraden Schnitten, nah an der Schrift seines Logos.
+   Bricolage  – nur die großen Überschriften. Variabel in Breite
+                und optischer Größe, hat Kanten. Nie unter 1,5 rem.
+
+   IBM Plex Mono liegt noch im Ordner, wird aber von keiner Regel
+   mehr angefragt: Monoschrift war der Hauptgrund, warum die Seite
+   nach Werkzeugkasten aussah.
    ──────────────────────────────────────────────────────────────── */
 
 @font-face {
@@ -44,95 +54,116 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "PlexMono";
-  src: url("/micheal-preview/assets/fonts/IBMPlexMono-400.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "PlexMono";
-  src: url("/micheal-preview/assets/fonts/IBMPlexMono-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "PlexMono";
-  src: url("/micheal-preview/assets/fonts/IBMPlexMono-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 
 :root {
-  /* ── Grundflächen ────────────────────────────────────────────── */
-  --grund:        #08090B;   /* Seitenhintergrund */
-  --grund-tief:   #050608;   /* tiefer gelegte Zonen, Fußbereich */
-  --flaeche-1:    #0D0F13;   /* leicht erhöht */
-  --flaeche-2:    #12151A;   /* Eingabefelder, Kacheln */
-  --flaeche-3:    #191D24;   /* Kachel im Überfahren */
 
-  /* ── Linien ──────────────────────────────────────────────────── */
-  --linie-fein:   rgba(255, 255, 255, 0.07);   /* Standardtrenner */
-  --linie:        rgba(255, 255, 255, 0.12);   /* Rahmen */
-  --linie-stark:  rgba(255, 255, 255, 0.22);   /* aktiv, ausgewählt */
+  /* ══ Die Farben des Logos ═══════════════════════════════════════
+     Gemessen aus seiner Wortmarke. --blau ist die Hausfarbe der
+     ganzen Seite, --blau-tief die dunkle Fläche (Fuß, Zitatband).
+     --logo-rot lebt ausschließlich im Logo selbst.
+     ─────────────────────────────────────────────────────────── */
+  --blau:         #03428F;   /* das blaue Band unter der Wortmarke */
+  --blau-tief:    #1E2A55;   /* die Schrift „immoservice"          */
+  --blau-m:       #14488C;   /* das kursive m²                     */
+  --logo-rot:     #CA0530;   /* NUR im Logo, nirgends sonst        */
 
-  /* ── Schrift ─────────────────────────────────────────────────── */
-  --text-hell:    #F4F6F8;   /* Überschriften */
-  --text:         #C9D0D8;   /* Fließtext */
-  --text-leise:   #8A939F;   /* sekundär, Bildunterschriften */
-  --text-still:   #5D6672;   /* Quellenangaben, deaktiviert */
+  /* ══ Flächen ════════════════════════════════════════════════════
+     Alles Weiß oder ein Hauch des Hausblaus darin. Keine grauen
+     Grautöne: reines Grau wirkt neben Blau schmutzig.
+     ─────────────────────────────────────────────────────────── */
+  --grund:        #FFFFFF;
+  --grund-tief:   #F4F7FB;   /* abgesetzte Bänder                  */
+  --flaeche-1:    #F7F9FC;   /* Karten, Kacheln                    */
+  --flaeche-2:    #EFF3F9;   /* Eingabefelder                      */
+  --flaeche-3:    #E4EBF5;   /* im Überfahren                      */
 
-  /* ── Signal · nur für Verlust ────────────────────────────────── */
-  --signal:       #FF7A2F;
-  --signal-hell:  #FFA36B;
-  --signal-tief:  #C4520F;
-  --signal-flach: rgba(255, 122, 47, 0.10);
-  --signal-rand:  rgba(255, 122, 47, 0.32);
-  --signal-schein:rgba(255, 122, 47, 0.16);
+  /* ══ Linien ═════════════════════════════════════════════════════
+     Blau eingefärbt statt schwarz. Der Unterschied ist winzig und
+     genau der Grund, warum die Fläche teuer wirkt.
+     ─────────────────────────────────────────────────────────── */
+  --linie-fein:   rgba(3, 66, 143, 0.12);
+  --linie:        rgba(3, 66, 143, 0.20);
+  --linie-stark:  rgba(3, 66, 143, 0.38);
 
-  /* ── Gegenpol · nur für gesicherte/geprüfte Angaben ──────────── */
-  --gepruft:      #5EE0A8;
-  --gepruft-flach:rgba(94, 224, 168, 0.10);
+  /* ══ Schrift ════════════════════════════════════════════════════
+     Überschriften fast schwarz, Fließtext eine Spur weicher.
+     --text-still trägt auf Weiß 5,5:1 und auf --grund-tief noch
+     5,1:1, also AA auch im Kleinsatz.
+     ─────────────────────────────────────────────────────────── */
+  --text-hell:    #0B0D10;   /* Überschriften, große Zahlen        */
+  --text:         #33383F;   /* Fließtext                          */
+  --text-leise:   #5A6270;   /* sekundär                           */
+  --text-still:   #5F6976;   /* Quellen, Kleinstsatz               */
 
-  /* ── Warnung · nur für rechtliche Pflichtangaben ─────────────── */
-  --warn:         #FFD166;
-  --warn-flach:   rgba(255, 209, 102, 0.10);
+  /* ══ Signal ═════════════════════════════════════════════════════
+     Es gibt keine zweite Farbe. Was hervorgehoben werden muss,
+     wird blau, größer oder beides. Auf Weiß trägt das Logo-Blau
+     9,5:1, das reicht für jede Schriftgröße.
+     ─────────────────────────────────────────────────────────── */
+  --signal:       var(--blau);
+  --signal-hell:  #0A55B0;   /* nur für :hover auf gefüllten Flächen */
+  --signal-tief:  var(--blau-tief);
+  --signal-flach: rgba(3, 66, 143, 0.06);
+  --signal-rand:  rgba(3, 66, 143, 0.28);
+  --signal-schein:rgba(3, 66, 143, 0.10);
+  --signal-schrift: #FFFFFF;
 
-  /* ── Energieklassen-Skala (A+ … H) ───────────────────────────
-     Bewusst NICHT das bunte Ampel-Band aus dem Energieausweis,
-     sondern ein Verlauf von kühlem Grün in die Signalfarbe. So
-     bleibt Orange semantisch bei "Verlust".                       */
-  --ek-0: #4BC28C;  /* A+ */
-  --ek-1: #62C47E;  /* A  */
-  --ek-2: #8CC66B;  /* B  */
-  --ek-3: #B8C25C;  /* C  */
-  --ek-4: #D9B455;  /* D  */
-  --ek-5: #E89B4A;  /* E  */
-  --ek-6: #F0803C;  /* F  */
-  --ek-7: #EE6630;  /* G  */
-  --ek-8: #DC4A26;  /* H  */
+  /* ══ Zustände ═══════════════════════════════════════════════════
+     Zwei Ausnahmen von der Einfarbigkeit, beide unverzichtbar:
+     Ein fehlendes Pflichtfeld und eine fehlende Pflichtangabe nach
+     GEG müssen sich von einer erfüllten unterscheiden lassen, auch
+     für jemanden, der die Häkchen nicht deuten kann. Beide Töne
+     sind bewusst tief und entsättigt, damit sie nicht leuchten.
+     ─────────────────────────────────────────────────────────── */
+  --gepruft:      var(--blau);              /* erfüllt = Hausfarbe */
+  --gepruft-flach:rgba(3, 66, 143, 0.06);
+  --fehlt:        #A32B1F;                  /* fehlt, Fehler       */
+  --fehlt-flach:  rgba(163, 43, 31, 0.05);
+  --fehlt-rand:   rgba(163, 43, 31, 0.24);
+  /* Alte Namen, damit Bauteile aus tool.css weiterlaufen. */
+  --warn:         var(--fehlt);
+  --warn-flach:   var(--fehlt-flach);
 
-  /* ── Schriftfamilien ─────────────────────────────────────────── */
+  /* ══ Energieklassen-Skala (A+ … H) ══════════════════════════════
+     Kein Ampelband, sondern eine einzige Farbe, die immer tiefer
+     wird. Hell heißt sparsam, tief heißt teuer. Das bleibt in der
+     Hausfarbe und sieht trotzdem auf einen Blick wie eine Skala aus.
+     ─────────────────────────────────────────────────────────── */
+  --ek-0: #C9DAEF;  /* A+ */
+  --ek-1: #B2CBE8;  /* A  */
+  --ek-2: #9ABDE1;  /* B  */
+  --ek-3: #7FA9D6;  /* C  */
+  --ek-4: #6494CB;  /* D  */
+  --ek-5: #4A7EBE;  /* E  */
+  --ek-6: #3067AF;  /* F  */
+  --ek-7: #17539E;  /* G  */
+  --ek-8: #03428F;  /* H  */
+
+
+  /* ══ Schriftfamilien ════════════════════════════════════════════
+     --f-mono heißt aus historischen Gründen so und ist längst keine
+     Monoschrift mehr. Der Name bleibt, weil ihn Dutzende Regeln in
+     base.css und tool.css benutzen; getauscht wird nur der Wert.
+     Zahlen bekommen ihre gleiche Laufweite über .zahl.
+     ─────────────────────────────────────────────────────────── */
   --f-text:    "Archivo", "Helvetica Neue", Arial, sans-serif;
   --f-display: "Bricolage", "Archivo", "Helvetica Neue", sans-serif;
-  --f-mono:    "PlexMono", ui-monospace, "SF Mono", Menlo, monospace;
+  --f-mono:    "Archivo", "Helvetica Neue", Arial, sans-serif;
 
-  /* ── Größen ──────────────────────────────────────────────────── */
-  --t-zaehler:  clamp(3.4rem, 0.6rem + 12vw, 9.5rem);
-  --t-display:  clamp(2.5rem, 1.0rem + 5.6vw, 5.6rem);
-  --t-h1:       clamp(2.0rem, 1.2rem + 3.0vw, 3.6rem);
-  --t-h2:       clamp(1.55rem, 1.1rem + 1.8vw, 2.5rem);
-  --t-h3:       clamp(1.15rem, 1.0rem + 0.7vw, 1.5rem);
+
+  /* ══ Größen ═════════════════════════════════════════════════════ */
+  --t-zaehler:  clamp(3.6rem, 1.2rem + 11vw, 8.5rem);
+  --t-display:  clamp(2.4rem, 1.1rem + 4.8vw, 4.8rem);
+  --t-h1:       clamp(2.0rem, 1.2rem + 3.0vw, 3.4rem);
+  --t-h2:       clamp(1.55rem, 1.1rem + 1.7vw, 2.4rem);
+  --t-h3:       clamp(1.15rem, 1.0rem + 0.7vw, 1.45rem);
   --t-gross:    clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);
   --t-text:     1.0rem;
-  --t-klein:    0.875rem;
-  --t-etikett:  0.6875rem;   /* Mono-Etiketten, immer versal */
+  --t-klein:    0.9375rem;
+  --t-etikett:  0.75rem;     /* kleine Versaletiketten */
 
-  /* ── Abstände · Vierer-Raster ────────────────────────────────── */
+
+  /* ══ Abstände · Vierer-Raster ═══════════════════════════════════ */
   --s-1:  0.25rem;
   --s-2:  0.5rem;
   --s-3:  0.75rem;
@@ -144,7 +175,7 @@
   --s-9:  6rem;
   --s-10: 8rem;
 
-  /* ── Maße ────────────────────────────────────────────────────── */
+  /* ══ Maße ═══════════════════════════════════════════════════════ */
   --breite-seite:  76rem;   /* Standard-Inhaltsbreite */
   --breite-text:   38rem;   /* Lesespalte */
   --breite-eng:    30rem;   /* Formulare, einzelne Frage */
@@ -153,24 +184,28 @@
   --radius:        2px;
   --radius-null:   0;
 
-  /* ── Bewegung ────────────────────────────────────────────────── */
-  --e-raus:   cubic-bezier(0.16, 1, 0.3, 1);      /* Standard-Auftritt */
+  /* Genau ein Schatten im ganzen Projekt, und der ist so weich,
+     dass man ihn nicht sieht, sondern nur merkt. Er hebt den
+     Zählerblock im Seitenkopf und den WhatsApp-Knopf. */
+  --schatten: 0 1px 2px rgba(3, 66, 143, 0.05),
+              0 18px 44px rgba(3, 66, 143, 0.07);
+
+  /* ══ Bewegung ═══════════════════════════════════════════════════ */
+  --e-raus:   cubic-bezier(0.16, 1, 0.3, 1);
   --e-scharf: cubic-bezier(0.4, 0, 0.2, 1);
-  --e-zurueck:cubic-bezier(0.34, 1.56, 0.64, 1);  /* leichtes Überschwingen */
+  --e-zurueck:cubic-bezier(0.34, 1.56, 0.64, 1);
   --d-kurz:   140ms;
   --d-mittel: 280ms;
   --d-lang:   560ms;
 
-  /* ── Texturen ────────────────────────────────────────────────── */
-  /* Feines Raster, das über der ganzen Seite liegt. Nicht als
-     Deko, sondern damit die Fläche wie Millimeterpapier eines
-     Messgeräts wirkt. */
+  /* Das Millimeterraster von früher gibt es nicht mehr. Die Marke
+     bleibt stehen, damit base.css nicht ins Leere greift. */
   --raster-weite: 44px;
-  --raster-farbe: rgba(255, 255, 255, 0.020);
+  --raster-farbe: transparent;
 }
 
 /* Wer Bewegung reduziert haben will, bekommt sie nicht.
-   Zusätzlich schaltet ?statisch in der Adresszeile alles ab —
+   Zusätzlich schaltet ?statisch in der Adresszeile alles ab,
    dieselbe Konvention wie in den anderen Projekten. */
 @media (prefers-reduced-motion: reduce) {
   :root { --d-kurz: 1ms; --d-mittel: 1ms; --d-lang: 1ms; }

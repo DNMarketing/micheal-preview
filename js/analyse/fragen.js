@@ -1,8 +1,8 @@
 /* ══════════════════════════════════════════════════════════════════
    fragen.js · Inhalt der sechs Schritte. Nur Text, Optionen, Icons.
 
-   Hier steht KEINE Logik. Wer Formulierungen ändern will — und das
-   wird im Betrieb ständig passieren — fasst nur diese Datei an.
+   Hier steht KEINE Logik. Wer Formulierungen ändern will und das
+   wird im Betrieb ständig passieren, fasst nur diese Datei an.
 
    Zur Reihenfolge: Der erste Schritt fragt bewusst nur die
    Postleitzahl ab, nicht die Adresse. Das senkt den Absprung
@@ -58,7 +58,7 @@
         id: "ort",
         etikett: "Lage",
         frage: "Wo steht Ihre Immobilie?",
-        hilfe: "Die Postleitzahl genügt. Ihre Adresse fragen wir erst ganz am Ende — und nur, wenn Sie den vollständigen Bericht möchten.",
+        hilfe: "Die Postleitzahl genügt. Ihre Adresse fragen wir erst ganz am Ende und nur dann, wenn Sie den vollständigen Bericht möchten.",
         typ: "ort",
         felder: ["plz", "stadtteil"]
       },
@@ -109,8 +109,8 @@
       {
         id: "energie",
         etikett: "Energie",
-        frage: "Wie wird geheizt — und welche Energieklasse steht im Ausweis?",
-        hilfe: "Kein Ausweis zur Hand? Kein Problem. Wir schätzen die Klasse aus Baujahr, Heizung und Sanierungsstand — und sagen Ihnen im Ergebnis transparent, wie.",
+        frage: "Wie wird geheizt, und welche Energieklasse steht im Ausweis?",
+        hilfe: "Kein Ausweis zur Hand? Kein Problem. Wir schätzen die Klasse aus Baujahr, Heizung und Sanierungsstand und sagen Ihnen im Ergebnis transparent, wie.",
         typ: "energie",
         feld_heizung: "heizung",
         feld_klasse: "energieklasse",
@@ -180,7 +180,7 @@
     gate: {
       etikett: "Vollständiger Bericht",
       titel: "Die beiden anderen Hebel und Ihren Wertkorridor bekommen Sie als PDF.",
-      text: "Zwölf Seiten, jede Zahl mit Rechenweg und Quelle. Kein Werbeprospekt — ein Dokument, das Sie Ihrem Steuerberater oder Ihrer Bank vorlegen können.",
+      text: "Zwölf Seiten, jede Zahl mit Rechenweg und Quelle. Kein Werbeprospekt, sondern ein Dokument, das Sie Ihrem Steuerberater oder Ihrer Bank vorlegen können.",
       knopf: "Bericht anfordern",
       dsgvo:
         "Ich möchte den Bericht per E-Mail erhalten und bin damit einverstanden, dass meine Angaben " +
@@ -194,7 +194,7 @@
     kein_verlust: {
       etikett: "Ergebnis",
       titel: "Ihre Immobilie steht gut da.",
-      text: "Wir haben keinen nennenswerten laufenden Verlust gefunden. Das ist bei einem Bestandsobjekt selten — und beim Verkauf bares Geld wert, weil Sie es belegen können. Den vollständigen Bericht bekommen Sie trotzdem, dann haben Sie es schwarz auf weiß."
+      text: "Wir haben keinen nennenswerten laufenden Verlust gefunden. Das ist bei einem Bestandsobjekt selten und beim Verkauf bares Geld wert, weil Sie es belegen können. Den vollständigen Bericht bekommen Sie trotzdem, dann haben Sie es schwarz auf weiß."
     }
   };
 

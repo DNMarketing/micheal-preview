@@ -12,7 +12,7 @@
       Engine.rechne({...}).hebel))
 
    3. Jeder Ausgabewert trägt seinen Rechenweg mit. Was das Tool
-      behauptet, muss Micheal im Termin erklären können — sonst
+      behauptet, muss Michael Spitzer im Termin erklären können, sonst
       ist es wertlos.
 
    4. Im Zweifel die vorsichtigere Zahl. Ein zu hoher Verlustwert,
@@ -40,7 +40,7 @@
   var fZahl1 = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   /* Auf glatte Stufen runden. Eine Zahl wie "4.372 €" wirkt
-     berechnet, "4.370 €" wirkt geschätzt — und geschätzt ist
+     berechnet, "4.370 €" wirkt geschätzt und geschätzt ist
      ehrlicher. Unter 1.000 auf 10er, darüber auf 10er. */
   function stufe(n) {
     if (!isFinite(n) || n <= 0) return 0;
@@ -49,7 +49,7 @@
 
   /* Für Spannen und große Beträge. Ein Korridor "56.306 € bis
      93.844 €" behauptet eine Genauigkeit, die eine Spanne
-     naturgemäß nicht hat — und genau daran hakt ein aufmerksamer
+     naturgemäß nicht hat und genau daran hakt ein aufmerksamer
      Eigentümer im Termin ein. */
   function grob(n) {
     if (!isFinite(n) || n <= 0) return 0;
@@ -162,7 +162,7 @@
 
     var brennstoffMehrkosten = mehrKwh * t.arbeitspreis_eur_pro_kwh;
 
-    // CO₂ nach BEHG — nur für Brennstoffe, die darunter fallen.
+    // CO₂ nach BEHG, nur für Brennstoffe, die darunter fallen.
     var co2KgGesamt = t.behg_pflichtig ? ek.kennwert * e.wohnflaeche * t.co2_kg_pro_kwh : 0;
     var co2KgProQm  = t.behg_pflichtig ? ek.kennwert * t.co2_kg_pro_kwh : 0;
     var co2KostenGesamt = (co2KgGesamt / 1000) * KW.co2.preis_eur_pro_tonne;
@@ -187,7 +187,7 @@
       erklaerung =
         "Bei " + Math.round(co2KgProQm) + " kg CO₂ je m² und Jahr tragen Sie als Vermieter " +
         Math.round(vermieteranteil * 100) + " % der CO₂-Abgabe. Das sind " + fEuro.format(co2Vermieter) +
-        " im Jahr — Geld, das Sie nicht umlegen dürfen. Die Heizkosten selbst zahlt Ihr Mieter, " +
+        " im Jahr. Dieses Geld dürfen Sie nicht umlegen. Die Heizkosten selbst zahlt Ihr Mieter, " +
         "sie sind aber der Grund, warum Sie die Miete nicht durchsetzen können (siehe Hebel Miete).";
     } else {
       betrag = brennstoffMehrkosten + co2MehrKosten;
@@ -235,7 +235,7 @@
        angreifbar ist. Der Hebel bleibt sichtbar, sagt selbst warum er
        offen bleibt, und zählt nicht in die Summe.
 
-       Energie und Instandhaltung sind davon nicht betroffen — die kommen
+       Energie und Instandhaltung sind davon nicht betroffen, die kommen
        aus kennwerte.json und gelten bundesweit. Bei Eigennutzung zählt
        die Miete ohnehin nicht mit; dort ist das Ergebnis auch außerhalb
        des Marktgebiets vollständig. */
@@ -249,13 +249,13 @@
         ohne_marktdaten: true,
         erklaerung:
           "Für " + (e.plz || "diese Postleitzahl") + " liegen uns keine ortsüblichen " +
-          "Vergleichsmieten vor. Wir lassen diesen Punkt deshalb offen, statt ihn zu schätzen — " +
-          "eine erfundene Vergleichsmiete wäre schlechter als keine. " +
+          "Vergleichsmieten vor. Wir lassen diesen Punkt deshalb offen, statt ihn zu schätzen. " +
+          "Eine erfundene Vergleichsmiete wäre schlechter als keine. " +
           (betrifftSumme
             ? "Bei vermieteten und leerstehenden Objekten ist das erfahrungsgemäß der Posten, " +
               "der noch etwas draufsetzt. Ihre Summe unten ist also eher zu niedrig als zu hoch."
-            : "Weil Sie selbst nutzen, entstünde hier ohnehin kein laufender Verlust — " +
-              "an Ihrer Summe unten ändert sich dadurch nichts."),
+            : "Weil Sie selbst nutzen, entstünde hier ohnehin kein laufender Verlust. " +
+              "An Ihrer Summe unten ändert sich dadurch nichts."),
         quelle: "Keine Vergleichsmieten für " + (e.plz || "diese PLZ") + " hinterlegt · Stand " + MK.stand,
         detail: { ort_unbekannt: true, plz: e.plz || null, betrifft_summe: betrifftSumme }
       };
@@ -282,7 +282,7 @@
         erklaerung:
           "Ortsübliche Vergleichsmiete in " + ort.plz + " " + (e.stadtteil || ort.ort) + ": " +
           fZahl1.format(ort.miete_eur_qm) + " €/m². Für " + e.wohnflaeche + " m² sind das " +
-          fEuro.format(ortsueblichMonat) + " im Monat. Sie nehmen " + fEuro.format(ist) + " ein — " +
+          fEuro.format(ortsueblichMonat) + " im Monat. Sie nehmen " + fEuro.format(ist) + " ein, " +
           "eine Lücke von " + fEuro.format(deltaMonat) + " monatlich." +
           (gedeckelt
             ? " Davon sind wegen der Kappungsgrenze von " +
@@ -315,7 +315,7 @@
           "Die Wohnung steht leer. Bei " + fZahl1.format(ort.miete_eur_qm) + " €/m² wären " +
           fEuro.format(ortsueblichMonat) + " Kaltmiete im Monat erzielbar. Abzüglich " +
           m.leerstand_vermarktungsmonate + " Monaten für Vermarktung und Übergabe entgehen Ihnen " +
-          fEuro.format(entgangen) + " im Jahr — zusätzlich zu den Kosten, die trotzdem weiterlaufen.",
+          fEuro.format(entgangen) + " im Jahr, zusätzlich zu den Kosten, die trotzdem weiterlaufen.",
         quelle: "Mietspiegel " + ort.ort + " (" + (ort.quelle || "TODO") + ") · Stand " + MK.stand,
         detail: {
           ortsueblich_eur_qm: ort.miete_eur_qm,
@@ -335,7 +335,7 @@
       informativ_jahr: ortsueblichMonat * 12,
       in_summe: false,
       erklaerung:
-        "Sie nutzen die Immobilie selbst — hier entsteht Ihnen kein laufender Verlust, deshalb " +
+        "Sie nutzen die Immobilie selbst, hier entsteht Ihnen kein laufender Verlust. Deshalb " +
         "rechnen wir diesen Punkt nicht in die Summe ein. Zur Einordnung: Vermietet wären " +
         fEuro.format(ortsueblichMonat) + " Kaltmiete im Monat erzielbar, also " +
         fEuro.format(ortsueblichMonat * 12) + " im Jahr.",
@@ -355,7 +355,7 @@
 
     // Die Bauteilkosten sind auf ein freistehendes EFH bezogen.
     // Ein Mehrfamilienhaus hat je m² Wohnfläche deutlich weniger
-    // Dach und Fassade — ohne diesen Faktor entstehen Staubeträge,
+    // Dach und Fassade, ohne diesen Faktor entstehen Staubeträge,
     // die um ein Vielfaches danebenliegen.
     var gebaeude = typeof typ.bauteilkosten_faktor === "number" ? typ.bauteilkosten_faktor : 1;
 
@@ -412,7 +412,7 @@
         namen.join(", ") + (namen.length > 1 ? " sind" : " ist") +
         " rechnerisch über die übliche Nutzungsdauer hinaus. Daraus ergibt sich ein " +
         "Instandhaltungsstau von etwa " + fEuro.format(korridor[0]) + " bis " + fEuro.format(korridor[1]) +
-        " — nach Abzug des Restwerts der Bauteile, die ja noch funktionieren. Genau diese Summe bringt " +
+        ", nach Abzug des Restwerts der Bauteile, die ja noch funktionieren. Genau diese Summe bringt " +
         "ein Käufer in die Preisverhandlung ein. Und sie wächst: rund " + fEuro.format(stufe(verzehrProJahr)) +
         " im Jahr, weil sich die Substanz weiter verbraucht." +
         (naechste.length ? " Als Nächstes fällig: " +
@@ -447,7 +447,7 @@
     /* Der energiebedingte Abschlag ist ein Prozentsatz auf den Objektwert
        und braucht deshalb einen Kaufpreis je m². Der Instandhaltungsstau
        dagegen steht bereits in Euro und gilt überall. Ohne Ort fällt
-       also nur der Energieteil weg, nicht die ganze Verhandlungsmasse —
+       also nur der Energieteil weg, nicht die ganze Verhandlungsmasse,
        die bleibt bestehen, ist aber als unvollständig gekennzeichnet. */
     if (!ort) {
       var stauK = stauKorridor || [grob(stauEur), grob(stauEur)];
@@ -511,12 +511,12 @@
     e.baujahr = Math.min(JETZT, Math.max(1800, Number(e.baujahr) || 1975));
 
     /* Kein Eintrag für die PLZ ist KEIN Abbruchgrund mehr.
-       Früher endete der Durchlauf hier — das warf mehr weg als nötig:
+       Früher endete der Durchlauf hier, das warf mehr weg als nötig:
        Energie und Instandhaltung stammen aus kennwerte.json (GEG Anlage 10,
        Energiepreise, CO₂-Preis, Nutzungsdauern) und gelten bundesweit.
        Ortsgebunden sind allein die Mietlücke und der energiebedingte
        Wertabschlag. Bei Eigennutzung zählt die Miete ohnehin nicht in die
-       Summe — dort ist das Ergebnis auch außerhalb des Marktgebiets
+       Summe, dort ist das Ergebnis auch außerhalb des Marktgebiets
        vollständig, und ein Abbruch verschenkte es.
        ort bleibt jetzt null; die betroffenen Teile sagen selbst, dass sie
        offen bleiben. Geschätzt wird nichts. */
@@ -547,7 +547,7 @@
 
     // Anteile für die Balken. Bezugsgröße ist ausdrücklich NUR der
     // größte mitzählende Hebel. Ein rein informativer Balken (bei
-    // Eigennutzung das Mietpotenzial) darf die Skala nicht setzen —
+    // Eigennutzung das Mietpotenzial) darf die Skala nicht setzen,
     // sonst sieht der Nutzer einen 100-%-Balken für einen Posten,
     // der gar nicht in die Summe eingeht, und die echten Hebel
     // wirken daneben harmlos.
@@ -577,7 +577,7 @@
         art: "ausserhalb",
         text: (MK.ausserhalb && MK.ausserhalb.text_teilrechnung) ||
               "Für diese Postleitzahl haben wir keine Vergleichswerte. Energie und " +
-              "Instandhaltung rechnen wir trotzdem — die Kennwerte dafür gelten bundesweit."
+              "Instandhaltung rechnen wir trotzdem, die Kennwerte dafür gelten bundesweit."
       });
     }
     if (ek.geschaetzt) {
@@ -599,9 +599,14 @@
       });
     }
 
+    /* Solange die Datensätze nicht freigegeben sind, steht das
+       sichtbar unter dem Ergebnis. Sachlich formuliert, nicht als
+       Demo-Aufkleber: Die Rechnung stimmt, nur die hinterlegten
+       Preise sind noch in Prüfung. */
     var warnungen = [];
     if (!KW.geprueft || !MK.geprueft) {
-      warnungen.push("Demo-Datensatz: Miet-, Kauf- und Energiepreise sind noch nicht freigegeben.");
+      warnungen.push("Vorläufige Marktwerte: Die hinterlegten Miet-, Kauf- und Energiepreise " +
+                     "werden derzeit geprüft und können sich noch ändern.");
     }
 
     return {

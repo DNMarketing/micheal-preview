@@ -29,7 +29,7 @@
           '<p class="etikett">Vorübergehend nicht verfügbar</p>' +
           '<h2>Die Analyse lässt sich gerade nicht starten.</h2>' +
           '<p class="gross">Wir rechnen lieber gar nicht als mit ungeprüften Zahlen. ' +
-          'Schreiben Sie uns kurz — Sie bekommen die Einschätzung dann von Hand, meist am selben Tag.</p>' +
+          'Schreiben Sie uns kurz, Sie bekommen die Einschätzung dann von Hand, meist am selben Tag.</p>' +
           '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=analyse">Einschätzung anfragen ' +
           '<span class="pfeil">→</span></a>' +
         '</div>';

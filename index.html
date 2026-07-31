@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Micheal Immobilien · Was Ihre Immobilie kostet, während Sie nichts tun</title>
-<meta name="description" content="Potenzial-Analyse für Immobilien in Heilbronn und Umgebung. Sechs Fragen, 90 Sekunden, keine Adresse nötig — am Ende eine Zahl mit Rechenweg und Quelle.">
-<link rel="canonical" href="https://micheal-immobilien.de/">
+<meta name="robots" content="noindex,nofollow">
+<title>M2-Immoservice · Was Ihre Immobilie kostet, während Sie nichts tun</title>
+<meta name="description" content="Potenzial-Analyse für Immobilien in Heilbronn und Umgebung. Sechs Fragen, rund 90 Sekunden, keine Adresse nötig. Am Ende eine Zahl mit Rechenweg und Quelle. Michael Spitzer, Immobilienmakler in Heilbronn.">
+<link rel="canonical" href="https://m2-immoservice.de/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="Was Ihre Immobilie kostet, während Sie nichts tun">
-<meta property="og:description" content="Sechs Fragen, 90 Sekunden, keine Adresse. Am Ende eine Zahl, die Sie nachrechnen können.">
-<meta property="og:url" content="https://micheal-immobilien.de/">
-<meta name="theme-color" content="#08090B">
+<meta property="og:description" content="Sechs Fragen, rund 90 Sekunden, keine Adresse. Am Ende eine Zahl, die Sie nachrechnen können.">
+<meta property="og:url" content="https://m2-immoservice.de/">
+<meta name="theme-color" content="#FFFFFF">
 
 <link rel="icon" href="/micheal-preview/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/micheal-preview/assets/fonts/Archivo-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/micheal-preview/assets/fonts/IBMPlexMono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/micheal-preview/assets/fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/micheal-preview/css/tokens.css">
 <link rel="stylesheet" href="/micheal-preview/css/base.css">
 <link rel="stylesheet" href="/micheal-preview/css/tool.css">
@@ -23,34 +24,38 @@
 <body>
 
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
-<div class="demo-hinweis" data-demo hidden></div>
 
 <header class="kopf">
   <div class="huelle kopf__reihe">
-    <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+    <a class="logo" href="/micheal-preview/" aria-label="M2-Immoservice, zur Startseite"><span class="logo__m">m<sup>2</sup></span><span class="logo__wort">immoservice</span></a>
+    <a class="kopf__tel zahl" href="tel:+491721403755">+49 172 1403755</a>
     <button class="navi-schalter" aria-expanded="false" aria-controls="navi" aria-label="Menü"><span></span></button>
     <nav class="navi" id="navi" data-offen="nein">
       <a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a>
       <a href="/micheal-preview/bewertung.html">Bewertung</a>
       <a href="/micheal-preview/inserats-check.html">Inserats-Check</a>
-      <a href="/micheal-preview/anlass/energie.html">Anlässe</a>
-      <a class="knopf" href="/micheal-preview/kontakt.html">Kontakt</a>
+      <a href="/micheal-preview/ueber.html">Über mich</a>
+      <a class="knopf knopf--signal" href="/micheal-preview/kontakt.html">Kontakt</a>
     </nav>
   </div>
 </header>
 
 <main id="inhalt">
 
-  <!-- ══ HERO · Das Werkzeug IST die Startseite ═══════════════════ -->
+  <!-- ══ KOPF · die laufende Zahl trägt die Seite ═════════════════
+       Links die Behauptung und der Einstieg, rechts der Betrag, der
+       seit dem Öffnen dieser Seite verloren geht. Er ist die größte
+       Zahl der ganzen Website und das einzige, was sich bewegt.
+       Gerechnet wird ein offen ausgewiesenes Beispielobjekt
+       (js/home.js), sonst wäre die Zahl irreführend. -->
   <section class="hero">
     <div class="huelle huelle--weit">
       <div class="hero__raster">
 
         <div class="hero__text">
-          <p class="etikett etikett--signal">Potenzial-Analyse · 6 Fragen · rund 90 Sekunden</p>
           <h1 class="display">Was Ihre Immobilie&nbsp;kostet, während Sie nichts&nbsp;tun.</h1>
           <p class="gross lese">
-            Energiekosten, Mietlücke, Instandhaltungsstau — jedes Jahr geht Geld verloren, das niemand
+            Energiekosten, Mietlücke, Instandhaltungsstau. Jedes Jahr geht Geld verloren, das niemand
             beziffert. Wir tun es. Ohne Adresse, ohne Anruf, ohne Registrierung.
             Am Ende steht eine Zahl, die Sie nachrechnen können: mit Rechenweg und Quelle unter jedem Wert.
           </p>
@@ -68,60 +73,85 @@
             </label>
             <p class="plzstart__unter">
               Wir fragen zuerst nur die Postleitzahl. Ihre Adresse brauchen wir erst,
-              wenn Sie den vollständigen Bericht wollen — vorher nicht, also fragen wir auch nicht danach.
+              wenn Sie den vollständigen Bericht wollen, vorher nicht, also fragen wir auch nicht danach.
             </p>
           </form>
         </div>
 
-        <!-- Beispielrechnung: läuft live, ist als Beispiel beschriftet -->
-        <aside class="zaehler rahmen rahmen--signal hero__zaehler" data-beispiel>
-          <p class="etikett etikett--signal">Beispielrechnung</p>
-          <p class="zaehler__satz">Diese Immobilie verliert</p>
-          <div class="zaehler__buehne">
-            <div class="zaehler__zahl zahl">0 €</div>
+        <aside class="hero__zaehler" data-beispiel>
+          <p class="laeuft__label"><span class="punkt" aria-hidden="true"></span>Seit Sie diese Seite geöffnet haben</p>
+          <p class="laeuft__zahl zahl" data-laufwert aria-live="off">0,0000 €</p>
+          <p class="laeuft__satz" data-laufsatz>
+            verliert dieses Haus, während Sie es lesen.
+          </p>
+          <div class="laeuft__zeit">
+            <span data-beispiel-jahr>Beispielrechnung wird geladen</span>
+            <span class="zahl" data-laufzeit>00:00</span>
           </div>
-          <p class="zaehler__einheit">pro Jahr</p>
-          <div class="messleiste messleiste--signal" aria-hidden="true"></div>
-          <div class="ticker">
-            <span class="ticker__label">seit Sie diese Seite geöffnet haben</span>
-            <span class="ticker__wert zahl">0,0000 €</span>
-          </div>
-          <p class="hero__zaehler-zeile zahl" data-beispiel-zeile></p>
+          <p class="hero__zaehler-zeile" data-beispiel-zeile></p>
         </aside>
 
       </div>
     </div>
   </section>
 
-  <!-- ══ Warum die Zahl hält ══════════════════════════════════════ -->
+  <!-- ══ Der Makler ═══════════════════════════════════════════════
+       Direkt unter der Zahl, bewusst früh: Die Rechnung kommt vom
+       Werkzeug, die Verantwortung von ihm.
+       TODO Michael: Foto freigestellt, Zitat und die drei Angaben
+       unten bestätigen oder ersetzen. -->
   <section class="band band--linie">
     <div class="huelle">
-      <p class="etikett auf">Der Unterschied</p>
-      <h2 class="auf" style="max-width:26ch">Rechner gibt es viele. Der Unterschied ist, ob die Zahl im Termin standhält.</h2>
-      <div class="kacheln kacheln--3" style="margin-top:var(--s-6)">
-        <div class="kachel auf" style="--verzug:0ms">
-          <span class="kachel__nr zahl">01</span>
-          <h3>Jeder Wert nennt seine Quelle</h3>
-          <p>Energiekennwerte nach GEG Anlage 10, CO₂-Verteilung nach CO2KostAufG § 6, Mieten nach
-             örtlichem Mietspiegel. Unter jeder Zahl steht, woher sie stammt und von wann.</p>
+      <div class="makler">
+        <div class="makler__bild auf">
+          <img src="/micheal-preview/assets/bilder/michael-spitzer.jpg"
+               alt="Michael Spitzer, Immobilienmakler in Heilbronn"
+               width="524" height="524">
         </div>
-        <div class="kachel auf" style="--verzug:90ms">
-          <span class="kachel__nr zahl">02</span>
-          <h3>Nur, was rechtlich durchsetzbar ist</h3>
-          <p>Eine Mietlücke ist erst dann Geld, wenn sie sich auch erheben lässt. Wir deckeln
-             auf die Kappungsgrenze nach BGB § 558 — statt eine Zahl zu zeigen, die vor Gericht zerfällt.</p>
-        </div>
-        <div class="kachel auf" style="--verzug:180ms">
-          <span class="kachel__nr zahl">03</span>
-          <h3>Wo wir nicht rechnen können, rechnen wir nicht</h3>
-          <p>Außerhalb unseres Marktgebiets und bei Grundstücken sagen wir das — statt einen
-             Schätzwert zu erfinden. Die Daten werden quartalsweise nachgeführt.</p>
+        <div class="auf" style="--verzug:120ms">
+          <p class="etikett etikett--signal">Wer dahintersteht</p>
+          <h2 class="makler__name">Michael Spitzer</h2>
+          <p class="makler__rolle">Immobilienmakler in Heilbronn</p>
+          <p class="makler__zitat">
+            „Vertrauen, Kompetenz und persönliche Beratung stehen für mich an erster Stelle."
+          </p>
+          <p>
+            Seit über 30 Jahren in der Immobilienbranche, mit Schwerpunkt im Kreis Heilbronn und der
+            umliegenden Region. Privatkunden und Unternehmen, Wohnimmobilien und Gewerbe. Was das
+            Werkzeug auf dieser Seite ausrechnet, erklärt er Ihnen im Termin Zeile für Zeile.
+          </p>
+          <dl class="makler__daten">
+            <div>
+              <dt>Erfahrung</dt>
+              <dd>über 30 Jahre<span>in der Immobilienbranche</span></dd>
+            </div>
+            <div>
+              <dt>Gebiet</dt>
+              <dd>Heilbronn<span>Stadt und Landkreis</span></dd>
+            </div>
+            <div>
+              <dt>Erreichbar</dt>
+              <dd><a href="tel:+491721403755" class="zahl">0172 1403755</a><span>persönlich, nicht über ein Callcenter</span></dd>
+            </div>
+          </dl>
+          <div class="cta-paar" style="margin-top:var(--s-6)">
+            <a class="knopf" href="/micheal-preview/ueber.html">Mehr über mich <span class="pfeil">→</span></a>
+            <a class="knopf knopf--leise" href="/micheal-preview/kontakt.html">Termin anfragen</a>
+          </div>
         </div>
       </div>
+
+      <p class="belegzeile" style="margin-top:clamp(var(--s-6), 5vw, var(--s-8))">
+        <strong>Jeder Wert nennt seine Quelle:</strong>
+        <span>Energiekennwerte nach GEG Anlage 10</span>
+        <span>CO₂-Verteilung nach CO2KostAufG § 6</span>
+        <span>Mieten nach örtlichem Mietspiegel</span>
+        <span>Datenstand 2026-Q3</span>
+      </p>
     </div>
   </section>
 
-  <!-- ══ Die zwei Werkzeuge ═══════════════════════════════════════ -->
+  <!-- ══ Die drei Werkzeuge ═══════════════════════════════════════ -->
   <section class="band band--tief">
     <div class="huelle">
       <p class="etikett auf">Werkzeuge</p>
@@ -129,10 +159,9 @@
       <div class="werkzeuge" style="margin-top:var(--s-6)">
 
         <a class="werkzeug rahmen auf" href="/micheal-preview/potenzial-analyse.html">
-          <span class="werkzeug__nr zahl">01</span>
           <h3>Potenzial-Analyse</h3>
           <p>Sechs Fragen zu Lage, Baujahr, Heizung und Nutzung. Ergebnis: Ihr laufender Verlust
-             pro Jahr, aufgeteilt auf Energie, Miete und Instandhaltung — plus der Betrag, den ein
+             pro Jahr, aufgeteilt auf Energie, Miete und Instandhaltung. Dazu der Betrag, den ein
              Käufer heute beim Preis abziehen würde.</p>
           <ul class="liste">
             <li>Keine Adresse, keine Registrierung</li>
@@ -143,13 +172,12 @@
         </a>
 
         <a class="werkzeug rahmen auf" href="/micheal-preview/inserats-check.html" style="--verzug:120ms">
-          <span class="werkzeug__nr zahl">02</span>
-          <h3>KI-Inserats-Check</h3>
+          <h3>Inserats-Check</h3>
           <p>Sie verkaufen selbst? Laden Sie drei bis fünf Fotos und Ihren Anzeigentext hoch.
-             Wir prüfen Bildwirkung, Textwirkung, Preisplausibilität — und ob Ihre Anzeige die
+             Wir prüfen Bildwirkung, Textwirkung, Preisplausibilität und ob Ihre Anzeige die
              gesetzlichen Pflichtangaben enthält.</p>
           <ul class="liste">
-            <li>Pflichtangaben nach GEG § 87 — sofort, ohne Wartezeit</li>
+            <li>Pflichtangaben nach GEG § 87, sofort und ohne Wartezeit</li>
             <li>Bußgeldrahmen bei Verstoß: bis 10.000 €</li>
             <li>Vermarktungs-Score plus die drei größten Hebel</li>
           </ul>
@@ -157,11 +185,10 @@
         </a>
 
         <a class="werkzeug rahmen auf" href="/micheal-preview/bewertung.html" style="--verzug:240ms">
-          <span class="werkzeug__nr zahl">03</span>
           <h3>Immobilienbewertung</h3>
-          <p>Die klassische Frage, und die einzige, die wir bewusst nicht von einem Rechner
-             beantworten lassen. Sechs Fragen in einer Minute — danach schaut sich ein Mensch
-             Ihr Objekt an und meldet sich innerhalb von 24 Stunden.</p>
+          <p>Die klassische Frage, und die einzige, die hier bewusst kein Rechner beantwortet.
+             Sechs Fragen in einer Minute, danach schaut sich Michael Spitzer Ihr Objekt an und
+             meldet sich innerhalb von 24 Stunden.</p>
           <ul class="liste">
             <li>Keine ausgewürfelte Rechnerzahl</li>
             <li>Einschätzung von jemandem, der die Straße kennt</li>
@@ -186,22 +213,22 @@
     <div class="huelle">
       <p class="etikett auf">Anlässe</p>
       <h2 class="auf" style="max-width:24ch">Niemand verkauft eine Immobilie ohne Grund.</h2>
-      <p class="gross lese leise auf">Sagen Sie uns, welcher es ist — dann sparen wir uns beide das allgemeine Gerede.</p>
+      <p class="gross lese leise auf">Sagen Sie uns, welcher es ist. Dann sparen wir uns beide das allgemeine Gerede.</p>
       <div class="kacheln kacheln--4" style="margin-top:var(--s-6)">
         <a class="kachel auf" href="/micheal-preview/anlass/energie.html">
-          <span class="kachel__nr zahl">A</span><h3>Sanierungsdruck</h3>
+          <h3>Sanierungsdruck</h3>
           <p>Heizung alt, Klasse schlecht, Fristen rücken näher. Sanieren oder verkaufen?</p>
         </a>
         <a class="kachel auf" href="/micheal-preview/anlass/erben.html" style="--verzug:80ms">
-          <span class="kachel__nr zahl">B</span><h3>Geerbt</h3>
+          <h3>Geerbt</h3>
           <p>Erbengemeinschaft, Fristen, Steuer. Meist ist Zeit der teuerste Faktor.</p>
         </a>
         <a class="kachel auf" href="/micheal-preview/anlass/privatverkauf.html" style="--verzug:160ms">
-          <span class="kachel__nr zahl">C</span><h3>Privatverkauf stockt</h3>
+          <h3>Privatverkauf stockt</h3>
           <p>Inseriert, Anfragen da, aber niemand kauft. Woran es meistens liegt.</p>
         </a>
         <a class="kachel auf" href="/micheal-preview/anlass/kapitalanlage.html" style="--verzug:240ms">
-          <span class="kachel__nr zahl">D</span><h3>Kapitalanlage</h3>
+          <h3>Kapitalanlage</h3>
           <p>Vermietet, aber die Rendite trägt nicht mehr. Halten oder abstoßen?</p>
         </a>
       </div>
@@ -218,10 +245,11 @@
         </div>
         <div class="auf" style="--verzug:120ms">
           <p class="gross">Ein Makler, der immer zum Verkauf rät, ist keine Beratung, sondern ein
-             Vertrieb. Es gibt Fälle, in denen Halten, Sanieren oder Vermieten die bessere Rechnung ist —
+             Vertrieb. Es gibt Fälle, in denen Halten, Sanieren oder Vermieten die bessere Rechnung ist,
              und die zeigt Ihnen die Analyse genauso.</p>
-          <p>Wenn am Ende ein Verkauf steht, machen wir ihn. Wenn nicht, haben Sie trotzdem eine
-             Zahl, mit der Sie arbeiten können.</p>
+          <p>Hinter der Zahl steht Michael Spitzer, seit über 30 Jahren Immobilienmakler in Heilbronn
+             und im Landkreis. Wenn am Ende ein Verkauf steht, macht er ihn. Wenn nicht, haben Sie
+             trotzdem eine Zahl, mit der Sie arbeiten können.</p>
           <a class="knopf" href="/micheal-preview/ueber.html">Wer dahintersteht <span class="pfeil">→</span></a>
         </div>
       </div>
@@ -234,16 +262,20 @@
   <div class="huelle">
     <div class="fuss__raster">
       <div>
-        <a class="wortmarke" href="/micheal-preview/">Micheal Immobilien<span class="wortmarke__zusatz">Heilbronn</span></a>
+        <a class="wortmarke" href="/micheal-preview/">M2-Immoservice<span class="wortmarke__zusatz">Heilbronn</span></a>
         <p class="still" style="margin-top:var(--s-4);max-width:24rem">
-          Immobilienvermittlung in Heilbronn und im Landkreis. Wohnimmobilien, Kapitalanlagen,
-          Nachlassimmobilien.</p>
+          Michael Spitzer, Immobilienmakler in Heilbronn und im Landkreis. Wohnimmobilien,
+          Kapitalanlagen, Nachlassimmobilien, Gewerbe.</p>
+        <p class="still" style="margin-top:var(--s-4)">
+          Wollhausstr. 83, 74074 Heilbronn<br>
+          <a class="zahl" href="tel:+491721403755">+49 172 1403755</a><br>
+          <a href="mailto:kontakt@m2-immoservice.de">kontakt@m2-immoservice.de</a></p>
       </div>
       <div>
         <h4>Werkzeuge</h4>
         <ul>
           <li><a href="/micheal-preview/potenzial-analyse.html">Potenzial-Analyse</a></li>
-        <li><a href="/micheal-preview/bewertung.html">Immobilienbewertung</a></li>
+          <li><a href="/micheal-preview/bewertung.html">Immobilienbewertung</a></li>
           <li><a href="/micheal-preview/inserats-check.html">Inserats-Check</a></li>
           <li><a href="/micheal-preview/ratgeber/">Ratgeber</a></li>
         </ul>
@@ -258,9 +290,9 @@
         </ul>
       </div>
       <div>
-        <h4>Kanzlei &amp; Kontakt</h4>
+        <h4>Kontakt</h4>
         <ul>
-          <li><a href="/micheal-preview/ueber.html">Über uns</a></li>
+          <li><a href="/micheal-preview/ueber.html">Über mich</a></li>
           <li><a href="/micheal-preview/referenzen.html">Referenzen</a></li>
           <li><a href="/micheal-preview/kontakt.html">Kontakt</a></li>
           <li><a href="/micheal-preview/rechtliches/impressum.html">Impressum</a></li>
@@ -269,7 +301,7 @@
       </div>
     </div>
     <div class="fuss__unten">
-      <span>© <span data-jahr>2026</span> Micheal Immobilien</span>
+      <span>© <span data-jahr>2026</span> M2-Immoservice · Michael Spitzer</span>
       <span>Datenstand der Analyse: 2026-Q3</span>
     </div>
   </div>
@@ -277,7 +309,7 @@
 
 <a class="wa" href="#" data-ort="Heilbronn" hidden rel="noopener" target="_blank">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.4.7-2.1 1-2.4.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l.9 2.1c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.1.2.6 1.1 1.4 1.7 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.3Z"/></svg>
-  <span class="wa__text">Kurz per WhatsApp<span class="wa__unter">3 Fotos + Adresse → Einschätzung in 24 h</span></span>
+  <span class="wa__text">Kurz per WhatsApp<span class="wa__unter">3 Fotos und Adresse genügen für die erste Einordnung</span></span>
 </a>
 
 <script src="/micheal-preview/js/config.js"></script>

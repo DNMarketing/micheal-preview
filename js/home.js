@@ -3,11 +3,15 @@
 
    Zwei Aufgaben:
 
-   1. Der Beispiel-Zähler im Hero. Er läuft mit einem festen,
-      offen ausgewiesenen Beispielobjekt und zeigt vor dem ersten
-      Klick, was am Ende herauskommt. Er ist ausdrücklich als
-      Beispielrechnung beschriftet — eine Zahl ohne Objektbezug
-      wäre irreführend.
+   1. Die laufende Zahl im Seitenkopf. Sie zeigt, was ein festes,
+      offen ausgewiesenes Beispielobjekt verliert, seit die Seite
+      geöffnet wurde. Sie ist die größte Zahl der Website und das
+      einzige, was sich darauf bewegt.
+
+      Der Betrag ist klein, das ist der Punkt: Er läuft sichtbar,
+      und der Satz darunter rechnet ihn auf Jahr und Tag hoch. Die
+      Kennzeichnung als Beispielrechnung steht direkt daneben, eine
+      Zahl ohne Objektbezug wäre irreführend nach § 5 UWG.
 
    2. Die Übergabe der Postleitzahl an die Analyse. Wer auf der
       Startseite tippt, soll nicht auf der nächsten Seite noch
@@ -19,6 +23,11 @@
 
   var doc = document;
   function q(s, c) { return (c || doc).querySelector(s); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c];
+    });
+  }
 
   /* Das Beispielobjekt. Bewusst ein typischer Fall aus dem
      Einzugsgebiet: Nachkriegs-Einfamilienhaus, Gasheizung, nie
@@ -30,73 +39,102 @@
     nutzung: "selbst", kaltmiete: 0, sanierungen: []
   };
 
-  function beispielZaehler() {
+  function laufendeZahl() {
     var kasten = q("[data-beispiel]");
     if (!kasten) return;
 
-    var zahlKnoten = q(".zaehler__zahl", kasten);
-    var tickerKnoten = q(".ticker__wert", kasten);
-    var zeile = q("[data-beispiel-zeile]", kasten);
+    var wertKnoten = q("[data-laufwert]", kasten);
+    var zeitKnoten = q("[data-laufzeit]", kasten);
+    var satzKnoten = q("[data-laufsatz]", kasten);
+    var jahrKnoten = q("[data-beispiel-jahr]", kasten);
+    var zeileKnoten = q("[data-beispiel-zeile]", kasten);
     var statisch = doc.documentElement.dataset.statisch === "ja";
 
     global.Engine.laden().then(function () {
       var e = global.Engine.rechne(BEISPIEL);
       if (!e.ok) { kasten.hidden = true; return; }
 
-      if (zeile) {
-        zeile.textContent =
-          "Beispiel: Einfamilienhaus, " + BEISPIEL.wohnflaeche + " m², Baujahr " + BEISPIEL.baujahr +
-          ", Gasheizung, Klasse " + e.energieklasse.klasse + " (geschätzt), " +
-          BEISPIEL.plz + " " + BEISPIEL.stadtteil;
+      var fmt = global.Engine.fmt;
+
+      /* Der Satz unter der laufenden Zahl. Er ist der Maßstab: Ohne
+         ihn steht dort ein Betrag mit vier Nullen hinter dem Komma
+         und niemand weiß, ob das viel ist. */
+      if (satzKnoten) {
+        satzKnoten.innerHTML =
+          "verliert dieses Haus, während Sie es lesen. Das sind <strong>" +
+          esc(fmt.euro(e.jahr_gesamt_eur)) + "</strong> im Jahr und <strong>" +
+          esc(fmt.euro(e.pro_tag_eur)) + "</strong> an jedem Tag, an dem nichts passiert.";
       }
 
-      var fmt = global.Engine.fmt;
-      var ziel = e.jahr_gesamt_eur;
+      if (jahrKnoten) {
+        jahrKnoten.textContent =
+          fmt.euro(e.jahr_gesamt_eur) + " pro Jahr · " + fmt.euro(e.pro_tag_eur) + " pro Tag";
+      }
+
+      /* Die Objektzeile trägt die Kennzeichnung. Sie steht direkt
+         unter der Zahl und nennt, worum es überhaupt geht. */
+      if (zeileKnoten) {
+        zeileKnoten.textContent =
+          "Beispielrechnung: Einfamilienhaus, " + BEISPIEL.wohnflaeche + " m², Baujahr " +
+          BEISPIEL.baujahr + ", Gasheizung, Klasse " + e.energieklasse.klasse +
+          (e.energieklasse.geschaetzt ? " (geschätzt)" : "") + ", " +
+          BEISPIEL.plz + " " + BEISPIEL.stadtteil + ". Kein Angebot.";
+      }
 
       if (statisch) {
-        zahlKnoten.textContent = fmt.euro(ziel);
-        tickerKnoten.textContent = "0,0000 €";
+        if (wertKnoten) wertKnoten.textContent = "0,0000 €";
         return;
       }
 
-      var start = null;
-      var dauer = 2100;
-      function schritt(t) {
-        if (start === null) start = t;
-        var p = Math.min(1, (t - start) / dauer);
-        var ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-        zahlKnoten.textContent = fmt.euro(ziel * ease);
-        if (p < 1) requestAnimationFrame(schritt);
-        else ticker(e.pro_sekunde_eur);
-      }
+      ticker(e.pro_sekunde_eur);
 
-      // Erst starten, wenn der Zähler wirklich zu sehen ist.
-      if ("IntersectionObserver" in global) {
-        var beob = new IntersectionObserver(function (ein) {
-          ein.forEach(function (x) {
-            if (x.isIntersecting) { beob.disconnect(); requestAnimationFrame(schritt); }
-          });
-        }, { threshold: 0.4 });
-        beob.observe(kasten);
-      } else {
-        requestAnimationFrame(schritt);
-      }
+      /* ── Der Ticker ─────────────────────────────────────────────
+         Vier Nachkommastellen, damit die hinterste Stelle sichtbar
+         läuft: Bei rund 7.800 € im Jahr wechselt sie etwa zweimal
+         pro Sekunde.
 
+         Im Hintergrundtab hält er an. Der Browser liefert dort
+         ohnehin keine Bilder mehr, und weiterzuzählen hieße, dem
+         Besucher Zeit zu berechnen, die er gar nicht gesehen hat.
+         Die gelaufenen Sekunden bleiben stehen und laufen bei der
+         Rückkehr weiter, der Zähler springt also nicht zurück.
+
+         tick als benannte Funktionsdeklaration, nicht als benannter
+         Funktionsausdruck: Der Name eines Ausdrucks gilt nur
+         INNERHALB der Funktion. Beim Zurückschalten warf der Aufruf
+         deshalb still einen ReferenceError, und der Ticker stand
+         endgültig.                                                */
       function ticker(proSek) {
-        var f = new Intl.NumberFormat("de-DE", {
+        var f4 = new Intl.NumberFormat("de-DE", {
           style: "currency", currency: "EUR",
           minimumFractionDigits: 4, maximumFractionDigits: 4
         });
         var t0 = performance.now();
+        var gelaufen = 0;      // Sekunden aus früheren Sichtbarkeitsphasen
         var an = true;
-        (function tick() {
+
+        function sekunden() { return gelaufen + (performance.now() - t0) / 1000; }
+
+        function uhr(sek) {
+          var m = Math.floor(sek / 60), s = Math.floor(sek % 60);
+          return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+        }
+
+        function tick() {
           if (!an) return;
-          tickerKnoten.textContent = f.format((performance.now() - t0) / 1000 * proSek);
+          var sek = sekunden();
+          if (wertKnoten) wertKnoten.textContent = f4.format(sek * proSek);
+          if (zeitKnoten) zeitKnoten.textContent = uhr(sek);
           requestAnimationFrame(tick);
-        })();
+        }
+        tick();
+
         doc.addEventListener("visibilitychange", function () {
-          if (doc.hidden) { an = false; }
-          else if (!an) { an = true; t0 = performance.now(); tick(); }
+          if (doc.hidden) {
+            if (an) { gelaufen = sekunden(); an = false; }
+          } else if (!an) {
+            t0 = performance.now(); an = true; tick();
+          }
         });
       }
     }).catch(function (fehler) {
@@ -122,7 +160,7 @@
     });
   }
 
-  function los() { beispielZaehler(); plzUebergabe(); }
+  function los() { laufendeZahl(); plzUebergabe(); }
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", los);
   else los();
 

@@ -3,11 +3,11 @@
 
    Zum Zähler, weil das die häufigste Rückfrage sein wird:
 
-   Die große Zahl zählt einmal hoch und bleibt dann stehen — sie ist
+   Die große Zahl zählt einmal hoch und bleibt dann stehen, sie ist
    der Jahresverlust. Darunter läuft ein zweiter, kleiner Zähler
    dauerhaft weiter: der Verlust, der seit dem Öffnen dieser Seite
    entstanden ist, mit vier Nachkommastellen. Bei rund 4.000 € im
-   Jahr wechselt die vierte Stelle etwa jede Sekunde — sichtbar,
+   Jahr wechselt die vierte Stelle etwa jede Sekunde, sichtbar,
    ohne dass irgendetwas beschleunigt oder erfunden wird.
 
    Das ist der Unterschied zu den üblichen Rechnern: Da rast eine
@@ -16,7 +16,7 @@
    Zum Gate: Die verdeckten Zahlen werden NICHT unscharf gerendert,
    sondern durch Platzhalterziffern ersetzt. Ein Blur ist im
    Entwicklerwerkzeug in fünf Sekunden weg. Sichtbar bleibt die
-   Stellenzahl — die Größenordnung ist der Köder, nicht der Wert.
+   Stellenzahl, die Größenordnung ist der Köder, nicht der Wert.
    ══════════════════════════════════════════════════════════════════ */
 
 (function (global) {
@@ -52,7 +52,7 @@
     var start = performance.now();
     function schritt(jetzt) {
       var t = Math.min(1, (jetzt - start) / dauer);
-      // easeOutExpo: schnell los, langes Auslaufen — die Zahl
+      // easeOutExpo: schnell los, langes Auslaufen, die Zahl
       // "rastet ein", statt abrupt zu stoppen.
       var e = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
       knoten.textContent = fmt.euro(ziel * e);
@@ -236,7 +236,7 @@
           '<ul class="wert__teile">' +
             /* Der energetische Abschlag ist ein Prozentsatz auf den
                Objektwert und braucht einen Kaufpreis je m². Außerhalb des
-               Marktgebiets gibt es den nicht — dann steht hier ehrlich
+               Marktgebiets gibt es den nicht, dann steht hier ehrlich
                „offen“ statt einer Zahl, und die Verhandlungsmasse oben
                enthält nur den Instandhaltungsstau. */
             '<li><span>Energetischer Abschlag (Klasse ' + esc(E.energieklasse.klasse) + ')</span>' +
@@ -252,7 +252,7 @@
           /* Die Anschlussfrage. Wer gerade gesehen hat, wie viel
              Verhandlungsmasse er einem Käufer hinlegt, will als
              Nächstes wissen, worüber überhaupt verhandelt wird.
-             Genau hier gehört der Weg zur Bewertung hin — nicht
+             Genau hier gehört der Weg zur Bewertung hin, nicht
              erst irgendwo im Fußbereich. */
           '<div class="wert__weiter">' +
             '<p>Was Ihre Immobilie tatsächlich wert ist, sagt Ihnen keine Formel. ' +
@@ -304,7 +304,7 @@
         '<div class="gform__reihe">' +
           '<label class="feld feld--breit"><span class="feld__label">Straße und Hausnummer</span>' +
             '<input class="feld__eingabe" name="strasse" type="text" autocomplete="street-address" required>' +
-            '<span class="feld__unter">Jetzt erst — vorher haben wir sie nicht gebraucht und deshalb nicht gefragt.</span></label>' +
+            '<span class="feld__unter">Jetzt erst. Vorher haben wir sie nicht gebraucht und deshalb nicht gefragt.</span></label>' +
           '<label class="feld"><span class="feld__label">Telefon <span class="still">(freiwillig)</span></span>' +
             '<input class="feld__eingabe zahl" name="telefon" type="tel" autocomplete="tel"></label>' +
         '</div>' +
@@ -402,7 +402,7 @@
       }).catch(function (fehler) {
         knopf.disabled = false;
         status.dataset.art = "fehler";
-        status.textContent = "Das hat gerade nicht geklappt. Bitte melden Sie sich kurz direkt bei uns — " +
+        status.textContent = "Das hat gerade nicht geklappt. Bitte melden Sie sich kurz direkt bei uns, " +
                              "wir schicken den Bericht dann von Hand.";
         if (global.console) console.error("[Potenzial-Analyse] Übermittlung fehlgeschlagen:", fehler);
       });

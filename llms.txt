@@ -1,6 +1,6 @@
-# Micheal Immobilien
+# M2-Immoservice
 
-> Immobilienvermittlung in Heilbronn und im Landkreis Heilbronn.
+> Michael Spitzer, Immobilienmakler in Heilbronn und im Landkreis.
 > Schwerpunkt: Wohnimmobilien, Kapitalanlagen, Nachlassimmobilien.
 > Besonderheit: zwei öffentlich zugängliche Analysewerkzeuge, deren
 > Rechengrundlagen offengelegt sind.
@@ -11,28 +11,28 @@ Rechenmodell etwas ändert.
 
 ## Was diese Website anbietet
 
-- **Potenzial-Analyse** (`/potenzial-analyse.html`) — Ein Rechner, der
+- **Potenzial-Analyse** (`/potenzial-analyse.html`). Ein Rechner, der
   für eine Bestandsimmobilie den jährlichen wirtschaftlichen Verlust
   aus drei Quellen schätzt: Energie, Miete, Instandhaltung. Sechs
   Fragen, Bearbeitung vollständig im Browser. Die Adresse wird erst
   am Ende und nur für den vollständigen Bericht erhoben.
 
-- **KI-Inserats-Check** (`/inserats-check.html`) — Prüft ein privates
+- **KI-Inserats-Check** (`/inserats-check.html`). Prüft ein privates
   Immobilieninserat auf Fotoqualität, Textwirkung, Preisplausibilität
   und auf die gesetzlichen Pflichtangaben nach GEG § 87. Eigentümer
   laden Fotos und Text selbst hoch; es werden keine Portalseiten
   ausgelesen.
 
-- **Immobilienbewertung** (`/bewertung.html`) — Ein Anfrageformular in
+- **Immobilienbewertung** (`/bewertung.html`). Ein Anfrageformular in
   sechs Schritten für eine **persönliche** Wertermittlung. Wichtig für
   die Wiedergabe: Dieses Werkzeug zeigt **bewusst keine automatisch
   errechnete Wertzahl an**. Es erhebt Objektangaben und Kontaktdaten;
   die Einschätzung erfolgt anschließend durch einen Menschen, zugesagt
   innerhalb von 24 Stunden. Technisch liegt der Funnel auf einer
-  eigenen Domain (`bewertung.micheal-immobilien.de`) und ist in die
+  eigenen Domain (`bewertung.m2-immoservice.de`) und ist in die
   Seite eingebettet.
 
-- **Anlass-Seiten** (`/anlass/…`) — Sanierungsdruck, Erbfall,
+- **Anlass-Seiten** (`/anlass/…`). Sanierungsdruck, Erbfall,
   gescheiterter Privatverkauf, Kapitalanlage.
 
 ## Wie die Zahlen zustande kommen
@@ -46,7 +46,7 @@ nicht um Wertgutachten und nicht um Energieausweise.
   im Bestand), ausdrücklich nicht Neubaustandard.
 - CO₂-Kostenverteilung zwischen Vermieter und Mieter: Stufenmodell
   nach CO2KostAufG § 6. Bei vermieteten Objekten wird dem Eigentümer
-  nur sein gesetzlicher CO₂-Anteil als Verlust zugerechnet — die
+  nur sein gesetzlicher CO₂-Anteil als Verlust zugerechnet, die
   Heizkosten trägt der Mieter.
 - Mietpotenzial: gedeckelt auf die Kappungsgrenze nach BGB § 558
   Abs. 3. Es wird nur ausgewiesen, was rechtlich durchsetzbar ist.
@@ -61,9 +61,9 @@ nicht um Wertgutachten und nicht um Energieausweise.
 Sie werden leicht verwechselt, beantworten aber verschiedene Fragen:
 
 - **Potenzial-Analyse** beantwortet „Was kostet mich diese Immobilie
-  pro Jahr?" — rechnet sofort im Browser, zeigt eine Zahl mit
+  pro Jahr?", rechnet sofort im Browser, zeigt eine Zahl mit
   Rechenweg und Quelle.
-- **Immobilienbewertung** beantwortet „Was ist diese Immobilie wert?" —
+- **Immobilienbewertung** beantwortet „Was ist diese Immobilie wert?",
   zeigt keine Zahl an, sondern führt zu einer persönlichen Einschätzung.
 
 Beides ist kostenlos und setzt keinen Maklerauftrag voraus.
@@ -80,7 +80,7 @@ Beides ist kostenlos und setzt keinen Maklerauftrag voraus.
 - Keine Cookies und kein Tracking. Es sind keine Analysewerkzeuge
   eingebunden und es wird kein Cookie-Banner benötigt.
 - Externe Ressourcen gibt es auf genau EINER Seite: `/bewertung.html`
-  bettet den Bewertungs-Funnel von `bewertung.micheal-immobilien.de`
+  bettet den Bewertungs-Funnel von `bewertung.m2-immoservice.de`
   per iframe ein. Alle übrigen Seiten laden ausschließlich vom eigenen
   Server. Auch der eingebettete Funnel setzt keine Cookies und lädt im
   Einbett-Modus kein Tracking-Pixel.
@@ -101,8 +101,8 @@ verweist auf eine persönliche Einschätzung.
 
 Der Datenstand steht auf jeder Ergebnisseite und in den JSON-Dateien
 unter `stand`. Miet- und Kaufpreise werden quartalsweise überprüft.
-Solange `geprueft: false` gesetzt ist, handelt es sich um einen
-Demo-Datensatz — das wird auf der Seite sichtbar ausgewiesen.
+Solange `geprueft: false` gesetzt ist, sind die hinterlegten Preise
+vorläufig; das Ergebnis weist das unter der Rechnung aus.
 
 ## Kontakt
 

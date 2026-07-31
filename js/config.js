@@ -23,12 +23,12 @@ window.APP = {
 
   /* ── 2. n8n ────────────────────────────────────────────────────
      Basis ohne Schrägstrich am Ende, z. B.
-     "https://n8n.micheal-immobilien.de/webhook"
+     "https://n8n.m2-immoservice.de/webhook"
 
      ACHTUNG: Sobald hier ein fremder Host steht, muss er in
      _headers UND netlify.toml in die CSP:
-       connect-src 'self' https://n8n.micheal-immobilien.de;
-     Sonst blockiert der Browser den Fetch — und zwar lautlos.
+       connect-src 'self' https://n8n.m2-immoservice.de;
+     Sonst blockiert der Browser den Fetch, und zwar lautlos.
      Vertragscontracts der Payloads: docs/N8N.md
      ────────────────────────────────────────────────────────────── */
   N8N_BASIS: "",
@@ -47,17 +47,17 @@ window.APP = {
      Leer lassen = der WhatsApp-Knopf erscheint gar nicht.
      ────────────────────────────────────────────────────────────── */
   WHATSAPP_NUMMER: "",
-  WHATSAPP_TEXT: "Hallo, ich habe eine Immobilie in %ORT% und möchte eine Ersteinschätzung. Ich schicke Ihnen gleich 3 Fotos.",
+  WHATSAPP_TEXT: "Hallo Herr Spitzer, ich habe eine Immobilie in %ORT% und möchte eine Ersteinschätzung. Ich schicke Ihnen gleich 3 Fotos.",
 
-  KONTAKT_EMAIL: "",
-  TELEFON: "",
+  KONTAKT_EMAIL: "kontakt@m2-immoservice.de",
+  TELEFON: "+49 172 1403755",
 
   FIRMA: {
-    name: "Micheal Immobilien",
-    inhaber: "TODO",
-    strasse: "TODO",
-    plz_ort: "TODO Heilbronn",
-    domain: "https://micheal-immobilien.de"
+    name: "M2-Immoservice",
+    inhaber: "Michael Spitzer",
+    strasse: "Wollhausstr. 83",
+    plz_ort: "74074 Heilbronn",
+    domain: "https://m2-immoservice.de"
   },
 
 
@@ -79,7 +79,7 @@ window.APP = {
     SESSION_MINUTEN: 90,
 
     // Der Live-Ticker auf dem Ergebnisschirm. Vier Nachkommastellen,
-    // damit die hinteren Stellen sichtbar laufen — bei ca. 4.000 €/Jahr
+    // damit die hinteren Stellen sichtbar laufen, bei ca. 4.000 €/Jahr
     // wechselt die vierte Stelle etwa jede Sekunde.
     TICKER_NACHKOMMA: 4,
 

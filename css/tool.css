@@ -20,13 +20,13 @@
   margin-bottom: var(--s-3);
 }
 .wz__zaehler {
-  font-size: var(--t-klein); font-weight: 600; color: var(--signal);
-  letter-spacing: .04em;
+  font-size: var(--t-klein); font-weight: 700; color: var(--blau);
+  letter-spacing: 0;
 }
 .wz__von { color: var(--text-still); font-weight: 400; }
 .wz__etikett {
-  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
-  text-transform: uppercase; letter-spacing: .18em; color: var(--text-leise);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--text-leise);
 }
 
 /* Der Fortschrittsbalken ist zugleich Messskala: Die Teilstriche
@@ -37,13 +37,12 @@
 }
 .wz__balken::after {
   content: ""; position: absolute; inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 calc(100%/6 - 1px), var(--grund) calc(100%/6 - 1px) calc(100%/6));
+  background: repeating-linear-gradient(90deg, transparent 0 calc(100%/6 - 1px), #FFFFFF calc(100%/6 - 1px) calc(100%/6));
   pointer-events: none;
 }
 .wz__balken i {
   display: block; height: 100%; width: var(--fortschritt, 0%);
-  background: var(--signal);
-  box-shadow: 0 0 14px var(--signal-schein);
+  background: var(--blau);
   transition: width var(--d-lang) var(--e-raus);
 }
 
@@ -84,7 +83,7 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .wz__tastatur {
   margin: var(--s-4) 0 0;
   font-size: var(--t-etikett); color: var(--text-still);
-  letter-spacing: .08em; text-align: right;
+  text-align: right;
 }
 @media (hover: none) { .wz__tastatur { display: none; } }
 
@@ -102,28 +101,28 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 
 .feld__label {
   display: block;
-  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
-  text-transform: uppercase; letter-spacing: .14em; color: var(--text-leise);
+  font-size: var(--t-klein); font-weight: 600;
+  color: var(--text-hell);
   margin-bottom: var(--s-3);
 }
 .feld__label--abstand { margin-top: var(--s-6); }
 
 .feld__eingabe {
   width: 100%;
-  background: var(--flaeche-2);
+  background: #FFFFFF;
   border: 1px solid var(--linie);
   border-radius: var(--radius);
   padding: 0.95rem 1rem;
   color: var(--text-hell);
   font-size: 1.05rem;
-  transition: border-color var(--d-kurz), background var(--d-kurz);
+  transition: border-color var(--d-kurz), box-shadow var(--d-kurz);
   -moz-appearance: textfield;
 }
 .feld__eingabe::-webkit-outer-spin-button,
 .feld__eingabe::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .feld__eingabe::placeholder { color: var(--text-still); }
 .feld__eingabe:hover { border-color: var(--linie-stark); }
-.feld__eingabe:focus { border-color: var(--signal); background: var(--flaeche-1); outline: none; box-shadow: 0 0 0 3px var(--signal-flach); }
+.feld__eingabe:focus { border-color: var(--blau); outline: none; box-shadow: 0 0 0 3px var(--signal-flach); }
 
 .feld__gruppe { display: flex; align-items: stretch; }
 .feld__gruppe .feld__eingabe { border-right: 0; }
@@ -135,12 +134,12 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 }
 .feld__unter { display: block; margin-top: var(--s-2); font-size: var(--t-etikett); color: var(--text-still); }
 
-/* Die PLZ ist die erste Zahl, die der Nutzer eingibt — sie setzt
+/* Die PLZ ist die erste Zahl, die der Nutzer eingibt, sie setzt
    den Ton für das ganze Werkzeug und darf deshalb groß sein. */
 .ortfeld .feld__eingabe {
   font-size: clamp(1.6rem, 1rem + 2.6vw, 2.4rem);
-  font-family: var(--f-mono); font-weight: 500;
-  letter-spacing: .18em; padding: 1.1rem 1.2rem;
+  font-weight: 600;
+  letter-spacing: .12em; padding: 1.1rem 1.2rem;
   max-width: 11ch;
 }
 .ortfeld__antwort { margin-top: var(--s-5); }
@@ -151,17 +150,17 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .chips { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .chip {
   display: inline-flex; align-items: center; gap: var(--s-2);
-  padding: 0.62rem 0.95rem;
-  background: var(--flaeche-2);
+  padding: 0.62rem 1.05rem;
+  background: #FFFFFF;
   border: 1px solid var(--linie);
-  border-radius: var(--radius);
+  border-radius: 100px;
   color: var(--text); font-size: var(--t-klein); cursor: pointer;
   transition: border-color var(--d-kurz), background var(--d-kurz), color var(--d-kurz);
 }
-.chip:hover { border-color: var(--linie-stark); background: var(--flaeche-3); }
-.chip[aria-pressed="true"] { border-color: var(--signal); background: var(--signal-flach); color: var(--text-hell); }
-.chip__ziffer { font-size: 10px; color: var(--text-still); }
-.chip[aria-pressed="true"] .chip__ziffer { color: var(--signal); }
+.chip:hover { border-color: var(--linie-stark); background: var(--flaeche-1); }
+.chip[aria-pressed="true"] { border-color: var(--blau); background: var(--blau); color: #FFFFFF; }
+.chip__ziffer { font-size: 11px; color: var(--text-still); }
+.chip[aria-pressed="true"] .chip__ziffer { color: rgba(255,255,255,.7); }
 
 
 /* ── Auswahlkacheln ──────────────────────────────────────────────── */
@@ -177,33 +176,33 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-3);
   padding: var(--s-5) var(--s-4) var(--s-4);
-  background: var(--grund);
+  background: #FFFFFF;
   border: 0; border-radius: 0;
   color: var(--text); text-align: left; cursor: pointer;
   transition: background var(--d-kurz) var(--e-scharf), color var(--d-kurz);
   min-height: 8.5rem;
 }
-.wahl:hover { background: var(--flaeche-2); color: var(--text-hell); }
+.wahl:hover { background: var(--flaeche-1); color: var(--text-hell); }
 .wahl[aria-pressed="true"] { background: var(--signal-flach); color: var(--text-hell); }
 .wahl[aria-pressed="true"]::after {
-  content: ""; position: absolute; inset: 0; border: 1px solid var(--signal); pointer-events: none;
+  content: ""; position: absolute; inset: 0; border: 2px solid var(--blau); pointer-events: none;
 }
 .wahl__ziffer {
   position: absolute; top: var(--s-3); right: var(--s-3);
-  font-size: 10px; color: var(--text-still);
+  font-size: 11px; color: var(--text-still);
 }
-.wahl[aria-pressed="true"] .wahl__ziffer { color: var(--signal); }
+.wahl[aria-pressed="true"] .wahl__ziffer { color: var(--blau); }
 .wahl__icon { width: 30px; height: 30px; color: var(--text-leise); transition: color var(--d-kurz); }
 .wahl__icon svg { width: 100%; height: 100%; }
-.wahl:hover .wahl__icon, .wahl[aria-pressed="true"] .wahl__icon { color: var(--signal); }
-.wahl__label { font-size: var(--t-klein); font-weight: 500; line-height: 1.3; }
+.wahl:hover .wahl__icon, .wahl[aria-pressed="true"] .wahl__icon { color: var(--blau); }
+.wahl__label { font-size: var(--t-klein); font-weight: 600; line-height: 1.3; }
 .wahl__zusatz { display: block; font-size: var(--t-etikett); color: var(--text-still); font-weight: 400; margin-top: 3px; }
 .wahl--klein { min-height: 7rem; padding: var(--s-4) var(--s-3) var(--s-3); }
 .wahl--klein .wahl__icon { width: 24px; height: 24px; }
 .wahl--breit { min-height: 9rem; }
 .wahl__haken {
   position: absolute; bottom: var(--s-3); right: var(--s-3);
-  color: var(--signal); font-size: 14px; opacity: 0;
+  color: var(--blau); font-size: 14px; opacity: 0;
   transform: scale(.6); transition: opacity var(--d-kurz), transform var(--d-kurz) var(--e-zurueck);
 }
 .wahl[aria-pressed="true"] .wahl__haken { opacity: 1; transform: none; }
@@ -215,12 +214,13 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .regler__kopf .feld__label { margin-bottom: 0; }
 .regler__eingabe { display: flex; align-items: baseline; gap: 2px; }
 .regler__zahl {
-  width: 5.5ch; background: transparent; border: 0; border-bottom: 1px solid var(--linie);
-  color: var(--signal); font-size: clamp(1.6rem, 1rem + 2.2vw, 2.3rem); font-weight: 600;
+  width: 5.5ch; background: transparent; border: 0; border-bottom: 2px solid var(--linie);
+  color: var(--blau); font-family: var(--f-display);
+  font-size: clamp(1.6rem, 1rem + 2.2vw, 2.3rem); font-weight: 700;
   text-align: right; padding: 0 0 2px; -moz-appearance: textfield;
 }
 .regler__zahl::-webkit-outer-spin-button, .regler__zahl::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.regler__zahl:focus { outline: none; border-bottom-color: var(--signal); }
+.regler__zahl:focus { outline: none; border-bottom-color: var(--blau); }
 .regler__einheit { color: var(--text-leise); font-size: clamp(1rem, .8rem + .8vw, 1.3rem); }
 
 .regler__schieber {
@@ -230,28 +230,25 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .regler__schieber::-webkit-slider-runnable-track {
   height: 34px;
   background:
-    linear-gradient(var(--signal), var(--signal)) left center / var(--pos, 0%) 2px no-repeat,
-    linear-gradient(var(--linie), var(--linie)) left center / 100% 2px no-repeat,
-    repeating-linear-gradient(90deg, var(--linie-fein) 0 1px, transparent 1px 14px) center bottom 4px / 100% 7px no-repeat;
+    linear-gradient(var(--blau), var(--blau)) left center / var(--pos, 0%) 3px no-repeat,
+    linear-gradient(var(--linie-fein), var(--linie-fein)) left center / 100% 3px no-repeat;
 }
 .regler__schieber::-moz-range-track {
   height: 34px;
-  background:
-    linear-gradient(var(--linie), var(--linie)) left center / 100% 2px no-repeat,
-    repeating-linear-gradient(90deg, var(--linie-fein) 0 1px, transparent 1px 14px) center bottom 4px / 100% 7px no-repeat;
+  background: linear-gradient(var(--linie-fein), var(--linie-fein)) left center / 100% 3px no-repeat;
 }
-.regler__schieber::-moz-range-progress { height: 2px; background: var(--signal); }
+.regler__schieber::-moz-range-progress { height: 3px; background: var(--blau); }
 .regler__schieber::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
-  width: 4px; height: 26px; margin-top: 4px;
-  background: var(--signal); border: 0; border-radius: 1px;
-  box-shadow: 0 0 0 5px var(--grund), 0 0 18px var(--signal-schein);
+  width: 22px; height: 22px; margin-top: -9px;
+  background: #FFFFFF; border: 2px solid var(--blau); border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(3, 66, 143, .2);
   cursor: grab;
 }
 .regler__schieber::-moz-range-thumb {
-  width: 4px; height: 26px;
-  background: var(--signal); border: 0; border-radius: 1px;
-  box-shadow: 0 0 0 5px var(--grund), 0 0 18px var(--signal-schein);
+  width: 22px; height: 22px;
+  background: #FFFFFF; border: 2px solid var(--blau); border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(3, 66, 143, .2);
   cursor: grab;
 }
 .regler__schieber:active::-webkit-slider-thumb { cursor: grabbing; }
@@ -271,24 +268,23 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .ek {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: var(--s-3) 2px;
-  background: var(--flaeche-2);
-  border: 1px solid transparent;
-  border-bottom: 3px solid var(--ek);
+  background: #FFFFFF;
+  border: 1px solid var(--linie-fein);
+  border-bottom: 4px solid var(--ek);
   border-radius: 0;
   cursor: pointer; color: var(--text-leise);
   transition: background var(--d-kurz), color var(--d-kurz), transform var(--d-kurz) var(--e-raus);
 }
-.ek:hover { background: var(--flaeche-3); color: var(--text-hell); transform: translateY(-2px); }
+.ek:hover { background: var(--flaeche-1); color: var(--text-hell); transform: translateY(-2px); }
 .ek[aria-pressed="true"] {
-  background: var(--flaeche-3); color: var(--text-hell);
-  border-color: var(--ek); border-bottom-width: 3px;
-  box-shadow: inset 0 0 0 1px var(--ek);
+  background: var(--flaeche-1); color: var(--text-hell);
+  box-shadow: inset 0 0 0 2px var(--blau);
 }
-.ek__buchstabe { font-family: var(--f-mono); font-size: 1rem; font-weight: 600; }
-.ek__wert { font-size: 9px; color: var(--text-still); }
+.ek__buchstabe { font-family: var(--f-display); font-size: 1.05rem; font-weight: 700; }
+.ek__wert { font-size: 10px; color: var(--text-still); }
 .ekskala__legende {
   display: flex; justify-content: space-between; gap: var(--s-3);
-  margin-top: var(--s-2); font-size: 10px; color: var(--text-still); letter-spacing: .06em;
+  margin-top: var(--s-2); font-size: var(--t-etikett); color: var(--text-still);
 }
 
 
@@ -304,7 +300,7 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
   transition: border-color var(--d-kurz), background var(--d-kurz);
 }
 .unbekannt:hover { border-color: var(--linie-stark); background: var(--flaeche-1); }
-.unbekannt[aria-pressed="true"] { border-style: solid; border-color: var(--signal); background: var(--signal-flach); }
+.unbekannt[aria-pressed="true"] { border-style: solid; border-color: var(--blau); background: var(--signal-flach); }
 .unbekannt__zeichen {
   flex: none; width: 34px; height: 34px;
   display: grid; place-items: center;
@@ -312,7 +308,7 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
   color: var(--text-leise); font-size: 1rem;
 }
 .unbekannt__zeichen svg { width: 18px; height: 18px; }
-.unbekannt[aria-pressed="true"] .unbekannt__zeichen { border-color: var(--signal); color: var(--signal); }
+.unbekannt[aria-pressed="true"] .unbekannt__zeichen { border-color: var(--blau); color: var(--blau); }
 .unbekannt strong { display: block; font-size: var(--t-klein); }
 .unbekannt__unter { display: block; font-size: var(--t-etikett); color: var(--text-still); margin-top: 3px; line-height: 1.5; }
 .unbekannt--knapp { align-items: center; }
@@ -321,8 +317,8 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 
 
 /* ── Hinweiskasten ───────────────────────────────────────────────── */
-.hinweis { padding: var(--s-5); border: 1px solid var(--linie); border-left: 2px solid var(--linie-stark); background: var(--flaeche-1); }
-.hinweis--warn { border-left-color: var(--warn); }
+.hinweis { padding: var(--s-5); border: 1px solid var(--linie-fein); border-left: 3px solid var(--blau); background: var(--flaeche-1); }
+.hinweis--warn { border-left-color: var(--fehlt); }
 .hinweis strong { display: block; margin-bottom: var(--s-2); }
 .hinweis p { font-size: var(--t-klein); color: var(--text-leise); }
 .hinweis .knopf { margin-top: var(--s-4); }
@@ -333,106 +329,92 @@ html[data-statisch="ja"] .wz__schritt { animation: none; }
 .rechnet__liste { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; gap: var(--s-4); }
 .rechnet__liste li {
   display: flex; align-items: center; gap: var(--s-4);
-  font-family: var(--f-mono); font-size: var(--t-klein);
+  font-size: var(--t-klein);
   color: var(--text-still); opacity: .35;
   transition: opacity var(--d-mittel), color var(--d-mittel);
 }
 .rechnet__liste li[data-stand] { opacity: 1; color: var(--text); }
 .rechnet__punkt {
-  flex: none; width: 8px; height: 8px; border: 1px solid var(--linie-stark); border-radius: 50%;
+  flex: none; width: 9px; height: 9px; border: 1px solid var(--linie-stark); border-radius: 50%;
   transition: background var(--d-kurz), border-color var(--d-kurz);
 }
-.rechnet__liste li[data-stand="laeuft"] .rechnet__punkt { border-color: var(--signal); animation: pulsen 900ms infinite; }
-.rechnet__liste li[data-stand="fertig"] .rechnet__punkt { background: var(--signal); border-color: var(--signal); }
+.rechnet__liste li[data-stand="laeuft"] .rechnet__punkt { border-color: var(--blau); animation: pulsen 1.4s var(--e-scharf) infinite; }
+.rechnet__liste li[data-stand="fertig"] .rechnet__punkt { background: var(--blau); border-color: var(--blau); }
 .rechnet__text { flex: 1; }
-.rechnet__ok { font-size: 10px; color: var(--signal); opacity: 0; letter-spacing: .12em; }
+.rechnet__ok { font-size: var(--t-etikett); color: var(--blau); opacity: 0; }
 .rechnet__liste li[data-stand="fertig"] .rechnet__ok { opacity: 1; }
-@keyframes pulsen { 0%,100% { box-shadow: 0 0 0 0 var(--signal-schein); } 50% { box-shadow: 0 0 0 6px transparent; } }
+@keyframes pulsen { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
 
 /* ══ ERGEBNIS ═════════════════════════════════════════════════════ */
 .erg { max-width: 52rem; margin-inline: auto; display: grid; gap: clamp(var(--s-5), 4vw, var(--s-7)); }
 
 .erg__objekt {
-  font-size: var(--t-etikett); color: var(--text-still);
-  letter-spacing: .06em; text-transform: uppercase;
-  padding-bottom: var(--s-3); border-bottom: 1px solid var(--linie-fein);
+  font-size: var(--t-klein); color: var(--text-leise);
+  padding-bottom: var(--s-4); border-bottom: 1px solid var(--linie-fein);
   margin: 0;
 }
 
 
-/* ── Der Zähler ──────────────────────────────────────────────────── */
-/* WICHTIG: hier NICHT die Kurzschreibweise "background" benutzen.
-   .rahmen zeichnet seine Eckwinkel über background-image — eine
-   Kurzschreibweise setzt die zurück, und die Winkel verschwinden
-   spurlos. Deshalb background-color plus ein eigenes Glimmen im
-   Pseudoelement. */
+/* ── Der Zähler ────────────────────────────────────────────────────
+   Weiße Karte, eine Haarlinie, ein sehr weicher Schatten. Die Zahl
+   selbst trägt den Auftritt, nicht die Fläche darunter.          */
 .zaehler {
   padding: clamp(var(--s-5), 5vw, var(--s-7));
-  background-color: var(--flaeche-1);
+  background: #FFFFFF;
+  box-shadow: var(--schatten);
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-.zaehler::before {
-  content: "";
-  position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(70% 120% at 50% 0%, var(--signal-schein), transparent 62%);
-  pointer-events: none;
 }
 .zaehler__satz {
+  font-family: var(--f-text);
   font-size: var(--t-h3); font-weight: 500; color: var(--text);
   letter-spacing: -0.01em; margin-bottom: var(--s-4);
-  font-variation-settings: "wdth" 100, "opsz" 20;
 }
 
 .zaehler__buehne { position: relative; }
 .zaehler__zahl {
+  font-family: var(--f-display);
   font-size: var(--t-zaehler);
-  font-weight: 600;
-  line-height: .92;
-  color: var(--signal);
-  letter-spacing: -0.05em;
+  font-weight: 700;
+  line-height: .95;
+  color: var(--blau);
+  letter-spacing: -0.045em;
   /* Intl setzt vor das €-Zeichen ein geschütztes Leerzeichen. In
-     einer Monoschrift ist das in dieser Größe eine Lücke von einer
-     ganzen Ziffernbreite — hier wieder eingefangen. */
-  word-spacing: -0.28em;
-  text-shadow: 0 0 60px var(--signal-schein);
+     dieser Größe ist das zu viel, ganz zusammenziehen darf man es
+     aber auch nicht, sonst klebt das € an der letzten Ziffer. */
+  word-spacing: -0.06em;
   word-break: keep-all;
 }
-/* Der Sucher-Strahl fährt einmal durch, wenn die Zahl einrastet. */
-.zaehler__strahl {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0;
-  background: linear-gradient(100deg, transparent 42%, rgba(255,255,255,.5) 50%, transparent 58%);
-  mix-blend-mode: overlay;
-}
-.zaehler__buehne[data-eingerastet="ja"] .zaehler__strahl { animation: strahl 900ms var(--e-scharf) 1; }
-@keyframes strahl {
-  from { opacity: 1; transform: translateX(-115%); }
-  to   { opacity: 0; transform: translateX(115%); }
-}
-html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
-@media (prefers-reduced-motion: reduce) { .zaehler__strahl { animation: none !important; } }
+/* Der Strahl von früher ist ersatzlos weg: ein Lichtreflex über
+   einer Zahl ist genau das Software-Zitat, das hier nicht hingehört.
+   Die Regel bleibt stehen, weil ergebnis.js das Element noch baut. */
+.zaehler__strahl { display: none; }
 
 .zaehler__einheit {
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  text-transform: uppercase; letter-spacing: .18em; color: var(--text-leise);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--text-leise);
   margin: var(--s-3) 0 var(--s-5);
 }
 .zaehler .messleiste { margin-bottom: var(--s-5); }
 
+/* Der laufende Betrag seit dem Öffnen der Seite. Auf dem
+   Ergebnisschirm steht er unter der Jahreszahl und ist bewusst
+   groß: Er ist das einzige, was sich auf der Seite bewegt. */
 .ticker {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-2) var(--s-4);
-  padding: var(--s-4) 0; border-bottom: 1px solid var(--linie-fein);
+  padding: var(--s-5) 0 var(--s-4);
+  border-top: 1px solid var(--linie-fein);
 }
 .ticker__label {
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  text-transform: uppercase; letter-spacing: .12em; color: var(--text-still);
+  font-size: var(--t-klein); color: var(--text-leise);
 }
 .ticker__wert {
   margin-left: auto;
-  font-size: clamp(1.1rem, .9rem + 1vw, 1.5rem); font-weight: 500;
-  color: var(--signal-hell);
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem); font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--blau);
+  word-spacing: -0.05em;
 }
 
 .umrechnung {
@@ -440,12 +422,12 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
   margin: var(--s-5) 0 0; background: var(--linie-fein);
 }
 @media (max-width: 34rem) { .umrechnung { grid-template-columns: 1fr; } }
-.umrechnung > div { background: var(--flaeche-1); padding: var(--s-4); }
+.umrechnung > div { background: var(--flaeche-1); padding: var(--s-5); }
 .umrechnung dt {
-  font-family: var(--f-mono); font-size: 10px; text-transform: uppercase;
-  letter-spacing: .14em; color: var(--text-still); margin-bottom: var(--s-2);
+  font-size: var(--t-etikett); text-transform: uppercase;
+  letter-spacing: .1em; color: var(--text-still); margin-bottom: var(--s-2);
 }
-.umrechnung dd { margin: 0; font-size: 1.25rem; font-weight: 500; color: var(--text-hell); }
+.umrechnung dd { margin: 0; font-family: var(--f-display); font-size: 1.4rem; font-weight: 700; color: var(--text-hell); }
 
 
 /* ── Hebel ───────────────────────────────────────────────────────── */
@@ -462,8 +444,8 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 }
 .hb__vermerk {
   display: block; margin-top: 4px;
-  font-family: var(--f-mono); font-size: 10px; font-weight: 400;
-  text-transform: uppercase; letter-spacing: .14em; color: var(--text-still);
+  font-family: var(--f-text); font-size: var(--t-etikett); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--text-still);
 }
 
 /* Informativer Hebel: gedämpft, gestrichelt, nie verdeckt. */
@@ -476,11 +458,11 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
   height: 1px;
 }
 .hb[data-informativ="ja"] .hb__balken i { display: none; }
-.hb__wert { font-size: 1.5rem; font-weight: 600; color: var(--signal); white-space: nowrap; }
-.hb__pa { font-size: var(--t-etikett); color: var(--text-still); font-weight: 400; }
+.hb__wert { font-family: var(--f-display); font-size: 1.6rem; font-weight: 700; color: var(--blau); white-space: nowrap; letter-spacing: -0.02em; }
+.hb__pa { font-family: var(--f-text); font-size: var(--t-etikett); color: var(--text-still); font-weight: 400; }
 
 /* Verdeckte Werte: Platzhalterzeichen, kein unscharf gemachter
-   Klartext. Die Stellenzahl bleibt sichtbar — die Größenordnung
+   Klartext. Die Stellenzahl bleibt sichtbar, die Größenordnung
    ist der Köder. */
 .hb__wert--zu, [data-zu="ja"] {
   color: var(--text-still) !important;
@@ -492,19 +474,19 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 .hb__balken { height: 6px; background: var(--flaeche-2); overflow: hidden; }
 .hb__balken i {
   display: block; height: 100%; width: 0;
-  background: var(--signal);
+  background: var(--blau);
   transition: width 900ms var(--e-raus);
 }
 .hb__balken[data-gefuellt="ja"] i { width: var(--breite, 0%); }
-.hb[data-offen="nein"] .hb__balken i { background: var(--ink-400, #3D4650); background: var(--linie-stark); }
+.hb[data-offen="nein"] .hb__balken i { background: var(--linie-stark); }
 
 .hb__text { margin: var(--s-4) 0 0; font-size: var(--t-klein); color: var(--text); line-height: 1.62; }
 .hb__text--zu { color: var(--text-still); filter: blur(2.6px); user-select: none; }
 .hb__schloss {
   display: flex; align-items: center; gap: var(--s-2);
   margin: var(--s-4) 0 0;
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  text-transform: uppercase; letter-spacing: .12em; color: var(--signal);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--blau);
 }
 
 
@@ -512,13 +494,14 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 .wert { padding: clamp(var(--s-5), 5vw, var(--s-6)); background: var(--flaeche-1); }
 .wert__titel { font-size: var(--t-h3); margin-bottom: var(--s-4); max-width: 30rem; }
 .wert__zahl {
-  font-size: clamp(2.2rem, 1rem + 5vw, 3.6rem); font-weight: 600;
-  color: var(--signal); line-height: 1; margin-bottom: var(--s-5);
+  font-family: var(--f-display); letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 1rem + 5vw, 3.6rem); font-weight: 700;
+  color: var(--blau); line-height: 1; margin-bottom: var(--s-5);
 }
 .wert__teile { list-style: none; margin: 0 0 var(--s-4); padding: 0; display: grid; gap: 1px; background: var(--linie-fein); }
 .wert__teile li {
   display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4);
-  background: var(--grund); padding: var(--s-3) var(--s-4);
+  background: #FFFFFF; padding: var(--s-3) var(--s-4);
   font-size: var(--t-klein); color: var(--text-leise);
 }
 .wert__teile .zahl { color: var(--text-hell); font-weight: 500; }
@@ -547,11 +530,11 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 }
 .haken input {
   flex: none; width: 20px; height: 20px; margin-top: 2px;
-  accent-color: var(--signal);
+  accent-color: var(--blau);
 }
 
-.gform__status { margin: var(--s-4) 0 0; font-family: var(--f-mono); font-size: var(--t-etikett); letter-spacing: .06em; min-height: 1.2em; }
-.gform__status[data-art="fehler"] { color: var(--signal); }
+.gform__status { margin: var(--s-4) 0 0; font-size: var(--t-klein); min-height: 1.2em; }
+.gform__status[data-art="fehler"] { color: var(--fehlt); font-weight: 600; }
 .gform__status[data-art="laeuft"] { color: var(--text-leise); }
 .gform__danke { display: grid; gap: var(--s-4); justify-items: start; }
 
@@ -563,11 +546,15 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 
 
 /* ══ EINGEBETTETER BEWERTUNGS-FUNNEL ══════════════════════════════
-   Das iframe kommt vom eigenen Deployment und bringt seine eigene
-   dunkle Farbwelt mit (makler.config.ts → farben). Hier drumherum
-   nur so viel, dass es nicht wie ein Fremdkörper wirkt: gleiche
-   Breite wie der Wizard, Eckwinkel wie beim Zähler, kein Rahmen um
-   das iframe selbst.                                              */
+   Das iframe kommt vom eigenen Deployment und bringt seine eigenen
+   Farben mit (makler.config.ts → farben). Hier drumherum nur so
+   viel, dass es nicht wie ein Fremdkörper wirkt: gleiche Breite wie
+   der Wizard, kein Rahmen um das iframe selbst.
+
+   ⚠️ Der Funnel steht noch auf der dunklen Farbwelt von früher. Er
+   liegt in einem eigenen Repo; die fünf Farbwerte, die dort zu
+   ändern sind, stehen in docs/BEWERTUNGSFUNNEL.md. Solange das nicht
+   passiert ist, sitzt ein dunkler Kasten auf einer weißen Seite.  */
 .funnelrahmen {
   max-width: 48rem;
   margin-inline: auto;
@@ -577,10 +564,10 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
   display: block;
   width: 100%;
   border: 0;
-  /* colorScheme verhindert, dass ein Browser im Hellmodus dem iframe
-     einen weißen Standardgrund unterlegt, bevor das CSS greift. */
-  color-scheme: dark;
-  background: var(--flaeche-1);
+  color-scheme: light;
+  /* Weiß, nicht --flaeche-1: Das ist die Fläche, die einen Wimpernschlag
+     lang steht, bevor das iframe zeichnet. Grau blitzt dort auf. */
+  background: #FFFFFF;
 }
 
 
@@ -590,7 +577,7 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 .ablage {
   /* display MUSS gesetzt sein: <label> ist von Haus aus inline, und auf
      inline-Elementen greifen weder Höhe noch die senkrechten Innenabstände.
-     base.css gibt svg zusätzlich display:block — ein Block-Element in einem
+     base.css gibt svg zusätzlich display:block, ein Block-Element in einem
      inline-Label zerreißt den Textfluss, die Fläche fällt zum Streifen
      zusammen und das Icon bricht darunter aus. Gleiche Stelle wie .feld. */
   display: block;
@@ -600,8 +587,8 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
   text-align: center; cursor: pointer;
   transition: border-color var(--d-kurz), background var(--d-kurz);
 }
-.ablage:hover, .ablage[data-drueber="ja"] { border-color: var(--signal); background: var(--signal-flach); }
-/* Ebenfalls display:block — sonst laufen width/height und das zentrierende
+.ablage:hover, .ablage[data-drueber="ja"] { border-color: var(--blau); background: var(--signal-flach); }
+/* Ebenfalls display:block, sonst laufen width/height und das zentrierende
    margin:0 auto auf einem inline-<span> ins Leere und das SVG darin nimmt
    sich 100 % des Abschnitts statt der 34 px. */
 .ablage__icon { display: block; width: 34px; height: 34px; margin: 0 auto var(--s-4); color: var(--text-leise); }
@@ -616,55 +603,59 @@ html[data-statisch="ja"] .zaehler__strahl { animation: none !important; }
 .bild img { width: 100%; height: 100%; object-fit: cover; }
 .bild__nr {
   position: absolute; left: 0; top: 0;
-  background: var(--grund); color: var(--text-leise);
-  font-family: var(--f-mono); font-size: 10px; padding: 3px 6px;
+  background: #FFFFFF; color: var(--text-leise);
+  font-size: var(--t-etikett); padding: 3px 7px;
 }
 .bild__weg {
-  position: absolute; right: 4px; top: 4px; width: 24px; height: 24px;
-  background: rgba(8,9,11,.85); border: 1px solid var(--linie); color: var(--text-hell);
+  position: absolute; right: 4px; top: 4px; width: 26px; height: 26px;
+  background: rgba(255,255,255,.92); border: 1px solid var(--linie); color: var(--text-hell);
   cursor: pointer; display: grid; place-items: center; font-size: 13px; line-height: 1;
 }
 
 .ic textarea.feld__eingabe { min-height: 13rem; resize: vertical; line-height: 1.6; font-size: 0.95rem; }
-.zaehlwerk { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 10px; color: var(--text-still); margin-top: var(--s-2); letter-spacing: .06em; }
+.zaehlwerk { display: flex; justify-content: space-between; font-size: var(--t-etikett); color: var(--text-still); margin-top: var(--s-2); }
 
-/* Pflichtangaben nach GEG § 87 — läuft ohne Server, sofort. */
+/* Pflichtangaben nach GEG § 87, läuft ohne Server, sofort. */
 .geg { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
 .geg__zeile {
   display: flex; align-items: flex-start; gap: var(--s-3);
-  background: var(--grund); padding: var(--s-4);
+  background: #FFFFFF; padding: var(--s-4);
 }
-.geg__zeichen { flex: none; width: 20px; height: 20px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 12px; margin-top: 1px; }
-.geg__zeile[data-stand="ok"]   .geg__zeichen { color: var(--gepruft); }
-.geg__zeile[data-stand="fehlt"] .geg__zeichen { color: var(--signal); }
+.geg__zeichen { flex: none; width: 20px; height: 20px; display: grid; place-items: center; font-size: 13px; font-weight: 700; margin-top: 1px; }
+/* Erfüllt in der Hausfarbe, fehlend in einem tiefen Rot. Das ist die
+   einzige Stelle im Projekt, an der eine zweite Farbe nötig ist:
+   „vorhanden" und „fehlt" müssen sich unterscheiden lassen, ohne
+   dass jemand die Zeichen deuten muss. */
+.geg__zeile[data-stand="ok"]    .geg__zeichen { color: var(--blau); }
+.geg__zeile[data-stand="fehlt"] .geg__zeichen { color: var(--fehlt); }
 .geg__text { flex: 1; }
 .geg__text strong { display: block; font-size: var(--t-klein); }
 .geg__text span { display: block; font-size: var(--t-etikett); color: var(--text-still); margin-top: 3px; line-height: 1.5; }
-.geg__zeile[data-stand="fehlt"] .geg__text strong { color: var(--signal); }
+.geg__zeile[data-stand="fehlt"] .geg__text strong { color: var(--fehlt); }
 
 .bussgeld {
-  border: 1px solid var(--signal-rand); background: var(--signal-flach);
+  border: 1px solid var(--fehlt-rand); background: var(--fehlt-flach);
   padding: var(--s-5); margin-top: var(--s-4);
 }
-.bussgeld strong { color: var(--signal); }
+.bussgeld strong { color: var(--fehlt); }
 
 /* Vermarktungs-Score */
 .score { display: flex; align-items: center; gap: clamp(var(--s-5), 5vw, var(--s-7)); flex-wrap: wrap; }
 .score__ring { position: relative; width: 148px; height: 148px; flex: none; }
 .score__ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .score__ring circle { fill: none; stroke-width: 2; }
-.score__spur { stroke: var(--linie); }
-.score__wert-ring { stroke: var(--signal); stroke-linecap: butt; transition: stroke-dashoffset 1.4s var(--e-raus); }
+.score__spur { stroke: var(--linie-fein); stroke-width: 3; }
+.score__wert-ring { stroke: var(--blau); stroke-width: 3; stroke-linecap: butt; transition: stroke-dashoffset 1.4s var(--e-raus); }
 .score__zahl {
   position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
-  font-family: var(--f-mono); font-size: 2.6rem; font-weight: 600; color: var(--text-hell);
-  font-variant-numeric: tabular-nums slashed-zero;
+  font-family: var(--f-display); font-size: 2.8rem; font-weight: 700; color: var(--text-hell);
+  font-variant-numeric: tabular-nums;
 }
-.score__zahl small { display: block; font-size: 10px; color: var(--text-still); letter-spacing: .16em; font-weight: 400; }
+.score__zahl small { display: block; font-family: var(--f-text); font-size: var(--t-etikett); color: var(--text-still); letter-spacing: .1em; font-weight: 500; }
 .score__text { flex: 1 1 18rem; }
 
 .fehlerliste { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
-.fehler { background: var(--grund); padding: var(--s-5); display: flex; gap: var(--s-4); align-items: flex-start; }
-.fehler__nr { font-family: var(--f-mono); font-size: 1.6rem; font-weight: 600; color: var(--signal); line-height: 1; flex: none; }
+.fehler { background: #FFFFFF; padding: var(--s-5); display: flex; gap: var(--s-4); align-items: flex-start; }
+.fehler__nr { font-family: var(--f-display); font-size: 1.7rem; font-weight: 700; color: var(--blau); line-height: 1; flex: none; }
 .fehler h4 { margin: 0 0 var(--s-2); font-size: var(--t-klein); }
 .fehler p { margin: 0; font-size: var(--t-klein); color: var(--text-leise); }

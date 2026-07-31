@@ -3,16 +3,16 @@
      dort Platzhalter stehen, tragen sie noindex. Nach dem Einsetzen
      der echten Texte hier mit Priorität 0.3 ergänzen. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://micheal-immobilien.de/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://micheal-immobilien.de/potenzial-analyse.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://micheal-immobilien.de/bewertung.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://micheal-immobilien.de/inserats-check.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://micheal-immobilien.de/anlass/energie.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://micheal-immobilien.de/anlass/erben.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://micheal-immobilien.de/anlass/privatverkauf.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://micheal-immobilien.de/anlass/kapitalanlage.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://micheal-immobilien.de/ueber.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://micheal-immobilien.de/referenzen.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://micheal-immobilien.de/kontakt.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://micheal-immobilien.de/ratgeber/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://m2-immoservice.de/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://m2-immoservice.de/potenzial-analyse.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://m2-immoservice.de/bewertung.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://m2-immoservice.de/inserats-check.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://m2-immoservice.de/anlass/energie.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://m2-immoservice.de/anlass/erben.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://m2-immoservice.de/anlass/privatverkauf.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://m2-immoservice.de/anlass/kapitalanlage.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://m2-immoservice.de/ueber.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://m2-immoservice.de/referenzen.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://m2-immoservice.de/kontakt.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://m2-immoservice.de/ratgeber/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>

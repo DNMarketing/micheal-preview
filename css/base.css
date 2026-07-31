@@ -1,6 +1,12 @@
 /* ══════════════════════════════════════════════════════════════════
    base.css · Grundgerüst, Typografie, wiederkehrende Bauteile.
    Werkzeugspezifisches steht in tool.css.
+
+   Die Regeln, die überall gelten:
+     · Weiß trägt, Blau führt, Schwarz schreibt.
+     · Flächen werden von Haarlinien begrenzt, nicht von Kästen.
+     · Keine Versalien mit weiter Sperrung außer im kleinen
+       Etikett, keine Monoschrift, kein Leuchten, kein Raster.
    ══════════════════════════════════════════════════════════════════ */
 
 /* ── Zurücksetzen ───────────────────────────────────────────────── */
@@ -19,40 +25,23 @@ body {
   font-family: var(--f-text);
   font-size: var(--t-text);
   font-weight: 400;
-  line-height: 1.62;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Das Millimeterpapier. Liegt fest hinter allem, bewegt sich nicht
-   beim Scrollen — dadurch wirkt der Inhalt, als gleite er über
-   einer Messfläche. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right,  var(--raster-farbe) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--raster-farbe) 1px, transparent 1px);
-  background-size: var(--raster-weite) var(--raster-weite);
-  mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 20%, transparent 75%);
-}
-body > * { position: relative; z-index: 1; }
-
 img, svg, video { max-width: 100%; height: auto; display: block; }
 button, input, select, textarea { font: inherit; color: inherit; }
 
-/* Sichtbarer Fokus überall — nichts wird wegoptimiert. */
+/* Sichtbarer Fokus überall, nichts wird wegoptimiert. */
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--blau);
   outline-offset: 3px;
   border-radius: 1px;
 }
 
-::selection { background: var(--signal); color: #0A0A0A; }
+::selection { background: var(--blau); color: #FFFFFF; }
 
 .sr {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -61,133 +50,114 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .sprung {
   position: absolute; left: var(--s-4); top: -100px; z-index: 200;
-  background: var(--signal); color: #0A0A0A; padding: var(--s-2) var(--s-4);
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  text-transform: uppercase; letter-spacing: .1em; text-decoration: none;
+  background: var(--blau); color: #FFFFFF; padding: var(--s-3) var(--s-5);
+  font-size: var(--t-klein); font-weight: 600;
+  text-decoration: none; border-radius: var(--radius);
   transition: top var(--d-kurz) var(--e-scharf);
 }
 .sprung:focus { top: var(--s-4); }
 
 
-/* ── Typografie ─────────────────────────────────────────────────── */
+/* ── Typografie ─────────────────────────────────────────────────────
+   Bricolage nur groß, Archivo überall sonst. Die Überschriften
+   laufen eng, das ist der Unterschied zwischen „gesetzt" und
+   „getippt".                                                       */
 h1, h2, h3, h4 {
   font-family: var(--f-display);
   color: var(--text-hell);
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  line-height: 1.06;
+  letter-spacing: -0.026em;
   margin: 0 0 var(--s-4);
-  font-variation-settings: "wdth" 96, "opsz" 48;
+  font-variation-settings: "wdth" 100, "opsz" 40;
   text-wrap: balance;
 }
 h1 { font-size: var(--t-h1); }
 h2 { font-size: var(--t-h2); }
-h3 { font-size: var(--t-h3); letter-spacing: -0.018em; font-variation-settings: "wdth" 100, "opsz" 24; }
+h3 {
+  font-size: var(--t-h3); letter-spacing: -0.014em;
+  font-family: var(--f-text); font-weight: 600;
+}
+h4 { font-family: var(--f-text); }
 
 .display {
   font-size: var(--t-display);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.98;
-  font-variation-settings: "wdth" 92, "opsz" 96;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  font-variation-settings: "wdth" 100, "opsz" 96;
 }
 
 p { margin: 0 0 var(--s-4); text-wrap: pretty; }
 p:last-child { margin-bottom: 0; }
 
-.gross  { font-size: var(--t-gross); line-height: 1.55; color: var(--text); }
+.gross  { font-size: var(--t-gross); line-height: 1.6; color: var(--text); }
 .leise  { color: var(--text-leise); }
 .still  { color: var(--text-still); font-size: var(--t-klein); }
 .lese   { max-width: var(--breite-text); }
 
-a { color: var(--text-hell); text-decoration-color: var(--linie-stark); text-underline-offset: .22em; }
-a:hover { text-decoration-color: var(--signal); }
+a { color: var(--blau); text-decoration-color: rgba(3, 66, 143, .35); text-underline-offset: .22em; }
+a:hover { text-decoration-color: var(--blau); }
 
 strong, b { font-weight: 650; color: var(--text-hell); }
 
-/* Jede Zahl im Projekt trägt diese Klasse. Tabellarische Ziffern,
-   damit beim Hochzählen nichts springt, und die geschlitzte Null
-   aus Plex Mono — das kleine Detail, das den Instrumentencharakter
-   trägt. */
+/* Jede Zahl im Projekt trägt diese Klasse: gleiche Ziffernbreite,
+   damit beim Hochzählen nichts springt. Bewusst dieselbe Schrift
+   wie der Text, eine Monoschrift lässt die Seite nach Konsole
+   aussehen. */
 .zahl {
-  font-family: var(--f-mono);
-  font-variant-numeric: tabular-nums slashed-zero;
-  font-feature-settings: "tnum" 1, "zero" 1;
-  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.005em;
 }
 
 
-/* ── Etikett · das Mono-Label über jedem Abschnitt ─────────────── */
+/* ── Etikett · die kleine Zeile über einem Abschnitt ────────────── */
 .etikett {
   display: inline-flex;
   align-items: center;
   gap: var(--s-3);
-  font-family: var(--f-mono);
   font-size: var(--t-etikett);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--text-still);
+  letter-spacing: 0.1em;
+  color: var(--text-leise);
   margin: 0 0 var(--s-4);
 }
 .etikett::before {
   content: "";
-  width: 26px; height: 1px;
+  width: 22px; height: 2px;
   background: var(--linie-stark);
   flex: none;
 }
-.etikett--signal { color: var(--signal); }
-.etikett--signal::before { background: var(--signal); }
+.etikett--signal { color: var(--blau); }
+.etikett--signal::before { background: var(--blau); }
 
 
-/* ── Messleiste · die Skala als Trennelement ───────────────────── */
+/* ── Messleiste · schlichter Trenner mit blauem Anlauf ──────────── */
 .messleiste {
-  height: 12px;
-  background-image:
-    repeating-linear-gradient(90deg, var(--linie-stark) 0 1px, transparent 1px 72px),
-    repeating-linear-gradient(90deg, var(--linie-fein) 0 1px, transparent 1px 12px);
-  background-repeat: no-repeat, no-repeat;
-  background-position: bottom left, bottom left;
-  background-size: 100% 12px, 100% 6px;
-  border-bottom: 1px solid var(--linie-fein);
+  height: 2px;
+  background:
+    linear-gradient(var(--blau), var(--blau)) left / 64px 2px no-repeat,
+    linear-gradient(var(--linie-fein), var(--linie-fein)) left / 100% 1px no-repeat;
+  background-position: left center, left center;
+  border: 0;
   margin: 0;
 }
-.messleiste--signal {
-  background-image:
-    repeating-linear-gradient(90deg, var(--signal) 0 1px, transparent 1px 72px),
-    repeating-linear-gradient(90deg, var(--signal-rand) 0 1px, transparent 1px 12px);
-  border-bottom-color: var(--signal-rand);
-}
+.messleiste--signal { background-size: 96px 2px, 100% 1px; }
 
 
-/* ── Rahmen · Eckwinkel wie im Sucher ──────────────────────────── */
+/* ── Rahmen · eine Haarlinie, mehr nicht ────────────────────────── */
 .rahmen {
-  --ecke: 15px;
-  --dicke: 1px;
-  --ecke-farbe: var(--linie-stark);
-  background-image:
-    linear-gradient(var(--ecke-farbe) 0 0), linear-gradient(var(--ecke-farbe) 0 0),
-    linear-gradient(var(--ecke-farbe) 0 0), linear-gradient(var(--ecke-farbe) 0 0),
-    linear-gradient(var(--ecke-farbe) 0 0), linear-gradient(var(--ecke-farbe) 0 0),
-    linear-gradient(var(--ecke-farbe) 0 0), linear-gradient(var(--ecke-farbe) 0 0);
-  background-repeat: no-repeat;
-  background-size:
-    var(--ecke) var(--dicke), var(--dicke) var(--ecke),
-    var(--ecke) var(--dicke), var(--dicke) var(--ecke),
-    var(--ecke) var(--dicke), var(--dicke) var(--ecke),
-    var(--ecke) var(--dicke), var(--dicke) var(--ecke);
-  background-position:
-    left top, left top,
-    right top, right top,
-    left bottom, left bottom,
-    right bottom, right bottom;
+  border: 1px solid var(--linie-fein);
+  border-radius: var(--radius);
 }
-.rahmen--signal { --ecke-farbe: var(--signal); }
+.rahmen--signal { border-color: var(--signal-rand); }
 
 
 /* ── Raster und Bänder ──────────────────────────────────────────── */
 .huelle { width: 100%; max-width: var(--breite-seite); margin-inline: auto; padding-inline: var(--rand); }
-.huelle--weit { max-width: 92rem; }
+.huelle--weit { max-width: 88rem; }
 
 .band { padding-block: clamp(var(--s-7), 8vw, var(--s-9)); }
 .band--eng { padding-block: var(--s-7); }
@@ -195,23 +165,25 @@ strong, b { font-weight: 650; color: var(--text-hell); }
 .band--linie { border-top: 1px solid var(--linie-fein); }
 
 
-/* ── Knöpfe ─────────────────────────────────────────────────────── */
+/* ── Knöpfe ─────────────────────────────────────────────────────────
+   Zwei Sorten, mehr nicht: einer gefüllt in der Hausfarbe, einer als
+   Umriss. Gemischte Schreibweise statt Versalien, das ist der
+   Unterschied zwischen Einladung und Bedienfeld.                    */
 .knopf {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--s-3);
-  padding: 0.95rem 1.6rem;
+  padding: 0.95rem 1.7rem;
   min-height: 52px;
   border: 1px solid var(--linie);
   border-radius: var(--radius);
   background: transparent;
   color: var(--text-hell);
-  font-family: var(--f-mono);
+  font-family: var(--f-text);
   font-size: var(--t-klein);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0;
   text-decoration: none;
   cursor: pointer;
   transition: background var(--d-kurz) var(--e-scharf),
@@ -219,26 +191,27 @@ strong, b { font-weight: 650; color: var(--text-hell); }
               color var(--d-kurz) var(--e-scharf),
               transform var(--d-kurz) var(--e-scharf);
 }
-.knopf:hover { border-color: var(--linie-stark); background: var(--flaeche-2); }
+.knopf:hover { border-color: var(--blau); color: var(--blau); background: var(--signal-flach); }
 .knopf:active { transform: translateY(1px); }
 .knopf[disabled], .knopf[aria-disabled="true"] {
-  opacity: .4; cursor: not-allowed; pointer-events: none;
+  opacity: .38; cursor: not-allowed; pointer-events: none;
 }
 
-/* Der einzige gefüllte Knopf im ganzen Projekt. Genau ein Ziel
-   pro Bildschirm bekommt ihn. */
+/* Der gefüllte Knopf. Genau ein Ziel pro Bildschirm bekommt ihn. */
 .knopf--signal {
   background: var(--signal);
   border-color: var(--signal);
-  color: #0A0A0A;
-  font-weight: 600;
+  color: var(--signal-schrift);
 }
-.knopf--signal:hover { background: var(--signal-hell); border-color: var(--signal-hell); }
+.knopf--signal:hover {
+  background: var(--signal-hell); border-color: var(--signal-hell);
+  color: var(--signal-schrift);
+}
 
-.knopf--gross { padding: 1.15rem 2rem; min-height: 60px; font-size: 0.9375rem; }
+.knopf--gross { padding: 1.15rem 2.1rem; min-height: 60px; font-size: 1rem; }
 .knopf--voll  { width: 100%; }
 .knopf--leise { border-color: transparent; color: var(--text-leise); padding-inline: var(--s-3); }
-.knopf--leise:hover { color: var(--text-hell); background: transparent; border-color: transparent; }
+.knopf--leise:hover { color: var(--blau); background: transparent; border-color: transparent; }
 
 /* Pfeil, der beim Überfahren anläuft */
 .knopf .pfeil { transition: transform var(--d-mittel) var(--e-raus); }
@@ -250,139 +223,204 @@ strong, b { font-weight: 650; color: var(--text-hell); }
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  padding: 0.3rem 0.6rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--linie);
-  border-radius: var(--radius);
-  font-family: var(--f-mono);
+  border-radius: 100px;
   font-size: var(--t-etikett);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--text-leise);
-  background: var(--flaeche-1);
+  background: var(--grund);
 }
-.marke--gepruft { color: var(--gepruft); border-color: rgba(94,224,168,.28); background: var(--gepruft-flach); }
-.marke--warn    { color: var(--warn);   border-color: rgba(255,209,102,.28); background: var(--warn-flach); }
-.marke--signal  { color: var(--signal); border-color: var(--signal-rand);    background: var(--signal-flach); }
-.marke .punkt { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex: none; }
+.marke--gepruft { color: var(--blau);  border-color: var(--signal-rand); background: var(--gepruft-flach); }
+.marke--warn    { color: var(--fehlt); border-color: var(--fehlt-rand);  background: var(--fehlt-flach); }
+.marke--signal  { color: var(--blau);  border-color: var(--signal-rand); background: var(--signal-flach); }
+.marke .punkt { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
 
 
 /* ── Kopfzeile ──────────────────────────────────────────────────── */
 .kopf {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(8, 9, 11, 0.82);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--linie-fein);
 }
 .kopf__reihe {
   display: flex; align-items: center; justify-content: space-between;
-  gap: var(--s-5); min-height: 68px;
+  gap: var(--s-5); min-height: 76px;
 }
 .wortmarke {
   display: inline-flex; align-items: baseline; gap: .55rem;
-  font-family: var(--f-display); font-weight: 700; font-size: 1.05rem;
+  font-family: var(--f-display); font-weight: 700; font-size: 1.1rem;
   letter-spacing: -0.03em; color: var(--text-hell); text-decoration: none;
-  font-variation-settings: "wdth" 90, "opsz" 14;
 }
 .wortmarke__zusatz {
-  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 400;
-  text-transform: uppercase; letter-spacing: .14em; color: var(--text-still);
+  font-size: var(--t-etikett); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--text-still);
 }
+
+/* ── Logo · PLATZHALTER ─────────────────────────────────────────────
+   Nachbildung seiner Wortmarke, kein Original: rotes Band oben, weiße
+   Fläche mit dem Schriftzug, blaues Band unten. Steht genau einmal auf
+   der Seite, oben links. Im Fuß steht der Schriftzug als Text, damit
+   die Marke nicht klebt.
+
+   Das Rot lebt ausschließlich hier. Sobald die Vektordatei vorliegt,
+   wird der Block gegen ein <img src="/micheal-preview/assets/logo.svg"> getauscht und
+   kann ersatzlos weg.
+   ──────────────────────────────────────────────────────────────── */
+.logo {
+  --logo-groesse: 1.1rem;
+  display: inline-flex;
+  align-items: baseline;
+  background: #FFFFFF;
+  border-top:    0.40em solid var(--logo-rot);
+  border-bottom: 0.30em solid var(--blau);
+  padding: 0.14em 0.44em 0.18em;
+  font-size: var(--logo-groesse);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.logo__m {
+  font-family: var(--f-text);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 1.34em;
+  letter-spacing: -0.05em;
+  color: var(--blau-m);
+}
+.logo__m sup {
+  font-size: 0.60em;
+  vertical-align: 0.46em;
+  font-weight: 700;
+  margin-left: -0.04em;
+}
+.logo__wort {
+  font-family: var(--f-text);
+  font-weight: 700;
+  font-size: 0.94em;
+  letter-spacing: -0.035em;
+  color: var(--blau-tief);
+}
+
+/* Seine Nummer steht neben dem Logo. Auf schmalen Fenstern nicht:
+   dort trägt sie der Kontaktknopf im Menü. */
+.kopf__tel {
+  font-size: var(--t-klein);
+  font-weight: 600;
+  color: var(--text-hell);
+  text-decoration: none;
+  margin-right: auto;
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--linie-fein);
+}
+.kopf__tel:hover { color: var(--blau); }
+@media (max-width: 62rem) { .kopf__tel { display: none; } }
 
 .navi { display: flex; align-items: center; gap: var(--s-5); }
 .navi a {
-  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
-  text-transform: uppercase; letter-spacing: .12em;
+  font-size: var(--t-klein); font-weight: 500;
   color: var(--text-leise); text-decoration: none;
   padding-block: var(--s-2);
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   transition: color var(--d-kurz) var(--e-scharf), border-color var(--d-kurz) var(--e-scharf);
 }
-.navi a:hover, .navi a[aria-current="page"] { color: var(--text-hell); border-bottom-color: var(--signal); }
+.navi a:hover, .navi a[aria-current="page"] { color: var(--text-hell); border-bottom-color: var(--blau); }
+/* Der Knopf in der Navigation ist ein Knopf, kein Menüpunkt: Die
+   Regeln oben dürfen ihm weder Farbe noch Unterkante diktieren,
+   sonst steht dunkle Schrift auf der blauen Fläche. */
+.navi .knopf { border-bottom-color: var(--linie); color: var(--text-hell); }
+.navi .knopf:hover { border-bottom-color: var(--blau); color: var(--blau); }
+.navi .knopf--signal,
+.navi .knopf--signal:hover,
+.navi .knopf--signal[aria-current="page"] {
+  color: var(--signal-schrift);
+  border-color: var(--signal);
+}
+.navi .knopf--signal:hover { background: var(--signal-hell); border-color: var(--signal-hell); }
 
 .navi-schalter { display: none; background: none; border: 1px solid var(--linie); border-radius: var(--radius); width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
 .navi-schalter span, .navi-schalter span::before, .navi-schalter span::after {
-  content: ""; display: block; width: 18px; height: 1px; background: var(--text-hell); transition: transform var(--d-mittel) var(--e-raus), opacity var(--d-kurz);
+  content: ""; display: block; width: 18px; height: 1.5px; background: var(--text-hell); transition: transform var(--d-mittel) var(--e-raus), opacity var(--d-kurz);
 }
 .navi-schalter span::before { transform: translateY(-6px); }
-.navi-schalter span::after  { transform: translateY(5px); }
+.navi-schalter span::after  { transform: translateY(4.5px); }
 .navi-schalter[aria-expanded="true"] span { background: transparent; }
 .navi-schalter[aria-expanded="true"] span::before { transform: rotate(45deg); }
-.navi-schalter[aria-expanded="true"] span::after  { transform: rotate(-45deg) translateY(-1px); }
+.navi-schalter[aria-expanded="true"] span::after  { transform: rotate(-45deg) translateY(-1.5px); }
 
 @media (max-width: 62rem) {
   .navi-schalter { display: flex; }
   .navi {
-    position: fixed; inset: 68px 0 auto 0;
+    position: fixed; inset: 76px 0 auto 0;
     flex-direction: column; align-items: stretch; gap: 0;
     background: var(--grund);
     border-bottom: 1px solid var(--linie);
     padding: var(--s-3) var(--rand) var(--s-6);
     transform: translateY(-8px); opacity: 0; pointer-events: none;
     transition: opacity var(--d-mittel) var(--e-raus), transform var(--d-mittel) var(--e-raus);
+    box-shadow: var(--schatten);
   }
   .navi[data-offen="ja"] { transform: none; opacity: 1; pointer-events: auto; }
-  .navi a { padding: var(--s-4) 0; border-bottom: 1px solid var(--linie-fein); font-size: var(--t-klein); }
+  .navi a { padding: var(--s-4) 0; border-bottom: 1px solid var(--linie-fein); font-size: 1.05rem; }
   .navi .knopf { margin-top: var(--s-4); }
 }
 
 
-/* ── Fußzeile ───────────────────────────────────────────────────── */
+/* ── Fußzeile · die einzige dunkle Fläche der Seite ─────────────── */
 .fuss {
-  background: var(--grund-tief);
-  border-top: 1px solid var(--linie-fein);
-  padding-block: var(--s-7) var(--s-5);
-  margin-top: var(--s-8);
+  background: var(--blau-tief);
+  padding-block: var(--s-8) var(--s-5);
+  margin-top: var(--s-9);
+  --text-hell: #FFFFFF;
+  --text: #DCE3F0;
+  --text-leise: #B6C1D6;
+  --text-still: #A2AEC7;
+  --linie-fein: rgba(255,255,255,.16);
+  --linie: rgba(255,255,255,.26);
+  color: var(--text);
 }
+.fuss a { color: var(--text-leise); text-decoration: none; }
+.fuss a:hover { color: #FFFFFF; }
+.fuss .wortmarke { color: #FFFFFF; }
+.fuss .wortmarke__zusatz { color: var(--text-still); }
 .fuss__raster {
   display: grid; gap: var(--s-6);
-  grid-template-columns: 1.4fr repeat(3, 1fr);
+  grid-template-columns: 1.5fr repeat(3, 1fr);
   padding-bottom: var(--s-6);
   border-bottom: 1px solid var(--linie-fein);
 }
 @media (max-width: 56rem) { .fuss__raster { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 34rem) { .fuss__raster { grid-template-columns: 1fr; } }
 .fuss h4 {
-  font-family: var(--f-mono); font-size: var(--t-etikett); font-weight: 500;
-  text-transform: uppercase; letter-spacing: .14em; color: var(--text-still);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--text-still);
   margin-bottom: var(--s-4);
 }
 .fuss ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
-.fuss a { color: var(--text-leise); text-decoration: none; font-size: var(--t-klein); }
-.fuss a:hover { color: var(--text-hell); }
+.fuss ul a { font-size: var(--t-klein); }
+.fuss .still { color: var(--text-leise); }
 .fuss__unten {
   display: flex; flex-wrap: wrap; gap: var(--s-4); justify-content: space-between;
-  padding-top: var(--s-5); font-family: var(--f-mono); font-size: var(--t-etikett);
-  color: var(--text-still); text-transform: uppercase; letter-spacing: .1em;
+  padding-top: var(--s-5); font-size: var(--t-etikett);
+  color: var(--text-still); letter-spacing: .02em;
 }
 
 
-/* ── Auftritt beim Scrollen ─────────────────────────────────────── */
+/* ── Auftritt beim Scrollen ─────────────────────────────────────────
+   Bewusst zurückhaltend: 10 px und ein Aufblenden. Alles darüber
+   sieht nach Präsentationssoftware aus.                            */
 .auf {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(10px);
   transition: opacity var(--d-lang) var(--e-raus), transform var(--d-lang) var(--e-raus);
   transition-delay: var(--verzug, 0ms);
 }
 .auf[data-sichtbar="ja"] { opacity: 1; transform: none; }
 html[data-statisch="ja"] .auf { opacity: 1 !important; transform: none !important; transition: none !important; }
 @media (prefers-reduced-motion: reduce) { .auf { opacity: 1; transform: none; } }
-
-
-/* ── Demo-Hinweis ───────────────────────────────────────────────── */
-.demo-hinweis {
-  background: var(--warn-flach);
-  border-bottom: 1px solid rgba(255, 209, 102, .3);
-  color: var(--warn);
-  font-family: var(--f-mono);
-  font-size: var(--t-etikett);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  text-align: center;
-  padding: var(--s-3) var(--rand);
-}
-.demo-hinweis[hidden] { display: none; }
 
 
 /* ── WhatsApp · schwebender Knopf ──────────────────────────────── */
@@ -392,59 +430,58 @@ html[data-statisch="ja"] .auf { opacity: 1 !important; transform: none !importan
   bottom: clamp(1rem, 3vw, 2rem);
   z-index: 90;
   display: flex; align-items: center; gap: var(--s-3);
-  padding: 0.85rem 1.1rem;
-  background: var(--flaeche-2);
-  border: 1px solid var(--linie);
-  border-radius: 2px;
+  padding: 0.9rem 1.2rem;
+  background: #FFFFFF;
+  border: 1px solid var(--linie-fein);
+  border-radius: 100px;
   color: var(--text-hell);
   text-decoration: none;
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  text-transform: uppercase; letter-spacing: .1em;
-  box-shadow: 0 12px 40px rgba(0,0,0,.55);
-  transition: border-color var(--d-kurz), background var(--d-kurz), transform var(--d-mittel) var(--e-raus);
+  font-size: var(--t-klein); font-weight: 600;
+  box-shadow: var(--schatten);
+  transition: border-color var(--d-kurz), transform var(--d-mittel) var(--e-raus);
 }
-.wa:hover { border-color: var(--signal-rand); background: var(--flaeche-3); transform: translateY(-2px); }
-.wa svg { width: 18px; height: 18px; flex: none; fill: #4EE07A; }
+.wa:hover { border-color: var(--signal-rand); transform: translateY(-2px); }
+.wa svg { width: 20px; height: 20px; flex: none; fill: var(--blau); }
 .wa__text { display: block; }
-.wa__unter { display: block; color: var(--text-still); letter-spacing: .06em; text-transform: none; font-size: 10px; margin-top: 2px; }
+.wa__unter { display: block; color: var(--text-still); font-weight: 400; font-size: var(--t-etikett); margin-top: 2px; }
 @media (max-width: 34rem) { .wa__text { display: none; } .wa { padding: 0.9rem; } }
 .wa[hidden] { display: none; }
 
 
 /* ── Käufer-Zähler ─────────────────────────────────────────────── */
 .kaeufer {
-  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4) var(--s-5);
-  padding: var(--s-4) var(--s-5);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4) var(--s-6);
+  padding: var(--s-5) var(--s-6);
   border: 1px solid var(--linie-fein);
-  border-left: 2px solid var(--gepruft);
+  border-left: 3px solid var(--blau);
   background: var(--flaeche-1);
 }
 .kaeufer[hidden] { display: none; }
 .kaeufer__zahl {
-  font-family: var(--f-mono); font-size: 1.85rem; font-weight: 600;
-  color: var(--text-hell); line-height: 1;
-  font-variant-numeric: tabular-nums slashed-zero;
+  font-family: var(--f-display); font-size: 2.4rem; font-weight: 700;
+  color: var(--blau); line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 .kaeufer__text { flex: 1 1 16rem; font-size: var(--t-klein); color: var(--text-leise); }
-.kaeufer__stand { font-family: var(--f-mono); font-size: var(--t-etikett); color: var(--text-still); letter-spacing: .08em; }
+.kaeufer__stand { font-size: var(--t-etikett); color: var(--text-still); }
 
 
 /* ── Quellenzeile · steht unter jeder gerechneten Zahl ─────────── */
 .quelle {
-  display: flex; gap: var(--s-2); align-items: baseline;
-  font-family: var(--f-mono); font-size: var(--t-etikett);
-  color: var(--text-still); letter-spacing: .04em; line-height: 1.5;
+  font-size: var(--t-etikett);
+  color: var(--text-still); line-height: 1.6;
   margin-top: var(--s-3);
+  padding-left: var(--s-4);
+  border-left: 2px solid var(--linie-fein);
 }
-.quelle::before { content: "↳"; flex: none; opacity: .6; }
 
 
-/* ── Aufzählung mit Messstrichen ───────────────────────────────── */
+/* ── Aufzählung mit blauem Strich ──────────────────────────────── */
 .liste { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-4); }
 .liste li { position: relative; padding-left: var(--s-5); }
 .liste li::before {
   content: ""; position: absolute; left: 0; top: 0.72em;
-  width: 12px; height: 1px; background: var(--signal);
+  width: 12px; height: 2px; background: var(--blau);
 }
 
 
@@ -471,35 +508,38 @@ html[data-statisch="ja"] .auf { opacity: 1 !important; transform: none !importan
 
 .kachel {
   background: var(--grund);
-  padding: var(--s-5);
+  padding: var(--s-6) var(--s-5);
   display: flex; flex-direction: column; gap: var(--s-3);
   text-decoration: none; color: inherit;
   transition: background var(--d-mittel) var(--e-scharf);
 }
 a.kachel:hover { background: var(--flaeche-1); }
 .kachel__nr {
-  font-family: var(--f-mono); font-size: var(--t-etikett); color: var(--text-still);
-  letter-spacing: .14em;
+  font-size: var(--t-etikett); color: var(--text-still); letter-spacing: .1em;
 }
 .kachel h3 { margin: 0; }
 .kachel p { font-size: var(--t-klein); color: var(--text-leise); margin: 0; }
+a.kachel h3 { transition: color var(--d-kurz); }
+a.kachel:hover h3 { color: var(--blau); }
 
 
-/* ── Hero der Startseite ───────────────────────────────────────
-   Kein Willkommensbild. Links die Behauptung samt PLZ-Feld,
-   rechts sofort das Ergebnis, das am Ende herauskommt. Wer nach
-   drei Sekunden wieder geht, hat trotzdem gesehen, worum es
-   geht — und das ist die Mehrheit.                              */
+/* ══════════════════════════════════════════════════════════════════
+   HERO DER STARTSEITE
+
+   Links die Behauptung mit dem Postleitzahlfeld, rechts die
+   laufende Zahl. Sie ist die größte Zahl der ganzen Seite und der
+   Grund, warum jemand bleibt: Sie zählt ab dem Öffnen mit, und man
+   sieht ihr beim Laufen zu.
+   ══════════════════════════════════════════════════════════════════ */
 .hero {
-  padding-block: clamp(var(--s-7), 9vw, var(--s-10)) clamp(var(--s-7), 8vw, var(--s-9));
+  padding-block: clamp(var(--s-7), 8vw, var(--s-9)) clamp(var(--s-7), 7vw, var(--s-9));
   background:
-    radial-gradient(90% 70% at 18% 0%, rgba(255,122,47,.07), transparent 60%),
-    radial-gradient(60% 50% at 100% 20%, rgba(255,122,47,.05), transparent 70%);
+    radial-gradient(70% 60% at 82% 0%, rgba(3, 66, 143, .05), transparent 62%);
   border-bottom: 1px solid var(--linie-fein);
 }
 .hero__raster {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(var(--s-6), 5vw, var(--s-8));
   align-items: center;
 }
@@ -508,27 +548,162 @@ a.kachel:hover { background: var(--flaeche-1); }
 .hero__text .display { margin-block: var(--s-4) var(--s-5); }
 .hero__text .gross { color: var(--text-leise); margin-bottom: var(--s-6); }
 
-.hero__zaehler { padding: clamp(var(--s-5), 4vw, var(--s-6)); }
-.hero__zaehler .zaehler__zahl { font-size: clamp(2.6rem, 1rem + 7vw, 4.6rem); }
+/* Der Zählerblock. Weiße Karte, eine Haarlinie, ein sehr weicher
+   Schatten. Er ist das einzige Element auf der Startseite, das
+   über der Fläche steht. */
+.hero__zaehler {
+  background: #FFFFFF;
+  border: 1px solid var(--linie-fein);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+  padding: clamp(var(--s-5), 4vw, var(--s-7));
+}
 .hero__zaehler-zeile {
-  margin: var(--s-4) 0 0; font-size: 10px; line-height: 1.6;
-  color: var(--text-still); letter-spacing: .04em;
+  margin: var(--s-4) 0 0;
+  font-size: var(--t-etikett); line-height: 1.6;
+  color: var(--text-still);
 }
 
+/* Die laufende Zahl im Seitenkopf: das Herzstück. */
+.laeuft__label {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--blau);
+  margin: 0 0 var(--s-4);
+}
+.laeuft__label .punkt {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blau); flex: none;
+  animation: pochen 2s var(--e-scharf) infinite;
+}
+@keyframes pochen { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+html[data-statisch="ja"] .laeuft__label .punkt { animation: none; }
+@media (prefers-reduced-motion: reduce) { .laeuft__label .punkt { animation: none; } }
+
+.laeuft__zahl {
+  font-family: var(--f-display);
+  font-size: clamp(2.8rem, 1rem + 8vw, 5.6rem);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -0.045em;
+  color: var(--blau);
+  font-variant-numeric: tabular-nums;
+  /* Intl setzt vor das €-Zeichen ein geschütztes Leerzeichen. In
+     dieser Größe ist das eine halbe Ziffernbreite zu viel, aber
+     ganz zusammenziehen darf man es auch nicht: dann klebt das €
+     an der letzten Ziffer. */
+  word-spacing: -0.06em;
+  word-break: keep-all;
+  margin: 0;
+}
+.laeuft__satz {
+  margin: var(--s-4) 0 0;
+  font-size: var(--t-gross); line-height: 1.5; color: var(--text);
+  max-width: 30ch;
+}
+.laeuft__satz strong { color: var(--text-hell); font-weight: 650; }
+.laeuft__zeit {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+  margin-top: var(--s-5); padding-top: var(--s-4);
+  border-top: 1px solid var(--linie-fein);
+  font-size: var(--t-etikett); color: var(--text-still);
+}
+.laeuft__zeit .zahl { color: var(--text-leise); font-weight: 600; }
+
+
+/* ── Postleitzahl-Einstieg ─────────────────────────────────────── */
 .plzstart { margin-top: var(--s-6); }
 .plzstart__reihe { display: flex; gap: var(--s-3); flex-wrap: wrap; }
 .plzstart__reihe .feld__eingabe {
   flex: 0 1 9rem;
-  font-family: var(--f-mono); font-size: 1.5rem; font-weight: 500;
-  letter-spacing: .16em; text-align: center; padding-block: 0.9rem;
+  font-size: 1.4rem; font-weight: 600;
+  letter-spacing: .12em; text-align: center; padding-block: 0.9rem;
 }
 .plzstart__reihe .knopf { flex: 1 1 14rem; }
-.plzstart__unter { margin: var(--s-4) 0 0; font-size: var(--t-etikett); color: var(--text-still); line-height: 1.7; max-width: 40ch; }
+.plzstart__unter { margin: var(--s-4) 0 0; font-size: var(--t-etikett); color: var(--text-still); line-height: 1.7; max-width: 44ch; }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   DER MAKLER
+
+   Steht direkt unter dem Kopf. Wer die Zahl gesehen hat, will
+   wissen, wer dahintersteht, und zwar bevor er irgendetwas
+   ausfüllt. Foto links, seine Worte rechts, darunter drei nackte
+   Angaben ohne Adjektive.
+   ══════════════════════════════════════════════════════════════════ */
+.makler {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(var(--s-6), 5vw, var(--s-8));
+  align-items: center;
+}
+@media (max-width: 60rem) { .makler { grid-template-columns: 1fr; } }
+
+.makler__bild {
+  position: relative;
+  background: var(--flaeche-1);
+}
+.makler__bild img { width: 100%; height: auto; display: block; }
+/* Die blaue Kante an der Unterseite des Bildes: das einzige
+   grafische Zitat seines Logos außerhalb des Logos. */
+.makler__bild::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 8px; background: var(--blau);
+}
+.makler__name { margin-bottom: var(--s-2); }
+.makler__rolle {
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--blau); margin: 0 0 var(--s-5);
+}
+.makler__zitat {
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 1rem + 1.2vw, 1.75rem);
+  font-weight: 500; line-height: 1.35; letter-spacing: -0.02em;
+  color: var(--text-hell);
+  margin: 0 0 var(--s-5);
+  padding-left: var(--s-5);
+  border-left: 3px solid var(--blau);
+  max-width: 32ch;
+}
+.makler__daten {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+  margin: var(--s-6) 0 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--linie-fein);
+}
+@media (max-width: 40rem) { .makler__daten { grid-template-columns: 1fr; gap: var(--s-4); } }
+.makler__daten dt {
+  font-size: var(--t-etikett); color: var(--text-still);
+  text-transform: uppercase; letter-spacing: .1em; margin-bottom: var(--s-2);
+}
+.makler__daten dd {
+  margin: 0; font-family: var(--f-display); font-size: 1.35rem; font-weight: 700;
+  color: var(--text-hell); line-height: 1.15;
+}
+.makler__daten dd span { display: block; font-family: var(--f-text); font-size: var(--t-klein); font-weight: 400; color: var(--text-leise); margin-top: 4px; }
+
+
+/* ── Belegzeile · die Quellen in einer Zeile ───────────────────── */
+.belegzeile {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-6);
+  padding-block: var(--s-5);
+  border-top: 1px solid var(--linie-fein);
+  border-bottom: 1px solid var(--linie-fein);
+  font-size: var(--t-klein); color: var(--text-leise);
+}
+.belegzeile strong { color: var(--text-hell); font-weight: 600; }
+.belegzeile span { display: inline-flex; align-items: center; gap: var(--s-2); }
+.belegzeile span::before {
+  content: ""; width: 6px; height: 6px; background: var(--blau); flex: none;
+}
 
 
 /* ── Werkzeug-Kacheln ──────────────────────────────────────────── */
 /* auto-fit statt fester Spaltenzahl: Es sind heute drei Werkzeuge,
-   es können morgen zwei oder vier sein — das Raster trägt beides,
+   es können morgen zwei oder vier sein, das Raster trägt beides,
    ohne dass jemand eine Klasse anfassen muss. */
 .werkzeuge {
   display: grid;
@@ -542,16 +717,24 @@ a.kachel:hover { background: var(--flaeche-1); }
 .werkzeug {
   display: block; position: relative;
   padding: clamp(var(--s-5), 4vw, var(--s-6));
-  background: var(--flaeche-1);
+  background: #FFFFFF;
+  border: 1px solid var(--linie-fein);
+  border-radius: var(--radius);
   color: inherit; text-decoration: none;
-  transition: background var(--d-mittel) var(--e-scharf);
+  transition: border-color var(--d-mittel) var(--e-scharf),
+              box-shadow var(--d-mittel) var(--e-scharf),
+              transform var(--d-mittel) var(--e-raus);
 }
-.werkzeug:hover { background: var(--flaeche-2); }
+a.werkzeug:hover {
+  border-color: var(--signal-rand);
+  box-shadow: var(--schatten);
+  transform: translateY(-2px);
+}
 .werkzeug__nr {
   position: absolute; top: var(--s-4); right: var(--s-5);
-  font-size: var(--t-etikett); color: var(--text-still); letter-spacing: .14em;
+  font-size: var(--t-etikett); color: var(--text-still);
 }
-.werkzeug h3 { font-size: var(--t-h2); margin-bottom: var(--s-4); }
+.werkzeug h3 { font-family: var(--f-display); font-size: var(--t-h2); margin-bottom: var(--s-4); }
 .werkzeug > p { color: var(--text-leise); font-size: var(--t-klein); }
 .werkzeug .liste { margin-block: var(--s-5); }
 .werkzeug .liste li { font-size: var(--t-klein); color: var(--text); }
@@ -559,14 +742,18 @@ a.kachel:hover { background: var(--flaeche-1); }
 
 
 /* ── Anlass-Seiten ─────────────────────────────────────────────── */
-.anlass-kopf { padding-block: clamp(var(--s-7), 8vw, var(--s-9)) var(--s-6); border-bottom: 1px solid var(--linie-fein); }
+.anlass-kopf {
+  padding-block: clamp(var(--s-7), 8vw, var(--s-9)) var(--s-7);
+  border-bottom: 1px solid var(--linie-fein);
+  background: radial-gradient(60% 70% at 85% 0%, rgba(3, 66, 143, .045), transparent 62%);
+}
 .anlass-kopf .display { margin-block: var(--s-4) var(--s-5); }
 .anlass-kopf .gross { color: var(--text-leise); }
 
 .fakten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
 @media (max-width: 46rem) { .fakten { grid-template-columns: 1fr; } }
 .fakt { background: var(--grund); padding: var(--s-5); }
-.fakt__zahl { font-family: var(--f-mono); font-size: 2rem; font-weight: 600; color: var(--signal); line-height: 1; font-variant-numeric: tabular-nums slashed-zero; }
+.fakt__zahl { font-family: var(--f-display); font-size: 2.1rem; font-weight: 700; color: var(--blau); line-height: 1; font-variant-numeric: tabular-nums; }
 .fakt__text { margin: var(--s-3) 0 0; font-size: var(--t-klein); color: var(--text-leise); }
 
 .frageliste { display: grid; gap: 1px; background: var(--linie-fein); border: 1px solid var(--linie-fein); }
@@ -577,16 +764,19 @@ a.kachel:hover { background: var(--flaeche-1); }
 .schluss-cta {
   padding: clamp(var(--s-5), 5vw, var(--s-7));
   background: var(--flaeche-1);
+  border: 1px solid var(--linie-fein);
+  border-radius: var(--radius);
   display: grid; gap: var(--s-4); justify-items: start;
 }
 .schluss-cta h2 { max-width: 24ch; }
 
+/* Zwei gleichrangige Wege nebeneinander (Anlass-Seiten). */
+.cta-paar { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
 
 /* ── Druck ─────────────────────────────────────────────────────── */
 @media print {
-  body::before, .kopf, .fuss, .wa { display: none !important; }
+  .kopf, .fuss, .wa { display: none !important; }
   body { background: #fff; color: #000; }
+  .hero, .anlass-kopf { background: none; }
 }
-
-/* Zwei gleichrangige Wege nebeneinander (Anlass-Seiten). */
-.cta-paar { display: flex; flex-wrap: wrap; gap: var(--s-3); }

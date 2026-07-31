@@ -33,7 +33,7 @@
     return d.firstElementChild;
   }
   /* Für Markup mit MEHREREN Wurzelelementen. el() gibt nur das
-     erste zurück — wer das übersieht, verliert stillschweigend
+     erste zurück, wer das übersieht, verliert stillschweigend
      halbe Bildschirme samt ihrer Klick-Handler. */
   function frag(html) {
     var t = document.createElement("template");
@@ -49,7 +49,7 @@
   function sichern() {
     try {
       sessionStorage.setItem(SPEICHER, JSON.stringify({ ts: Date.now(), idx: idx, S: S }));
-    } catch (e) { /* privater Modus — dann eben ohne */ }
+    } catch (e) { /* privater Modus, dann eben ohne */ }
   }
   function wiederherstellen() {
     try {
@@ -101,7 +101,7 @@
 
     fussAktualisieren();
 
-    // Erstes bedienbares Element bekommt den Fokus — aber nur, wenn
+    // Erstes bedienbares Element bekommt den Fokus, aber nur, wenn
     // per Tastatur navigiert wurde. Sonst springt auf dem Handy
     // ungefragt die Tastatur auf.
     if (document.body.dataset.tastatur === "ja") {
@@ -150,7 +150,7 @@
         /* Früher endete der Durchlauf hier. Er läuft jetzt weiter:
            Energie und Instandhaltung gelten bundesweit, nur Mietlücke und
            Wertabschlag brauchen regionale Vergleichswerte. Deshalb kein
-           Warnkasten mehr, sondern eine Ansage, was kommt und was nicht —
+           Warnkasten mehr, sondern eine Ansage, was kommt und was nicht,
            und die Ortsauswahl entfällt, es gibt ja keine Teilorte. */
         S.plz = plz; S.stadtteil = "";
         var info = global.Engine.daten().markt.ausserhalb;
@@ -159,7 +159,7 @@
             '<strong>' + esc(info.ueberschrift_teilrechnung || info.ueberschrift) + '</strong>' +
             '<p>' + esc(info.text_teilrechnung || info.text) + '</p>' +
             '<p class="still">Lieber gleich persönlich? ' +
-              '<a href="/micheal-preview/kontakt.html?anlass=analyse">Eckdaten schicken</a> — dann sehen wir uns Ihr Objekt direkt an.</p>' +
+              '<a href="/micheal-preview/kontakt.html?anlass=analyse">Eckdaten schicken</a>, dann sehen wir uns Ihr Objekt direkt an.</p>' +
           '</div>'
         ));
         fussAktualisieren();
@@ -315,7 +315,7 @@
         '<div class="wahlraster wahlraster--4">' + heiz + '</div>' +
 
         '<p class="feld__label feld__label--abstand">Energieeffizienzklasse ' +
-          '<span class="still">— steht auf Seite 1 des Energieausweises</span></p>' +
+          '<span class="still">steht auf Seite 1 des Energieausweises</span></p>' +
         '<div class="ekskala">' + klassen + '</div>' +
         '<div class="ekskala__legende">' +
           '<span class="zahl">sparsam</span>' +
@@ -326,7 +326,7 @@
         '<button type="button" class="unbekannt" data-unbekannt ' +
           'aria-pressed="' + (S[s.feld_klasse] === "unbekannt" ? "true" : "false") + '">' +
           '<span class="unbekannt__zeichen zahl">?</span>' +
-          '<span><strong>Weiß ich nicht — bitte schätzen</strong>' +
+          '<span><strong>Weiß ich nicht, bitte schätzen</strong>' +
           '<span class="unbekannt__unter">Wir leiten die Klasse aus Baujahr, Heizung und Sanierungsstand ab und legen den Rechenweg offen.</span></span>' +
         '</button>' +
       '</div>'
@@ -486,7 +486,7 @@
   function gueltig() {
     var s = F.schritte[idx];
     switch (s.id) {
-      /* Innerhalb des Marktgebiets muss ein Teilort gewählt sein — er
+      /* Innerhalb des Marktgebiets muss ein Teilort gewählt sein, er
          verfeinert die Vergleichsmiete. Außerhalb gibt es keine Teilorte
          zur Auswahl, dort genügt die fünfstellige PLZ. */
       case "ort":       return !!(S.plz && S.plz.length === 5) &&
@@ -513,7 +513,7 @@
   function weiter() {
     if (!gueltig()) return;
 
-    // Grundstücke rechnen wir nicht — das sagen wir sofort und
+    // Grundstücke rechnen wir nicht, das sagen wir sofort und
     // ehrlich, statt eine Zahl zu erfinden.
     if (S.objekttyp === "grundstueck") { abbruchGrundstueck(); return; }
 
@@ -540,7 +540,7 @@
         '<p class="etikett">Ehrliche Antwort</p>' +
         '<h2>Für Grundstücke rechnet dieses Werkzeug nicht.</h2>' +
         '<p class="gross">Der Wert eines Grundstücks hängt am Bodenrichtwert, am Bebauungsplan und an der ' +
-        'Erschließung — nicht an Energiekennwerten. Eine Zahl, die wir hier erfinden würden, wäre wertlos.</p>' +
+        'Erschließung, nicht an Energiekennwerten. Eine Zahl, die wir hier erfinden würden, wäre wertlos.</p>' +
         '<p>Schicken Sie uns die Flurstücksnummer, dann bekommen Sie eine belastbare Einschätzung von Hand.</p>' +
         '<a class="knopf knopf--signal knopf--gross" href="/micheal-preview/kontakt.html?anlass=grundstueck">Einschätzung anfragen <span class="pfeil">→</span></a>' +
       '</div>';
@@ -587,11 +587,20 @@
   /* ── Tastatur ─────────────────────────────────────────────────── */
   function tasten(ev) {
     if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+
+    /* Der Zuhörer hängt am Dokument und überlebt den Wizard: Sobald
+       abschliessen() den Ergebnisschirm hineingeschrieben hat, gibt es
+       keinen Fußbereich mehr. Ohne diese Zeile klickt eine Ziffer dort
+       noch einen Knopf aus dem alten Schritt an (Ausnahme in
+       fussAktualisieren), und die Rücktaste zeichnet den Wizard über
+       das fertige Ergebnis. */
+    if (!wurzel || !q("[data-weiter]", wurzel)) return;
+
     var ziel = ev.target;
     var inFeld = ziel && /^(INPUT|TEXTAREA|SELECT)$/.test(ziel.tagName);
 
     /* Für die Rücktaste zählt nur, ob im Ziel überhaupt Text steht.
-       In der PLZ-Eingabe muss sie Zeichen löschen — sonst lässt sich eine
+       In der PLZ-Eingabe muss sie Zeichen löschen, sonst lässt sich eine
        vertippte Postleitzahl nicht korrigieren. An einem Schieberegler,
        Ankreuzfeld oder Knopf tut sie dagegen gar nichts, und dort hat sie
        vorher den Schritt-Zurück verschluckt: Nach dem Zeichnen bekommt auf

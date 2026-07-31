@@ -1,5 +1,5 @@
 {
-  "_hinweis": "EINZIGE QUELLE DER WAHRHEIT für alle Rechenwerte der Potenzial-Analyse. Kein Wert steht irgendwo im Code. Pflege siehe docs/DATENPFLEGE.md — Rhythmus: quartalsweise.",
+  "_hinweis": "EINZIGE QUELLE DER WAHRHEIT für alle Rechenwerte der Potenzial-Analyse. Kein Wert steht irgendwo im Code. Pflege siehe docs/DATENPFLEGE.md, Rhythmus: quartalsweise.",
   "schema_version": 1,
   "stand": "2026-Q3",
   "naechste_pruefung": "2026-10-01",
@@ -24,7 +24,7 @@
       { "klasse": "H",  "grenze_bis": null, "kennwert": 290, "farbstufe": 8 }
     ],
     "referenzklasse": "C",
-    "_referenzklasse_begruendung": "Klasse C ist das realistische Sanierungsziel im Bestand und die Schwelle, ab der Käufer und Banken keinen Abschlag mehr ansetzen. Die Energie-Differenz wird gegen diesen Wert gerechnet, NICHT gegen A+ — sonst entstehen Fantasiezahlen."
+    "_referenzklasse_begruendung": "Klasse C ist das realistische Sanierungsziel im Bestand und die Schwelle, ab der Käufer und Banken keinen Abschlag mehr ansetzen. Die Energie-Differenz wird gegen diesen Wert gerechnet, NICHT gegen A+, sonst entstehen Fantasiezahlen."
   },
 
   "energietraeger": {
@@ -37,21 +37,21 @@
       "arbeitspreis_eur_pro_kwh": 0.115,
       "co2_kg_pro_kwh": 0.201,
       "behg_pflichtig": true,
-      "quelle": "TODO — BDEW Gaspreisanalyse"
+      "quelle": "TODO: BDEW Gaspreisanalyse"
     },
     "heizoel": {
       "label": "Ölheizung",
       "arbeitspreis_eur_pro_kwh": 0.107,
       "co2_kg_pro_kwh": 0.266,
       "behg_pflichtig": true,
-      "quelle": "TODO — Tecson, umgerechnet mit 10 kWh/l"
+      "quelle": "TODO: Tecson, umgerechnet mit 10 kWh/l"
     },
     "fernwaerme": {
       "label": "Fernwärme",
       "arbeitspreis_eur_pro_kwh": 0.140,
       "co2_kg_pro_kwh": 0.130,
       "behg_pflichtig": true,
-      "quelle": "TODO — regionaler Versorger (ZEAG/Stadtwerke Heilbronn), Emissionsfaktor netzabhängig"
+      "quelle": "TODO: regionaler Versorger (ZEAG/Stadtwerke Heilbronn), Emissionsfaktor netzabhängig"
     },
     "waermepumpe": {
       "label": "Wärmepumpe",
@@ -59,21 +59,21 @@
       "_rechenweg": "WP-Stromtarif 0,27 €/kWh geteilt durch Jahresarbeitszahl 3,4",
       "co2_kg_pro_kwh": 0.0,
       "behg_pflichtig": false,
-      "quelle": "TODO — Verivox Wärmestromtarife; Strom fällt unter EU-ETS, nicht unter BEHG"
+      "quelle": "TODO: Verivox Wärmestromtarife; Strom fällt unter EU-ETS, nicht unter BEHG"
     },
     "pellets": {
       "label": "Pellets / Holz",
       "arbeitspreis_eur_pro_kwh": 0.078,
       "co2_kg_pro_kwh": 0.023,
       "behg_pflichtig": false,
-      "quelle": "TODO — DEPI Pelletpreisindex"
+      "quelle": "TODO: DEPI Pelletpreisindex"
     },
     "nachtspeicher": {
       "label": "Nachtspeicher / Direktstrom",
       "arbeitspreis_eur_pro_kwh": 0.310,
       "co2_kg_pro_kwh": 0.0,
       "behg_pflichtig": false,
-      "quelle": "TODO — Haushaltsstrom-Grundversorgung"
+      "quelle": "TODO: Haushaltsstrom-Grundversorgung"
     },
     "unbekannt": {
       "label": "weiß ich nicht",
@@ -113,7 +113,7 @@
 
   "schaetzung_energieklasse": {
     "_hinweis": "Greift nur, wenn der Nutzer 'weiß ich nicht' wählt. Ausgangswert nach Baujahr-Epoche, dann Abschläge für durchgeführte Sanierungen und Aufschlag für ineffiziente Wärmeerzeuger.",
-    "_quelle": "TODO — abgleichen mit dena-Gebäudereport und Verbrauchskennwerten des BMWSB",
+    "_quelle": "TODO: abgleichen mit dena-Gebäudereport und Verbrauchskennwerten des BMWSB",
     "_stand": "2026-Q3",
     "_geprueft": false,
     "basis_kwh_nach_epoche": [
@@ -128,7 +128,7 @@
       { "bis_baujahr": 2022, "kwh": 62,  "label": "2016–2022" },
       { "bis_baujahr": 9999, "kwh": 42,  "label": "ab 2023" }
     ],
-    "_abschlag_hinweis": "Schlüssel entsprechen exakt den Bauteil-IDs unter 'instandhaltung.bauteile'. Wer dort umbenennt, muss hier mitziehen — sonst rechnet die Schätzung stillschweigend ohne den Abschlag.",
+    "_abschlag_hinweis": "Schlüssel entsprechen exakt den Bauteil-IDs unter 'instandhaltung.bauteile'. Wer dort umbenennt, muss hier mitziehen, sonst rechnet die Schätzung stillschweigend ohne den Abschlag.",
     "abschlag_je_sanierung_kwh": {
       "fassade": 45,
       "fenster": 22,
@@ -152,7 +152,7 @@
 
   "instandhaltung": {
     "_hinweis": "Bauteilbasiert statt Pauschale. Alter je Bauteil = heute minus Sanierungsjahr (ersatzweise Baujahr). Ist ein Bauteil über seine Nutzungsdauer hinaus, entsteht Instandhaltungsstau.",
-    "_quelle": "TODO — Größenordnungen nach BKI Baukosten und VDI 2067 Nutzungsdauern; regional mit einem Handwerksbetrieb gegenprüfen",
+    "_quelle": "TODO: Größenordnungen nach BKI Baukosten und VDI 2067 Nutzungsdauern; regional mit einem Handwerksbetrieb gegenprüfen",
     "_stand": "2026-Q3",
     "_geprueft": false,
     "_einheit": "kosten_eur_pro_qm_wohnflaeche = Wiederherstellungskosten je m² Wohnfläche, nicht je m² Bauteilfläche.",
@@ -175,7 +175,7 @@
     },
 
     "restwert_anteil_ueberfaellig": 0.25,
-    "_restwert_begruendung": "Ein Bauteil über seiner Nutzungsdauer ist nicht wertlos, solange es funktioniert. Ohne diesen Abschlag rechnet das Tool einen Instandhaltungsstau in Höhe einer Kernsanierung — eine Zahl, die im Kundengespräch sofort zerfällt. 0,25 heißt: 25 % Restwert werden abgezogen, angesetzt werden 75 % der Wiederherstellungskosten.",
+    "_restwert_begruendung": "Ein Bauteil über seiner Nutzungsdauer ist nicht wertlos, solange es funktioniert. Ohne diesen Abschlag rechnet das Tool einen Instandhaltungsstau in Höhe einer Kernsanierung, eine Zahl, die im Kundengespräch sofort zerfällt. 0,25 heißt: 25 % Restwert werden abgezogen, angesetzt werden 75 % der Wiederherstellungskosten.",
 
     "stau_korridor_breite": 0.25,
     "_stau_korridor_begruendung": "Der Stau wird als Spanne ausgewiesen, nicht als Punktwert. Was ein Käufer tatsächlich abzieht, hängt vom Verhandlungsgeschick ab, nicht von einer Formel."
@@ -183,7 +183,7 @@
 
   "wertabschlag_energie": {
     "_hinweis": "Prozentualer Auf-/Abschlag auf den Verkehrswert gegenüber der Referenzklasse C. Wird im Tool ausdrücklich als KORRIDOR ausgewiesen, nie als exakter Wert.",
-    "_quelle": "TODO — jährliche Auswertungen von JLL, ImmoScout24 (WohnBarometer) und dem IW zur energetischen Preisdifferenzierung; Bandbreite regional erheblich",
+    "_quelle": "TODO: jährliche Auswertungen von JLL, ImmoScout24 (WohnBarometer) und dem IW zur energetischen Preisdifferenzierung; Bandbreite regional erheblich",
     "_stand": "2026-Q3",
     "_geprueft": false,
     "je_klasse": {
@@ -206,7 +206,7 @@
     "_leerstand_hinweis": "Bei leerstehenden Objekten wird die entgangene Jahreskaltmiete um zwei Vermarktungsmonate gekürzt."
   },
 
-  "_bauteilkosten_faktor_erklaerung": "Die Bauteilkosten in 'instandhaltung' sind auf ein freistehendes Einfamilienhaus bezogen. Je kompakter ein Gebäude, desto weniger Dach- und Fassadenfläche entfällt auf einen Quadratmeter Wohnfläche. Ohne diesen Faktor rechnet das Tool einem Mehrfamilienhaus den Instandhaltungsstau eines Einfamilienhauses zu — pro Quadratmeter, also um ein Vielfaches zu hoch.",
+  "_bauteilkosten_faktor_erklaerung": "Die Bauteilkosten in 'instandhaltung' sind auf ein freistehendes Einfamilienhaus bezogen. Je kompakter ein Gebäude, desto weniger Dach- und Fassadenfläche entfällt auf einen Quadratmeter Wohnfläche. Ohne diesen Faktor rechnet das Tool einem Mehrfamilienhaus den Instandhaltungsstau eines Einfamilienhauses zu, nämlich pro Quadratmeter, also um ein Vielfaches zu hoch.",
 
   "objekttypen": [
     { "id": "efh",         "label": "Einfamilienhaus",     "kaufpreis_faktor": 1.00, "bauteilkosten_faktor": 1.00, "hat_gemeinschaft": false },

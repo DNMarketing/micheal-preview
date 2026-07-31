@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════
    kontakt.js · Das allgemeine Kontaktformular.
    Gleiche Schutzmechanik wie beim Bericht-Formular: Honigtopf plus
-   Zeitfalle. Kein Captcha — das kostet Abschlüsse und hält gegen
+   Zeitfalle. Kein Captcha, das kostet Abschlüsse und hält gegen
    ernsthafte Bots ohnehin nicht.
    ══════════════════════════════════════════════════════════════════ */
 
@@ -67,7 +67,7 @@
         form.innerHTML =
           '<div class="gform__danke">' +
             '<p class="marke marke--gepruft"><span class="punkt"></span>Angekommen</p>' +
-            '<p class="gross">Wir melden uns — in der Regel noch am selben Werktag.</p>' +
+            '<p class="gross">Wir melden uns, in der Regel noch am selben Werktag.</p>' +
           '</div>';
       };
 
@@ -89,7 +89,7 @@
         console.error("[Kontakt]", e);
         knopf.disabled = false;
         status.dataset.art = "fehler";
-        status.textContent = "Das hat gerade nicht geklappt. Bitte rufen Sie uns an — " +
+        status.textContent = "Das hat gerade nicht geklappt. Bitte rufen Sie uns an " +
                              "oder versuchen Sie es in ein paar Minuten noch einmal.";
       });
     });
