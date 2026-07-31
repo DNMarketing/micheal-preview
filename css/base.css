@@ -648,51 +648,15 @@ html[data-statisch="ja"] .messfeld__marke .punkt { animation: none; }
 }
 .messfeld__einheit .zahl { color: var(--text-hell); }
 
-/* ── Registrierstreifen ────────────────────────────────────────────
-   Ein Strich pro Sekunde wandert nach links an einer festen Nadel
-   vorbei, jeder fünfte geht über die volle Höhe. Er beantwortet die
-   Frage, ob hier wirklich etwas läuft, ohne eine Zahl dafür zu
-   brauchen. Bewegt wird ein transform, kein background-position:
-   das läuft im Compositor und kostet keine Neuberechnung pro Bild.
-   ──────────────────────────────────────────────────────────────── */
-.streifen {
-  position: relative;
-  height: 30px;
-  overflow: hidden;
-  border-top: 1px solid var(--linie-fein);
-  border-bottom: 1px solid var(--linie-fein);
-}
-.streifen__band {
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: -24px;
-  background-image:
-    repeating-linear-gradient(90deg, var(--linie-stark) 0 1px, transparent 1px 90px),
-    repeating-linear-gradient(90deg, var(--linie-fein)  0 1px, transparent 1px 18px);
-  background-size: 100% 100%, 100% 54%;
-  background-position: bottom left, bottom left;
-  background-repeat: repeat-x;
-  animation: streifen 1s linear infinite;
-}
-@keyframes streifen { from { transform: translateX(0); } to { transform: translateX(-18px); } }
-html[data-statisch="ja"] .streifen__band { animation: none; }
-@media (prefers-reduced-motion: reduce) { .streifen__band { animation: none; } }
-/* Die Nadel steht still, das Papier läuft durch. */
-.streifen__nadel {
-  position: absolute; top: 0; bottom: 0; right: 22%;
-  width: 1px; background: var(--blau);
-}
-.streifen__nadel::before {
-  content: "";
-  position: absolute; top: 0; left: -4px;
-  width: 9px; height: 3px; background: var(--blau);
-}
-
-/* Der Ticker unter dem Streifen. Er ist die zweite Zahl: klein,
-   vierstellig hinter dem Komma, und das einzige auf der Seite, das
-   sich dauerhaft bewegt. */
+/* Der Ticker. Er ist die zweite Zahl: klein, vierstellig hinter dem
+   Komma, und das einzige auf der Seite, das sich dauerhaft bewegt.
+   Zwischen ihm und dem Jahresbetrag stand einmal ein laufender
+   Registrierstreifen. Er ist raus: Eine Animation, die nichts misst,
+   sondern nur Betrieb vortäuscht, hält keine zweite Betrachtung aus.
+   Die Haarlinie darüber macht dieselbe Trennung ohne Bewegung. */
 .messfeld .ticker {
-  border-top: 0;
-  padding: var(--s-4) 0 0;
+  border-top: 1px solid var(--linie-fein);
+  padding: var(--s-5) 0 0;
   align-items: baseline;
   gap: var(--s-2) var(--s-3);
 }
