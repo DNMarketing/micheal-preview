@@ -267,7 +267,7 @@ strong, b { font-weight: 650; color: var(--text-hell); }
    die Marke nicht klebt.
 
    Das Rot lebt ausschließlich hier. Sobald die Vektordatei vorliegt,
-   wird der Block gegen ein <img src="/micheal-preview/assets/logo.svg"> getauscht und
+   wird der Block gegen ein <img src="/assets/logo.svg"> getauscht und
    kann ersatzlos weg.
    ──────────────────────────────────────────────────────────────── */
 .logo {
@@ -548,67 +548,196 @@ a.kachel:hover h3 { color: var(--blau); }
 .hero__text .display { margin-block: var(--s-4) var(--s-5); }
 .hero__text .gross { color: var(--text-leise); margin-bottom: var(--s-6); }
 
-/* Der Zählerblock. Weiße Karte, eine Haarlinie, ein sehr weicher
-   Schatten. Er ist das einzige Element auf der Startseite, das
-   über der Fläche steht. */
-.hero__zaehler {
-  background: #FFFFFF;
+/* ── Das Messfeld ──────────────────────────────────────────────────
+   Weiße Karte, eine Haarlinie, ein sehr weicher Schatten. Das
+   einzige Element auf der Startseite, das über der Fläche steht.
+
+   Es ist ausdrücklich als Messgerät gebaut und nicht als Werbekasten:
+   Winkel in den Ecken wie bei einem Anschnittzeichen, Zonen durch
+   Haarlinien getrennt, jede Beschriftung klein und in Versalien,
+   jede Ziffer tabellarisch. Was es NICHT tut: leuchten, Verläufe
+   ziehen, eine zweite Farbe einführen oder nach Terminal aussehen.
+   ──────────────────────────────────────────────────────────────── */
+.messfeld {
+  position: relative;
   border: 1px solid var(--linie-fein);
   border-radius: var(--radius);
   box-shadow: var(--schatten);
-  padding: clamp(var(--s-5), 4vw, var(--s-7));
-}
-.hero__zaehler-zeile {
-  margin: var(--s-4) 0 0;
-  font-size: var(--t-etikett); line-height: 1.6;
-  color: var(--text-still);
+  padding: clamp(var(--s-5), 4vw, var(--s-6));
+
+  /* Die vier Winkel in den Ecken, wie die Passermarken auf einem
+     Messprotokoll. Acht Farbflächen statt Pseudoelementen, weil zwei
+     Pseudoelemente nur zwei Ecken tragen und vier Ecken, von denen
+     zwei fehlen, wie ein Fehler aussehen. */
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand)),
+    linear-gradient(var(--signal-rand), var(--signal-rand));
+  background-size:
+    11px 1px, 1px 11px,   /* oben links  */
+    11px 1px, 1px 11px,   /* oben rechts */
+    11px 1px, 1px 11px,   /* unten links */
+    11px 1px, 1px 11px;   /* unten rechts*/
+  background-position:
+    7px 7px, 7px 7px,
+    calc(100% - 7px) 7px, calc(100% - 7px) 7px,
+    7px calc(100% - 7px), 7px calc(100% - 7px),
+    calc(100% - 7px) calc(100% - 7px), calc(100% - 7px) calc(100% - 7px);
 }
 
-/* Die laufende Zahl im Seitenkopf: das Herzstück. */
-.laeuft__label {
-  display: flex; align-items: center; gap: var(--s-3);
+.messfeld__schild {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--linie-fein);
+}
+.messfeld__marke {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  margin: 0;
   font-size: var(--t-etikett); font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em;
   color: var(--blau);
-  margin: 0 0 var(--s-4);
 }
-.laeuft__label .punkt {
+.messfeld__marke .punkt {
   width: 7px; height: 7px; border-radius: 50%; background: var(--blau); flex: none;
   animation: pochen 2s var(--e-scharf) infinite;
 }
 @keyframes pochen { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
-html[data-statisch="ja"] .laeuft__label .punkt { animation: none; }
-@media (prefers-reduced-motion: reduce) { .laeuft__label .punkt { animation: none; } }
+html[data-statisch="ja"] .messfeld__marke .punkt { animation: none; }
+@media (prefers-reduced-motion: reduce) { .messfeld__marke .punkt { animation: none; } }
 
-.laeuft__zahl {
+.messfeld__objekt {
+  margin: 0;
+  font-size: var(--t-etikett); line-height: 1.6; letter-spacing: .04em;
+  color: var(--text-still);
+}
+
+.messfeld__frage {
+  margin: var(--s-5) 0 var(--s-2);
+  font-size: var(--t-klein); color: var(--text-leise);
+}
+
+/* Die große Zahl. Sie zählt einmal hoch und rastet ein, danach
+   übernimmt der Ticker darunter. */
+.messfeld__zahl {
+  margin: 0;
   font-family: var(--f-display);
-  font-size: clamp(2.8rem, 1rem + 8vw, 5.6rem);
+  font-size: clamp(2.9rem, 1rem + 7.4vw, 5rem);
   font-weight: 700;
   line-height: .95;
   letter-spacing: -0.045em;
   color: var(--blau);
-  font-variant-numeric: tabular-nums;
   /* Intl setzt vor das €-Zeichen ein geschütztes Leerzeichen. In
      dieser Größe ist das eine halbe Ziffernbreite zu viel, aber
      ganz zusammenziehen darf man es auch nicht: dann klebt das €
      an der letzten Ziffer. */
   word-spacing: -0.06em;
   word-break: keep-all;
-  margin: 0;
 }
-.laeuft__satz {
-  margin: var(--s-4) 0 0;
-  font-size: var(--t-gross); line-height: 1.5; color: var(--text);
-  max-width: 30ch;
+.messfeld__einheit {
+  margin: var(--s-3) 0 var(--s-5);
+  font-size: var(--t-etikett); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--text-leise);
 }
-.laeuft__satz strong { color: var(--text-hell); font-weight: 650; }
-.laeuft__zeit {
-  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
-  margin-top: var(--s-5); padding-top: var(--s-4);
+.messfeld__einheit .zahl { color: var(--text-hell); }
+
+/* ── Registrierstreifen ────────────────────────────────────────────
+   Ein Strich pro Sekunde wandert nach links an einer festen Nadel
+   vorbei, jeder fünfte geht über die volle Höhe. Er beantwortet die
+   Frage, ob hier wirklich etwas läuft, ohne eine Zahl dafür zu
+   brauchen. Bewegt wird ein transform, kein background-position:
+   das läuft im Compositor und kostet keine Neuberechnung pro Bild.
+   ──────────────────────────────────────────────────────────────── */
+.streifen {
+  position: relative;
+  height: 30px;
+  overflow: hidden;
   border-top: 1px solid var(--linie-fein);
-  font-size: var(--t-etikett); color: var(--text-still);
+  border-bottom: 1px solid var(--linie-fein);
 }
-.laeuft__zeit .zahl { color: var(--text-leise); font-weight: 600; }
+.streifen__band {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: -24px;
+  background-image:
+    repeating-linear-gradient(90deg, var(--linie-stark) 0 1px, transparent 1px 90px),
+    repeating-linear-gradient(90deg, var(--linie-fein)  0 1px, transparent 1px 18px);
+  background-size: 100% 100%, 100% 54%;
+  background-position: bottom left, bottom left;
+  background-repeat: repeat-x;
+  animation: streifen 1s linear infinite;
+}
+@keyframes streifen { from { transform: translateX(0); } to { transform: translateX(-18px); } }
+html[data-statisch="ja"] .streifen__band { animation: none; }
+@media (prefers-reduced-motion: reduce) { .streifen__band { animation: none; } }
+/* Die Nadel steht still, das Papier läuft durch. */
+.streifen__nadel {
+  position: absolute; top: 0; bottom: 0; right: 22%;
+  width: 1px; background: var(--blau);
+}
+.streifen__nadel::before {
+  content: "";
+  position: absolute; top: 0; left: -4px;
+  width: 9px; height: 3px; background: var(--blau);
+}
+
+/* Der Ticker unter dem Streifen. Er ist die zweite Zahl: klein,
+   vierstellig hinter dem Komma, und das einzige auf der Seite, das
+   sich dauerhaft bewegt. */
+.messfeld .ticker {
+  border-top: 0;
+  padding: var(--s-4) 0 0;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-3);
+}
+.messfeld .ticker__label {
+  font-size: var(--t-etikett); text-transform: uppercase;
+  letter-spacing: .1em; color: var(--text-still);
+}
+.ticker__zeit {
+  font-size: var(--t-etikett); font-weight: 600;
+  letter-spacing: .1em; color: var(--text-leise);
+}
+.messfeld .ticker__wert {
+  font-size: clamp(1.4rem, 1rem + 1.4vw, 1.9rem);
+}
+
+/* ── Die Posten ────────────────────────────────────────────────────
+   Woraus der Jahresbetrag besteht. Kein Kartenraster, sondern ein
+   Protokoll: Bezeichnung links, Betrag rechts, Haarlinie dazwischen.
+   ──────────────────────────────────────────────────────────────── */
+.posten__kopf {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+  margin: var(--s-5) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--linie-fein);
+  font-size: var(--t-etikett); text-transform: uppercase;
+  letter-spacing: .1em; color: var(--text-still);
+}
+.posten {
+  margin: var(--s-3) 0 0;
+  display: grid; gap: var(--s-2);
+}
+.posten > div {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+  padding-block: var(--s-2);
+  border-top: 1px solid var(--linie-fein);
+}
+.posten > div:first-child { border-top: 0; }
+.posten dt {
+  font-size: var(--t-klein); color: var(--text-leise);
+  min-width: 0;
+}
+.posten dd {
+  margin: 0; text-align: right; white-space: nowrap;
+  font-size: var(--t-klein); font-weight: 600; color: var(--text-hell);
+}
 
 
 /* ── Postleitzahl-Einstieg ─────────────────────────────────────── */
@@ -639,18 +768,29 @@ html[data-statisch="ja"] .laeuft__label .punkt { animation: none; }
 }
 @media (max-width: 60rem) { .makler { grid-template-columns: 1fr; } }
 
-.makler__bild {
-  position: relative;
+/* ── Das Porträt ───────────────────────────────────────────────────
+   Ein Foto, gerahmt wie ein Foto: weiche Ecken, eine Haarlinie, der
+   gleiche sehr weiche Schatten wie am Messfeld. Vorher stand hier
+   ein Kreis mit blauem Balken darunter, der aussah, als sei das Bild
+   in die Seite gefallen.
+
+   aspect-ratio und object-fit stehen hier, damit ein späterer
+   Austausch der Datei das Layout nicht verschiebt: Was nicht quadra-
+   tisch ist, wird zugeschnitten statt gestaucht, und der Zuschnitt
+   sitzt oben, weil dort das Gesicht ist.
+   ──────────────────────────────────────────────────────────────── */
+.portraet {
+  display: block;
+  width: 100%; height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 22%;
+  border-radius: 10px;
+  border: 1px solid var(--linie-fein);
   background: var(--flaeche-1);
+  box-shadow: var(--schatten);
 }
-.makler__bild img { width: 100%; height: auto; display: block; }
-/* Die blaue Kante an der Unterseite des Bildes: das einzige
-   grafische Zitat seines Logos außerhalb des Logos. */
-.makler__bild::after {
-  content: "";
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 8px; background: var(--blau);
-}
+.makler__bild { min-width: 0; }
 .makler__name { margin-bottom: var(--s-2); }
 .makler__rolle {
   font-size: var(--t-etikett); font-weight: 600;
@@ -711,11 +851,19 @@ html[data-statisch="ja"] .laeuft__label .punkt { animation: none; }
   gap: clamp(var(--s-4), 2vw, var(--s-5));
   align-items: stretch;
 }
-.werkzeuge > .werkzeug { display: flex; flex-direction: column; }
-.werkzeuge > .werkzeug .knopf { margin-top: auto; align-self: flex-start; }
 
+/* Jede Kachel ist innen dasselbe Raster: Überschrift, Absatz,
+   Aufzählung, Knopf. Die Aufzählung bekommt den ganzen Rest
+   (1fr), dadurch stehen die Knöpfe aller Kacheln auf einer Linie,
+   egal wie lang der Text darüber ist. Genau das ging vorher
+   auseinander: Die Überschrift „Potenzial-Analyse" brach um, die
+   Überschrift „Immobilienbewertung" nicht, und ab da war jede
+   Zeile der drei Kacheln gegeneinander versetzt. */
 .werkzeug {
-  display: block; position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--s-4);
+  position: relative;
   padding: clamp(var(--s-5), 4vw, var(--s-6));
   background: #FFFFFF;
   border: 1px solid var(--linie-fein);
@@ -730,15 +878,29 @@ a.werkzeug:hover {
   box-shadow: var(--schatten);
   transform: translateY(-2px);
 }
-.werkzeug__nr {
-  position: absolute; top: var(--s-4); right: var(--s-5);
-  font-size: var(--t-etikett); color: var(--text-still);
+/* Eine Zeile, in jeder Kachel. „Immobilienbewertung" ist das
+   längste Wort und gibt das Maß vor: Es muss bei 19 rem Spaltenbreite
+   ohne Umbruch und ohne Trennstrich hineinpassen. */
+.werkzeug h3 {
+  font-family: var(--f-display);
+  font-size: clamp(1.25rem, 0.92rem + 1.05vw, 1.6rem);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
 }
-.werkzeug h3 { font-family: var(--f-display); font-size: var(--t-h2); margin-bottom: var(--s-4); }
-.werkzeug > p { color: var(--text-leise); font-size: var(--t-klein); }
-.werkzeug .liste { margin-block: var(--s-5); }
+.werkzeug__lead {
+  margin: 0;
+  color: var(--text-leise); font-size: var(--t-klein);
+}
+.werkzeug .liste {
+  margin: 0;
+  align-content: start;
+  gap: var(--s-3);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--linie-fein);
+}
 .werkzeug .liste li { font-size: var(--t-klein); color: var(--text); }
-.werkzeug .knopf { margin-top: var(--s-2); }
+.werkzeug .knopf { margin: 0; justify-self: start; }
 
 
 /* ── Anlass-Seiten ─────────────────────────────────────────────── */

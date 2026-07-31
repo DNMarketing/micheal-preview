@@ -42,10 +42,14 @@
 
 <main id="inhalt">
 
-  <!-- ══ KOPF · die laufende Zahl trägt die Seite ═════════════════
-       Links die Behauptung und der Einstieg, rechts der Betrag, der
-       seit dem Öffnen dieser Seite verloren geht. Er ist die größte
-       Zahl der ganzen Website und das einzige, was sich bewegt.
+  <!-- ══ KOPF · das Messfeld trägt die Seite ══════════════════════
+       Links die Behauptung und der Einstieg, rechts die Messung.
+       Sie hat zwei Zahlen, und die Reihenfolge ist der ganze Punkt:
+       zuerst der Jahresbetrag, der einmal hochzählt und dann
+       stehenbleibt, darunter der Ticker, der ab dem Öffnen der Seite
+       weiterläuft. Die große Zahl sagt, worum es geht, die kleine
+       macht sie greifbar.
+
        Gerechnet wird ein offen ausgewiesenes Beispielobjekt
        (js/home.js), sonst wäre die Zahl irreführend. -->
   <section class="hero">
@@ -78,17 +82,40 @@
           </form>
         </div>
 
-        <aside class="hero__zaehler" data-beispiel>
-          <p class="laeuft__label"><span class="punkt" aria-hidden="true"></span>Seit Sie diese Seite geöffnet haben</p>
-          <p class="laeuft__zahl zahl" data-laufwert aria-live="off">0,0000 €</p>
-          <p class="laeuft__satz" data-laufsatz>
-            verliert dieses Haus, während Sie es lesen.
-          </p>
-          <div class="laeuft__zeit">
-            <span data-beispiel-jahr>Beispielrechnung wird geladen</span>
-            <span class="zahl" data-laufzeit>00:00</span>
+        <aside class="messfeld" data-beispiel>
+
+          <!-- Typenschild: was gemessen wird, steht über der Zahl.
+               Ein Betrag ohne sein Objekt wäre irreführende Werbung
+               nach § 5 UWG, und darunter wäre er zu übersehen. -->
+          <div class="messfeld__schild">
+            <p class="messfeld__marke"><span class="punkt" aria-hidden="true"></span>Beispielrechnung · kein Angebot</p>
+            <p class="messfeld__objekt zahl" data-beispiel-zeile>Beispielobjekt wird geladen</p>
           </div>
-          <p class="hero__zaehler-zeile" data-beispiel-zeile></p>
+
+          <p class="messfeld__frage">Dieses Haus verliert</p>
+          <p class="messfeld__zahl zahl" data-jahrwert>0 €</p>
+          <p class="messfeld__einheit">pro Jahr<span data-tagzeile></span></p>
+
+          <!-- Registrierstreifen: ein Strich pro Sekunde wandert an
+               der festen Nadel vorbei. Er zeigt nicht den Betrag,
+               sondern dass wirklich etwas läuft. -->
+          <div class="streifen" aria-hidden="true">
+            <span class="streifen__band"></span>
+            <span class="streifen__nadel"></span>
+          </div>
+
+          <div class="ticker">
+            <span class="ticker__label">seit Sie diese Seite geöffnet haben</span>
+            <span class="ticker__zeit zahl" data-laufzeit>00:00</span>
+            <span class="ticker__wert zahl" data-laufwert aria-live="off">0,0000 €</span>
+          </div>
+
+          <!-- Woraus der Jahresbetrag besteht. Baut js/home.js aus den
+               Hebeln des Rechenkerns, damit hier keine zweite Wahrheit
+               entsteht. Die Posten ergeben addiert genau die Zahl oben. -->
+          <p class="posten__kopf">Woraus es besteht <span>je Jahr</span></p>
+          <dl class="posten" data-posten></dl>
+
         </aside>
 
       </div>
@@ -104,7 +131,7 @@
     <div class="huelle">
       <div class="makler">
         <div class="makler__bild auf">
-          <img src="/micheal-preview/assets/bilder/michael-spitzer.jpg"
+          <img class="portraet" src="/micheal-preview/assets/bilder/michael-spitzer.jpg"
                alt="Michael Spitzer, Immobilienmakler in Heilbronn"
                width="524" height="524">
         </div>
@@ -158,11 +185,10 @@
       <h2 class="auf" style="max-width:26ch">Drei Wege hinein. Alle drei kosten nichts und verpflichten zu nichts.</h2>
       <div class="werkzeuge" style="margin-top:var(--s-6)">
 
-        <a class="werkzeug rahmen auf" href="/micheal-preview/potenzial-analyse.html">
+        <a class="werkzeug auf" href="/micheal-preview/potenzial-analyse.html">
           <h3>Potenzial-Analyse</h3>
-          <p>Sechs Fragen zu Lage, Baujahr, Heizung und Nutzung. Ergebnis: Ihr laufender Verlust
-             pro Jahr, aufgeteilt auf Energie, Miete und Instandhaltung. Dazu der Betrag, den ein
-             Käufer heute beim Preis abziehen würde.</p>
+          <p class="werkzeug__lead">Sechs Fragen zu Lage, Baujahr, Heizung und Nutzung. Ergebnis:
+             Ihr laufender Verlust pro Jahr, aufgeteilt auf Energie, Miete und Instandhaltung.</p>
           <ul class="liste">
             <li>Keine Adresse, keine Registrierung</li>
             <li>Energieklasse wird geschätzt, wenn kein Ausweis vorliegt</li>
@@ -171,11 +197,10 @@
           <span class="knopf knopf--signal">Starten <span class="pfeil">→</span></span>
         </a>
 
-        <a class="werkzeug rahmen auf" href="/micheal-preview/inserats-check.html" style="--verzug:120ms">
+        <a class="werkzeug auf" href="/micheal-preview/inserats-check.html" style="--verzug:120ms">
           <h3>Inserats-Check</h3>
-          <p>Sie verkaufen selbst? Laden Sie drei bis fünf Fotos und Ihren Anzeigentext hoch.
-             Wir prüfen Bildwirkung, Textwirkung, Preisplausibilität und ob Ihre Anzeige die
-             gesetzlichen Pflichtangaben enthält.</p>
+          <p class="werkzeug__lead">Sie verkaufen selbst? Laden Sie Ihre Fotos und den Anzeigentext
+             hoch. Wir prüfen Bildwirkung, Text, Preis und die Pflichtangaben.</p>
           <ul class="liste">
             <li>Pflichtangaben nach GEG § 87, sofort und ohne Wartezeit</li>
             <li>Bußgeldrahmen bei Verstoß: bis 10.000 €</li>
@@ -184,15 +209,14 @@
           <span class="knopf">Inserat prüfen <span class="pfeil">→</span></span>
         </a>
 
-        <a class="werkzeug rahmen auf" href="/micheal-preview/bewertung.html" style="--verzug:240ms">
+        <a class="werkzeug auf" href="/micheal-preview/bewertung.html" style="--verzug:240ms">
           <h3>Immobilienbewertung</h3>
-          <p>Die klassische Frage, und die einzige, die hier bewusst kein Rechner beantwortet.
-             Sechs Fragen in einer Minute, danach schaut sich Michael Spitzer Ihr Objekt an und
-             meldet sich innerhalb von 24 Stunden.</p>
+          <p class="werkzeug__lead">Die einzige Frage, die hier bewusst kein Rechner beantwortet.
+             Sechs Fragen, danach schaut sich Michael Spitzer Ihr Objekt selbst an.</p>
           <ul class="liste">
-            <li>Keine ausgewürfelte Rechnerzahl</li>
+            <li>Antwort innerhalb von 24 Stunden, keine Rechnerzahl</li>
             <li>Einschätzung von jemandem, der die Straße kennt</li>
-            <li>Belastbar genug für Bank, Erbengemeinschaft, Steuerberater</li>
+            <li>Belastbar für Bank, Erbengemeinschaft, Steuerberater</li>
           </ul>
           <span class="knopf">Bewerten lassen <span class="pfeil">→</span></span>
         </a>

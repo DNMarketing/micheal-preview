@@ -181,7 +181,7 @@ Danach:
 
 1. `assets/logo.svg` ablegen
 2. in allen HTML-Dateien `<a class="logo">` gegen
-   `<img src="/micheal-preview/assets/logo.svg" alt="M2-Immoservice">` tauschen
+   `<img src="/assets/logo.svg" alt="M2-Immoservice">` tauschen
 3. den Block `/* ── Logo · PLATZHALTER ── */` aus `base.css` löschen
 4. `favicon.svg` und das OG-Bild aus der Vektorfassung neu erzeugen
 
@@ -192,12 +192,22 @@ selbst macht das nie. Belege: `docs/STILANALYSE-M2.md`, § 2.
 ### 9 · Fotos liefern
 
 **Sein Porträt** steht als `assets/bilder/michael-spitzer.jpg` auf der
-Startseite (Abschnitt „Der Makler") und auf `ueber.html`. Es ist aus
-seiner Visitenkarte freigeschnitten (524 × 524 px) und trägt deshalb
-noch deren Hintergrund: ein blauer Keil und ein weißer Kreis. Auf der
-Startseite steht es groß, dort sieht man das. **Ein richtiges
-Porträtfoto sollte kommen**, quer oder hochkant, freigestellt oder mit
-ruhigem Hintergrund. Dann nur die Datei tauschen, das Markup bleibt.
+Startseite (Abschnitt „Der Makler") und auf `ueber.html`, gerahmt von
+der Klasse `.portraet`: weiche Ecken, Haarlinie, quadratisch
+zugeschnitten.
+
+Die Datei kam als 524 × 524 px großes Profilbild mit lila Kreisrand,
+und dieser Rand stand als Keil in den Ecken der Seite. Er ist
+herausgerechnet: außerhalb des Kreises setzt jetzt der weichgezeichnete
+Bildhintergrund fort, innerhalb ist das Foto unangetastet. Das
+unbearbeitete Original liegt als
+`assets/bilder/michael-spitzer-original.jpg` daneben, falls die
+Rechnung je wiederholt werden muss.
+
+**Ein richtiges Porträtfoto sollte trotzdem kommen**, in höherer
+Auflösung und mit ruhigem Hintergrund: 524 px sind für die Größe, in
+der es auf der Startseite steht, auf einem Retina-Bildschirm knapp.
+Dann nur die Datei tauschen, das Markup bleibt.
 
 **Echte Objektfotos** fehlen noch ganz. Gebraucht werden sie für
 `referenzen.html`. Aus seinen „Verkauft“-Reels lassen sich
