@@ -256,7 +256,7 @@
              erst irgendwo im Fußbereich. */
           '<div class="wert__weiter">' +
             '<p>Was Ihre Immobilie tatsächlich wert ist, sagt Ihnen keine Formel. ' +
-            'Dafür schaut jemand drauf, der die Straße kennt.</p>' +
+            'Dafür sieht sich Michael Spitzer Ihr Objekt persönlich an.</p>' +
             '<a class="knopf" href="/micheal-preview/bewertung.html">Bewertung anfordern <span class="pfeil">→</span></a>' +
           '</div>' +
         '</section>' +

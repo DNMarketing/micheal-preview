@@ -219,22 +219,29 @@ strong, b { font-weight: 650; color: var(--text-hell); }
 
 
 /* ── Marke · kleiner Statusaufkleber ───────────────────────────── */
+/* Die Marke ist eine Zeile, keine Pille.
+   Sie war einmal ein umrandeter Aufkleber mit rundem Rahmen und
+   farbiger Fläche. Genau das ist die Form, die inzwischen auf jeder
+   zweiten generierten Seite klebt, und sie fällt entsprechend auf.
+   Geblieben ist, was die Information trägt: der Punkt in der Farbe
+   des Zustands und ein kräftig gesetztes Wort daneben. */
 .marke {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--linie);
-  border-radius: 100px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   font-size: var(--t-etikett);
   font-weight: 600;
-  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  letter-spacing: .1em;
   color: var(--text-leise);
-  background: var(--grund);
+  background: none;
 }
-.marke--gepruft { color: var(--blau);  border-color: var(--signal-rand); background: var(--gepruft-flach); }
-.marke--warn    { color: var(--fehlt); border-color: var(--fehlt-rand);  background: var(--fehlt-flach); }
-.marke--signal  { color: var(--blau);  border-color: var(--signal-rand); background: var(--signal-flach); }
+.marke--gepruft { color: var(--blau); }
+.marke--warn    { color: var(--fehlt); }
+.marke--signal  { color: var(--blau); }
 .marke .punkt { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
 
 
