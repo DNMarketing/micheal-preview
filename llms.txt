@@ -32,7 +32,7 @@ Rechenmodell etwas ändert.
   eigenen Domain (`bewertung.m2-immoservice.de`) und ist in die
   Seite eingebettet.
 
-- **Anlass-Seiten** (`/anlass/…`). Sanierungsdruck, Erbfall,
+- **Anlass-Seiten** (`/anlass/…`). Sanierungsdruck,
   gescheiterter Privatverkauf, Kapitalanlage.
 
 ## Wie die Zahlen zustande kommen
