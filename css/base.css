@@ -939,9 +939,12 @@ a.werkzeug:hover {
    rotes Band oben, blaues unten, und jede Polsterung schiebt die Bänder
    von der Schrift weg. 41px statt 44px sind hier der bessere Handel. */
 @media (hover: none) {
-  .fuss__unten a { display: inline-block; padding-block: 0.55rem; }
-  .wortmarke { padding-block: 0.4rem; }
-  .makler__daten a.zahl { display: inline-block; padding-block: 0.4rem; }
+  /* Die Werte sind ausgemessen, nicht geraten: Sie heben genau diese
+     drei Ziele über 44px, weil jedes von einer anderen Schriftgröße
+     ausgeht. Wer die Größen ändert, misst nach. */
+  .fuss__unten a { display: inline-block; padding-block: 0.8rem; }   /* 14 → 45px */
+  .wortmarke { padding-block: 0.55rem; }                             /* 29 → 47px */
+  .makler__daten a.zahl { display: inline-block; padding-block: 0.7rem; } /* 26 → 47px */
 }
 
 
