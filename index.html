@@ -57,7 +57,11 @@
       <div class="hero__raster">
 
         <div class="hero__text">
-          <h1 class="display">Was kostet Ihre&nbsp;Immobilie? Während Sie nichts&nbsp;tun!</h1>
+          <!-- Die geschützten Leerzeichen setzen den Umbruch, nicht der
+               Zufall: „Während" stand sonst allein auf einer Zeile, auf
+               dem Telefon wie am Schreibtisch. text-wrap: balance kann
+               das nicht lösen, es verteilt nur, was es umbrechen darf. -->
+          <h1 class="display">Was kostet Ihre&nbsp;Immobilie? Während&nbsp;Sie nichts&nbsp;tun!</h1>
           <p class="gross lese">
             Energiekosten, Mietlücke, Instandhaltungsstau. Jedes Jahr geht Geld verloren, das niemand
             beziffert. Wir tun es. Ohne Adresse, ohne Anruf, ohne Registrierung.

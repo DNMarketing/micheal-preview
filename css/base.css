@@ -80,6 +80,16 @@ h3 {
 }
 h4 { font-family: var(--f-text); }
 
+/* Deutsche Komposita sind länger als jede Spalte auf einem Telefon.
+   „Berufshaftpflichtversicherung" passte auf 320px in keine Zeile und
+   hat die Rechtstexte seitlich aufgezogen. break-word ist die Bremse,
+   sie greift nur, wenn ein Wort sonst überliefe. Getrennt wird bloß auf
+   schmalen Schirmen: Auf dem Schreibtisch gibt es genug Platz, und
+   Trennstriche in einer Display-Zeile sind eine Behauptung von Enge,
+   die dort niemand aufstellen muss. */
+h1, h2, h3, h4 { overflow-wrap: break-word; }
+@media (max-width: 34rem) { h1, h2, h3, h4 { hyphens: auto; } }
+
 .display {
   font-size: var(--t-display);
   font-weight: 700;
@@ -821,7 +831,11 @@ html[data-statisch="ja"] .messfeld__marke .punkt { animation: none; }
    ohne dass jemand eine Klasse anfassen muss. */
 .werkzeuge {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  /* min() um die 19rem herum: Ohne das bleibt die Spur auch dann 19rem
+     breit, wenn der Container schmaler ist, und die Kachel steht rechts
+     über den Rand hinaus. Ab 344px Gerätebreite abwärts war genau das
+     der Fall, die Startseite ließ sich seitlich schieben. */
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
   gap: clamp(var(--s-4), 2vw, var(--s-5));
   align-items: stretch;
 }
@@ -908,6 +922,27 @@ a.werkzeug:hover {
 
 /* Zwei gleichrangige Wege nebeneinander (Anlass-Seiten). */
 .cta-paar { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+
+/* ── Tippziele auf Fingergeräten ────────────────────────────────────
+   Ein Finger trifft rund 9 mm breit, ein Mauszeiger einen Punkt.
+   Knöpfe und Felder liegen längst über 44px, diese drei Links nicht:
+   Sie sind als Text gesetzt und erben nur ihre Zeilenhöhe. Statt sie
+   größer zu schreiben, bekommen sie Luft nach oben und unten. Am Bild
+   ändert das nichts, an der Trefferquote alles.
+
+   hover: none statt einer Breite, weil es hier um den Zeiger geht und
+   nicht um den Platz: Ein schmales Fenster am Schreibtisch braucht
+   diese Polster nicht, ein breites Tablet schon.
+
+   Das Logo im Kopf bleibt bewusst außen vor. Es ist aus Rahmen gebaut,
+   rotes Band oben, blaues unten, und jede Polsterung schiebt die Bänder
+   von der Schrift weg. 41px statt 44px sind hier der bessere Handel. */
+@media (hover: none) {
+  .fuss__unten a { display: inline-block; padding-block: 0.55rem; }
+  .wortmarke { padding-block: 0.4rem; }
+  .makler__daten a.zahl { display: inline-block; padding-block: 0.4rem; }
+}
 
 
 /* ── Druck ─────────────────────────────────────────────────────── */
