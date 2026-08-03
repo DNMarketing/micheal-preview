@@ -15,7 +15,7 @@
 
    Rechtsstand: GEG in der ab 2024 geltenden Fassung.
    § 87  – Pflichtangaben in Immobilienanzeigen
-   § 108 – Bußgeldvorschrift, bis 10.000 €
+   § 108 – Bußgeldvorschrift (Ordnungswidrigkeit)
 
    ACHTUNG bei Pflege: Wenn sich das GEG ändert, ändert sich diese
    Datei. Sie ist der einzige Ort, an dem Rechtsstand im Code steht.
@@ -194,9 +194,9 @@
       bussgeldrisiko: fehlend.length > 0,
       bussgeld_hinweis:
         "Fehlende Pflichtangaben in einer Immobilienanzeige sind eine Ordnungswidrigkeit nach " +
-        "GEG § 108. Der Rahmen reicht bis 10.000 €. Die Pflicht trifft denjenigen, der inseriert, " +
-        "auch private Verkäufer, sobald sie ein kommerzielles Portal oder eine Zeitung nutzen und " +
-        "ein Energieausweis vorliegt.",
+        "GEG § 108 und können rechtliche Folgen haben. Die Pflicht trifft denjenigen, der " +
+        "inseriert, auch private Verkäufer, sobald sie ein kommerzielles Portal oder eine " +
+        "Zeitung nutzen und ein Energieausweis vorliegt.",
       hinweis_kein_ausweis:
         "Liegt für das Gebäude noch gar kein Energieausweis vor, greifen die Pflichtangaben nicht. " +
         "dann fehlt allerdings der Ausweis selbst, und der muss spätestens bei der Besichtigung " +

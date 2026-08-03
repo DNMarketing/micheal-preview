@@ -181,7 +181,7 @@
       etikett: "Vollständiger Bericht",
       titel: "Die beiden anderen Hebel und Ihren Wertkorridor bekommen Sie als PDF.",
       text: "Zwölf Seiten, jede Zahl mit Rechenweg und Quelle. Kein Werbeprospekt, sondern ein Dokument, das Sie Ihrem Steuerberater oder Ihrer Bank vorlegen können.",
-      knopf: "Bericht anfordern",
+      knopf: "Zeitwertgutachten anfordern",
       dsgvo:
         "Ich möchte den Bericht per E-Mail erhalten und bin damit einverstanden, dass meine Angaben " +
         "dafür verarbeitet werden. Die Einwilligung kann ich jederzeit widerrufen.",

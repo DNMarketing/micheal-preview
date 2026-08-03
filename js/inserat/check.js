@@ -291,7 +291,7 @@
               '<strong>' + d.pflicht_fehlend.length + ' Pflichtangabe' +
               (d.pflicht_fehlend.length > 1 ? 'n fehlen' : ' fehlt') + ': ' +
               esc(d.pflicht_fehlend.join(", ")) + '</strong>' +
-              '<p class="still" style="margin-top:.5rem">Bußgeldrahmen nach GEG § 108: bis 10.000 €. ' +
+              '<p class="still" style="margin-top:.5rem">Das ist eine Ordnungswidrigkeit nach GEG § 108 und kann rechtliche Folgen haben. ' +
               'Das ist der Punkt, den Sie heute noch selbst beheben können. Dafür brauchen Sie uns nicht.</p>' +
             '</section>'
           : '') +
