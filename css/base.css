@@ -586,6 +586,15 @@ a.kachel:hover h3 { color: var(--blau); }
    Werten von oben endete der mitlaufende Zähler auf einem 640px hohen
    Android bei 680px, also knapp darunter. Jetzt endet er bei 617px und
    ist auf jedem geprüften Gerät ganz zu sehen. */
+.hero__text .display { margin-block: var(--s-4) var(--s-5); }
+.hero__text .gross { color: var(--text-leise); margin-bottom: var(--s-6); }
+
+/* Steht bewusst NACH den beiden Zeilen darüber. Gleiche Spezifität,
+   also gewinnt die spätere Regel, und die Abstände der Textspalte
+   müssen hier fallen: Untereinander trennt der Abstand des Rasters,
+   ein zweiter Abstand aus der Spalte schiebt die Zahl nur nach unten.
+   Andersherum sortiert kostete das 48px, genug, um den Zähler auf
+   einem iPhone wieder unter den Rand zu drücken. */
 @media (max-width: 66rem) {
   .hero { padding-block: var(--s-5) var(--s-7); }
   .hero__raster { grid-template-columns: 1fr; gap: var(--s-4); }
@@ -595,9 +604,6 @@ a.kachel:hover h3 { color: var(--blau); }
   .hero__text .plzstart { order: 3; }
   .hero__text .gross { order: 4; margin-bottom: 0; }
 }
-
-.hero__text .display { margin-block: var(--s-4) var(--s-5); }
-.hero__text .gross { color: var(--text-leise); margin-bottom: var(--s-6); }
 
 /* ── Das Messfeld ──────────────────────────────────────────────────
    Weiße Karte, eine Haarlinie, ein sehr weicher Schatten. Das
