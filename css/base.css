@@ -82,13 +82,17 @@ h4 { font-family: var(--f-text); }
 
 /* Deutsche Komposita sind länger als jede Spalte auf einem Telefon.
    „Berufshaftpflichtversicherung" passte auf 320px in keine Zeile und
-   hat die Rechtstexte seitlich aufgezogen. break-word ist die Bremse,
-   sie greift nur, wenn ein Wort sonst überliefe. Getrennt wird bloß auf
-   schmalen Schirmen: Auf dem Schreibtisch gibt es genug Platz, und
-   Trennstriche in einer Display-Zeile sind eine Behauptung von Enge,
-   die dort niemand aufstellen muss. */
+   hat die Rechtstexte seitlich aufgezogen. break-word ist die Notbremse:
+   Sie greift nur, wenn ein Wort sonst überliefe, und kostet sonst nichts.
+
+   Kein hyphens: auto. Der Versuch stand hier schon und ist wieder raus:
+   Zusammen mit text-wrap: balance trennt der Browser auch dort, wo
+   nichts überläuft, und die Startseite las sich als „Was kostet Ihre
+   Im-mobilie?". Wo eine Überschrift wirklich zu lang ist, steht die
+   Trennstelle als &shy; im HTML. Drei Stellen sind es, alle in den
+   Rechtstexten. Von Hand gesetzt trifft sie die Fuge des Kompositums,
+   automatisch trifft sie irgendwas. */
 h1, h2, h3, h4 { overflow-wrap: break-word; }
-@media (max-width: 34rem) { h1, h2, h3, h4 { hyphens: auto; } }
 
 .display {
   font-size: var(--t-display);
