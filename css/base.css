@@ -564,7 +564,37 @@ a.kachel:hover h3 { color: var(--blau); }
   gap: clamp(var(--s-6), 5vw, var(--s-8));
   align-items: center;
 }
-@media (max-width: 66rem) { .hero__raster { grid-template-columns: 1fr; } }
+/* ── Der Hero auf einer Spalte ──────────────────────────────────────
+   Nebeneinander trägt sich der Hero von selbst: Behauptung links,
+   Zahl rechts, beides im ersten Blick. Untereinander stimmt genau das
+   nicht mehr. In der Reihenfolge des Quelltextes stünde zwischen
+   Überschrift und Messfeld erst ein Absatz und dann das Formular, und
+   die Zahl begann auf einem iPhone bei 999px. Sie war damit auf keinem
+   Telefon im ersten Bildschirm, und sie ist der Grund, warum jemand
+   bleibt.
+
+   Deshalb wird hier umsortiert statt gekürzt: Behauptung, Beleg,
+   Handlung, Erklärung. Der Absatz bleibt vollständig stehen, er rutscht
+   nur hinter das Postleitzahlfeld. Wer die Zahl gesehen hat, braucht
+   ihn nicht mehr, um zu tippen; wer weiterliest, findet ihn trotzdem.
+
+   display: contents löst die Textspalte auf, damit ihre drei Teile
+   einzeln in die eine Spalte einsortiert werden können. Am Quelltext
+   ändert das nichts, die Vorlesereihenfolge folgt der Anzeige.
+
+   Die engeren Abstände sind nicht Geschmack, sondern gemessen: Mit den
+   Werten von oben endete der mitlaufende Zähler auf einem 640px hohen
+   Android bei 680px, also knapp darunter. Jetzt endet er bei 617px und
+   ist auf jedem geprüften Gerät ganz zu sehen. */
+@media (max-width: 66rem) {
+  .hero { padding-block: var(--s-5) var(--s-7); }
+  .hero__raster { grid-template-columns: 1fr; gap: var(--s-4); }
+  .hero__text { display: contents; }
+  .hero__text .display { order: 1; margin-block: 0; }
+  .messfeld { order: 2; padding: var(--s-4); }
+  .hero__text .plzstart { order: 3; }
+  .hero__text .gross { order: 4; margin-bottom: 0; }
+}
 
 .hero__text .display { margin-block: var(--s-4) var(--s-5); }
 .hero__text .gross { color: var(--text-leise); margin-bottom: var(--s-6); }
